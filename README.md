@@ -15,8 +15,6 @@ Nosso produto contribui para a formação de uma sociedade mais instruída e cr�
 Informe aqui os tipos de usuário que irão interagir com a aplicação. Ex: administrador, locador, locatario, usuário não logado.
 ### Resumo dos Envolvidos 
 |Nome|Descrição|Responsabilidades|
-|----| ------- | --------------- |
-|Nome|Descrição|Responsabilidades|
 |----| :-------: | :---------------: |
 |E01- Leitores|Leitores ávidos procuram comprar livros usados ou raros, além de doar livros que não são mais utilizados por eles.|   - Assegurar que o sistema tem utilidade e poderá ser mantido;- Utilizar o sistema com frequência.
 |E02- Estudantes|Estudantes que buscam encontrar livros didáticos usados a preços acessíveis.|Garantir que a proposta do sistema esteja sendo cumprida a fins educacionais;
