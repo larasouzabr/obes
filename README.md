@@ -1,4 +1,4 @@
-# :checkered_flag: NOME DO PROJETO
+# :checkered_flag: OBES - Sebo Online
 
 Para pessoas que buscam adquirir livros por preços mais acessíveis e contribuir para a preservação do meio ambiente, que encontram dificuldades em ter acesso a livros novos devido aos preços elevados.
 O OBES é uma plataforma online de vendas e doação de livros usados que oferece preços mais acessíveis e uma grande variedade de títulos em comparação às lojas físicas tradicionais.
@@ -13,7 +13,7 @@ Nosso produto contribui para a formação de uma sociedade mais instruída e cr�
 ## :people_holding_hands: Papéis ou tipos de usuário da aplicação
 
 Informe aqui os tipos de usuário que irão interagir com a aplicação. Ex: administrador, locador, locatario, usuário não logado.
-Resumo dos Envolvidos 
+### Resumo dos Envolvidos 
 |Nome|Descrição|Responsabilidades|
 |----| ------- | --------------- |
 |Nome|Descrição|Responsabilidades|
@@ -26,7 +26,7 @@ Resumo dos Envolvidos
 |E06- ONG’s | Organizações sem fins lucrativos que buscam arrecadar fundos através da venda de livros usados. |-Utilizar o sistema como um promotor da acessibilidade cultural; -Promover uma cultura de democratização da leitura utilizando o sistema como meio/modo.
 
 
-Resumo dos Usuários
+### Resumo dos Usuários
 |Nome|Descrição|Responsabilidades|Envolvido|
 |----| ------- | --------------- |-------- |
 |UC - Usuário Comum|Leitores ávidos que procurem comprar livros usados ou raros, além de doar livros que não são mais utilizados por eles. Pessoas que desejam doar livros usados para que outros possam desfrutar deles. |- Vender livros usados.- Doar livros usados.-  Comprar livros usados por preços acessíveis.-  Avaliar vendedores.|E01, E02|
