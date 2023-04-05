@@ -48,10 +48,7 @@ Promover uma cultura de democratização da leitura utilizando o sistema como me
 Resumo dos Usuários
 |Nome|Descrição|Responsabilidades|Envolvido|
 | --- | --- | --- | --- |
-|UC - Usuário Comum|Leitores ávidos que procurem comprar livros usados ou raros, além de doar livros que não são mais utilizados por eles. Pessoas que desejam doar livros usados para que outros possam desfrutar deles |-Vender livros usados
--Doar livros usados.
--Comprar livros usados por preços acessíveis.
--Avaliar vendedores. |E01, E02 |
+|UC - Usuário Comum|Leitores ávidos que procurem comprar livros usados ou raros, além de doar livros que não são mais utilizados por eles. Pessoas que desejam doar livros usados para que outros possam desfrutar deles |Vender livros usados Doar livros usados.Comprar livros usados por preços acessíveis. Avaliar vendedores.|E01, E02 |
 
 UI - Usuário Institucional
 Instituições de ensino que buscam popular suas devidas bibliotecas e seus acervos para fornecer uma acessibilidade cultural para seus estudantes. Organizações sem fins lucrativos que buscam arrecadar fundos através da venda de livros usados.
