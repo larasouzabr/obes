@@ -69,11 +69,12 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
 
 ## :shipit: Operações implementadas para cada entidade da aplicação
 
-| Entidade   | Criação | Leitura | Atualização | Remoção |
-| ---------- | ------- | ------- | ----------- | ------- |
-| Entidade 1 | X       | X       |             | X       |
-| Entidade 2 | X       |         | X           | X       |
-| Entidade 3 | X       |         |             |         |
+| Entidade     | Criação | Leitura | Atualização | Remoção |
+| ------------ | ------- | ------- | ----------- | ------- |
+| Livros       | X       | X       | X           | X       |
+| Usuários     | X       | X       | X           |         |
+| Doação/venda | X       | X       | X           | X       |
+| Avaliações   | X       | X       |             | X       |
 
 > Lembre-se que é necessário implementar o CRUD de pelo menos duas entidades.
 
