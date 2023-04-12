@@ -37,17 +37,17 @@ Informe aqui os tipos de usuário que irão interagir com a aplicação. Ex: adm
 
 ## :spiral_calendar: Entidades ou tabelas do sistema
 
-1. Livros: representa os livros disponíveis para venda/doação no sebo online. Os atributos podem incluir título, autor, editora, ano de publicação, condição (novo, usado), preço, descrição e imagem do livro.
-2. Usuários: a entidade que representa os usuários do sistema, incluindo usuário comum e usuário institucional. Os atributos podem incluir nome, endereço, telefone, e-mail e senha.
-3. Doação/venda: a entidade que representa as doações/vendas feitas pelos usuários. Os atributos podem incluir informações do cliente e informações do livro.
-4. Avaliações: a entidade que representa as avaliações feitas pelos clientes sobre os livros e usuários. Os atributos podem incluir número da avaliação, data, informações do cliente, nome do livro ou usuário avaliado, nota (em uma escala de 1 a 5) e comentário.
+1. **Livros**: representa os livros disponíveis para venda/doação no sebo online. Os atributos podem incluir título, autor, editora, ano de publicação, condição (novo, usado), preço, descrição e imagem do livro.
+2. **Usuários**: a entidade que representa os usuários do sistema, incluindo usuário comum e usuário institucional. Os atributos podem incluir nome, endereço, telefone, e-mail e senha.
+3. **Doação/venda**: a entidade que representa as doações/vendas feitas pelos usuários. Os atributos podem incluir informações do cliente e informações do livro.
+4. **Avaliações**: a entidade que representa as avaliações feitas pelos clientes sobre os livros e usuários. Os atributos podem incluir número da avaliação, data, informações do cliente, nome do livro ou usuário avaliado, nota (em uma escala de 1 a 5) e comentário.
 
 ## :triangular_flag_on_post: Principais funcionalidades da aplicação
 
-- Receber livros disponíveis para doação: assim como todos os sistemas e-commerce, será implementada no Obes uma plataforma de envios para que os usuários registrados acompanhem os pedidos.
-- Colocar livros usados à venda: os usuários registrados a qualquer momento poderão cadastrar livros usados por meio da página de cadastro que ficará disponível no menu.
-- Cadastrar livro para doação: os usuários registrados a qualquer momento poderão cadastrar livros usados por meio da página de cadastro que ficará disponível no menu.
-- Visualizar livros usados que estão sendo vendidos e doados: o sistema será dividido em duas categorias, a primeira é o Sebo no qual constará os livros à venda, essa página ficará disponível tanto para o UC (Usuário Comum) quanto para o UI (Usuário Institucional). Já a categoria de doação estará visível apenas para o UI, o UC não poderá receber livros doados e a página de doação para ele constará apenas aqueles materiais que ele cadastrou para doação.
+- **Receber livros disponíveis para doação**: assim como todos os sistemas e-commerce, será implementada no Obes uma plataforma de envios para que os usuários registrados acompanhem os pedidos.
+- **Colocar livros usados à venda**: os usuários registrados a qualquer momento poderão cadastrar livros usados por meio da página de cadastro que ficará disponível no menu.
+- **Cadastrar livro para doação**: os usuários registrados a qualquer momento poderão cadastrar livros usados por meio da página de cadastro que ficará disponível no menu.
+- **Visualizar livros usados que estão sendo vendidos e doados**: o sistema será dividido em duas categorias, a primeira é o Sebo no qual constará os livros à venda, essa página ficará disponível tanto para o UC (Usuário Comum) quanto para o UI (Usuário Institucional). Já a categoria de doação estará visível apenas para o UI, o UC não poderá receber livros doados e a página de doação para ele constará apenas aqueles materiais que ele cadastrou para doação.
 
 ---
 
