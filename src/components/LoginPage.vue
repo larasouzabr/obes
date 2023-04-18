@@ -1,43 +1,47 @@
-
 <template>
   <div class="main-content">
     <div class="background"></div>
 
-<header>
-  <nav aria-label="primary">
-    <ul>
-      <li><a href="#">Sobre Nós</a></li>
-      <li><a href="#">Contato</a></li>
-      <li><a href="#">Entrar</a></li>
-    </ul>
-  </nav>
-</header>
+    <header>
+      <nav aria-label="primary">
+        <ul>
+          <li><a href="#">Sobre Nós</a></li>
+          <li><a href="#">Contato</a></li>
+          <li><a href="#">Entrar</a></li>
+        </ul>
+      </nav>
+    </header>
 
-<main>
-  <img src="../assets/obes.svg" alt="Logo Obes">
+    <main>
+      <img src="../assets/obes.svg" alt="Logo Obes" />
 
-  <p><strong>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente alias velit ratione enim veniam ad aspernatur voluptate exercitationem obcaecati cumque perspiciatis nostrum minus libero nemo, blanditiis tempora porro unde fuga</strong></p>
+      <p>
+        <strong
+          >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente
+          alias velit ratione enim veniam ad aspernatur voluptate exercitationem
+          obcaecati cumque perspiciatis nostrum minus libero nemo, blanditiis
+          tempora porro unde fuga</strong
+        >
+      </p>
 
-  <a href="/">Vamos lá!</a>
-</main>
+      <a href="/">Vamos lá!</a>
+    </main>
 
-<footer>
-  <img src="../assets/icon-facebook.svg" alt="Ícone do Facebook">
-  <img src="../assets/icon-twitter.svg" alt="Ícone do Twitter">
-  <img src="../assets/icon-instagram.svg" alt="Ícone do Instagram">
-</footer>
+    <footer>
+      <img src="../assets/icon-facebook.svg" alt="Ícone do Facebook" />
+      <img src="../assets/icon-twitter.svg" alt="Ícone do Twitter" />
+      <img src="../assets/icon-instagram.svg" alt="Ícone do Instagram" />
+    </footer>
   </div>
-  
 </template>
-
 
 <script>
 export default {
-  name: 'LoginPage',
+  name: "LoginPage",
   props: {
-    msg: String
-  }
-}
+    msg: String,
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -45,9 +49,10 @@ export default {
 .main-content {
   font-family: "Poppins", sans-serif;
   margin: 0px;
-  background: #decffb;
   display: grid;
-  gap: 80px;
+  gap: 30px;
+  align-content: space-between;
+  justify-content: space-between;
   grid-template-columns: 1fr 2fr;
   height: 100vh;
 }
@@ -129,5 +134,4 @@ footer {
   align-items: center;
   justify-content: end;
 }
-
 </style>

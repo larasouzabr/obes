@@ -1,18 +1,19 @@
 <template>
-  <LoginPage/>
+  <LoginPage />
 </template>
 
 <script>
-import LoginPage from './components/LoginPage.vue';
+import LoginPage from "./components/LoginPage.vue";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    LoginPage
-  }
-}
+    LoginPage,
+  },
+};
 </script>
 <style>
-body{
+body {
   margin: 0px;
+  background: #decffb;
 }
 </style>
