@@ -19,8 +19,7 @@
         <strong
           >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente
           alias velit ratione enim veniam ad aspernatur voluptate exercitationem
-          obcaecati cumque perspiciatis nostrum minus libero nemo, blanditiis
-          tempora porro unde fuga</strong
+          obcaecati cumque perspiciatis nostrum minus libero.</strong
         >
       </p>
 
@@ -28,9 +27,15 @@
     </main>
 
     <footer>
-      <img src="../assets/icon-facebook.svg" alt="Ícone do Facebook" />
-      <img src="../assets/icon-twitter.svg" alt="Ícone do Twitter" />
-      <img src="../assets/icon-instagram.svg" alt="Ícone do Instagram" />
+      <a href="#"
+        ><img src="../assets/icon-facebook.svg" alt="Ícone do Facebook"
+      /></a>
+      <a href="#"
+        ><img src="../assets/icon-twitter.svg" alt="Ícone do Twitter"
+      /></a>
+      <a href="#"
+        ><img src="../assets/icon-instagram.svg" alt="Ícone do Instagram"
+      /></a>
     </footer>
   </div>
 </template>
@@ -77,7 +82,7 @@ a {
 header {
   display: grid;
   justify-content: end;
-  margin: 45px 80px 0px 0px;
+  margin: 45px 65px 0px 0px;
   font-size: 1.25rem;
   font-weight: bold;
 }
@@ -85,6 +90,7 @@ header {
 header nav ul {
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
   gap: 30px;
   padding: 0px;
   margin: 0px;
@@ -93,6 +99,11 @@ header nav ul {
 
 header a {
   color: #432876;
+  transition: 0.5s;
+}
+
+header a:hover {
+  color: #432876e3;
 }
 
 header ul li:last-child a {
@@ -101,14 +112,23 @@ header ul li:last-child a {
   color: #e9dffc;
   padding: 10px 20px;
   border-radius: 4px;
+  transition: 0.5s;
+}
+
+header ul li:last-child a:hover {
+  background: #432876e3;
 }
 
 main {
-  margin: 0px 80px 0px 0px;
+  margin: 0px 65px 0px 0px;
   display: grid;
   gap: 45px;
   justify-items: end;
   text-align: right;
+}
+
+main img {
+  max-width: 85vw;
 }
 
 main p {
@@ -125,13 +145,31 @@ main a {
   border-radius: 4px;
   font-weight: bold;
   margin: auto 0;
+  transition: 0.5s;
+}
+
+main a:hover {
+  background: #432876e3;
 }
 
 footer {
-  margin: 0px 80px 45px 0px;
+  margin: 0px 65px 45px 0px;
   display: flex;
   gap: 20px;
   align-items: center;
   justify-content: end;
+}
+
+@media (max-width: 635px) {
+  header,
+  main,
+  footer {
+    justify-content: center;
+  }
+
+  main {
+    justify-items: center;
+    text-align: center;
+  }
 }
 </style>
