@@ -2,15 +2,7 @@
   <div class="main-content">
     <div class="background"></div>
 
-    <header>
-      <nav aria-label="primary">
-        <ul>
-          <li><a href="#">Sobre Nós</a></li>
-          <li><a href="#">Contato</a></li>
-          <li><a href="#">Entrar</a></li>
-        </ul>
-      </nav>
-    </header>
+    <HeaderMain />
 
     <main>
       <img src="../assets/obes.svg" alt="Logo Obes" />
@@ -26,25 +18,22 @@
       <a href="/">Vamos lá!</a>
     </main>
 
-    <footer>
-      <a href="#"
-        ><img src="../assets/icon-facebook.svg" alt="Ícone do Facebook"
-      /></a>
-      <a href="#"
-        ><img src="../assets/icon-twitter.svg" alt="Ícone do Twitter"
-      /></a>
-      <a href="#"
-        ><img src="../assets/icon-instagram.svg" alt="Ícone do Instagram"
-      /></a>
-    </footer>
+    <FooterMain />
   </div>
 </template>
 
 <script>
+import HeaderMain from "../components/HeaderMain.vue";
+import FooterMain from "../components/FooterMain.vue";
+
 export default {
   name: "LoginPage",
   props: {
     msg: String,
+  },
+  components: {
+    HeaderMain,
+    FooterMain,
   },
 };
 </script>
@@ -52,8 +41,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .main-content {
-  font-family: "Poppins", sans-serif;
-  margin: 0px;
   display: grid;
   gap: 30px;
   align-content: space-between;
@@ -77,46 +64,6 @@ a {
   background-size: cover;
   background-position: bottom right;
   max-height: inherit;
-}
-
-header {
-  display: grid;
-  justify-content: end;
-  margin: 45px 65px 0px 0px;
-  font-size: 1.25rem;
-  font-weight: bold;
-}
-
-header nav ul {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  padding: 0px;
-  margin: 0px;
-  align-items: center;
-}
-
-header a {
-  color: #432876;
-  transition: 0.5s;
-}
-
-header a:hover {
-  color: #432876e3;
-}
-
-header ul li:last-child a {
-  display: inline-block;
-  background: #432876;
-  color: #e9dffc;
-  padding: 10px 20px;
-  border-radius: 4px;
-  transition: 0.5s;
-}
-
-header ul li:last-child a:hover {
-  background: #432876e3;
 }
 
 main {
@@ -150,14 +97,6 @@ main a {
 
 main a:hover {
   background: #432876e3;
-}
-
-footer {
-  margin: 0px 65px 45px 0px;
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  justify-content: end;
 }
 
 @media (max-width: 635px) {

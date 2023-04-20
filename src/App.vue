@@ -3,7 +3,8 @@
 </template>
 
 <script>
-import LoginPage from "./components/LoginPage.vue";
+import LoginPage from "./view/LoginPage.vue";
+
 export default {
   name: "App",
   components: {
@@ -15,5 +16,10 @@ export default {
 body {
   margin: 0px;
   background: #decffb;
+  font-family: "Poppins", sans-serif;
+}
+
+a {
+  text-decoration: none;
 }
 </style>
