@@ -15,7 +15,7 @@
         >
       </p>
 
-      <a href="/">Vamos lá!</a>
+      <router-link to="/">Vamos lá!</router-link>
     </main>
 
     <FooterMain />

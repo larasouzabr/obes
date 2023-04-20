@@ -1,15 +1,15 @@
 <template>
-  <LoginPage />
+  <NavBar></NavBar>
+  <router-view/>
 </template>
 
 <script>
-import LoginPage from "./view/LoginPage.vue";
+import NavBar from './components/NavBar.vue';
+
 
 export default {
-  name: "App",
-  components: {
-    LoginPage,
-  },
+    name: "App",
+    components: { NavBar }
 };
 </script>
 <style>
