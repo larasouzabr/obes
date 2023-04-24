@@ -25,6 +25,10 @@ header {
   font-weight: bold;
 }
 
+a {
+  color: #432876;
+}
+
 nav ul {
   list-style: none;
   display: flex;

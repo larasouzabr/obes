@@ -47,6 +47,7 @@ export default {
   justify-content: space-between;
   grid-template-columns: 1fr 2fr;
   height: 100vh;
+  background-color: #decffb;
 }
 
 p {
@@ -57,6 +58,10 @@ a {
   text-decoration: none;
 }
 
+body{
+  margin: 0px;
+
+}
 .background {
   grid-row: 1 / -4;
   background-image: url("../assets/background-main.jpg");
