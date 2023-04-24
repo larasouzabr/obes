@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg">
+  <nav class="navbar navbar-expand-lg" v-if="!isPaginaLogin">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <img src="../assets/obes.svg" alt="OBES Logo" width="123" height="39" />
@@ -23,9 +23,14 @@
                 >Início</a
               >
             </li>
-            <li class="nav-item">
-              <a class="nav-link fs-5" href="#">Categorias</a>
-            </li>
+            <li class="nav-item dropdown">
+            <a class="nav-link fs-5" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Categorias
+          </a>
+          <ul class="dropdown-menu">
+            <li v-for="categoria in categories" :key="categoria"><a class="dropdown-item + {{ category.id }}" href="#"> {{ categoria.name }} </a></li>
+          </ul>
+        </li>
           </ul>
         </div>
         <form class="d-flex" role="search">
@@ -56,18 +61,51 @@
     </div>
   </nav>
 </template>
+<script>
+
+export default {
+  computed: {
+  isPaginaLogin() {
+      return this.$route.path === '/login';
+  },
+},
+  data() {
+    return {
+      categories: [
+        { id: 1, name: "Romance" },
+        { id: 2, name: "Ficção científica" },
+        { id: 3, name: "Mistério" },
+        { id: 4, name: "Fantasia" },
+        { id: 5, name: "História" },
+        { id: 6, name: "Autoajuda" },
+        { id: 7, name: "Biografia" },
+        { id: 8, name: "Negócios" },
+        { id: 9, name: "Psicologia" },
+        { id: 10, name: "Política" }
+      ]
+    }
+  }
+}
+</script>
 
 <style scoped>
 form {
   justify-content: center;
 }
 .form-control {
-  width: 50vh;
+  width: 60vh;
 }
 .navbar {
   background-color: #decffb;
 }
 
+.dropdown-menu >li  :hover{
+  background-color: #724fb2;
+  color: #decffb;
+}
+.navbar-collapse{
+  justify-content: space-between;
+}
 .user-information-ul{
     display: flex;
     flex-wrap: nowrap;
@@ -82,18 +120,16 @@ li > img {
   color: #432876;
 }
 
-.colapse {
-  justify-content: space-between;
-}
-
 .user-info {
   color: #432876;
 }
 
-.nav-item {
+
+.nav-item .nav-link {
   color: #724fb2;
 }
 .nav-item:active {
   color: #432876;
 }
+
 </style>

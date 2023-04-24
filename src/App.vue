@@ -15,7 +15,7 @@ export default {
 <style>
 body {
   margin: 0px;
-  background: #decffb;
+  background-color: #5E3A9E;
   font-family: "Poppins", sans-serif;
 }
 
