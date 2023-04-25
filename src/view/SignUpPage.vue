@@ -22,7 +22,12 @@
         </div>
       </form>
 
-      <p>Não tem cadastro? <a href="#" class="register">Crie uma conta</a></p>
+      <p>
+        Não tem cadastro?
+        <router-link to="/register" class="register"
+          >Crie uma conta</router-link
+        >
+      </p>
     </main>
   </div>
 </template>
@@ -37,6 +42,7 @@ export default {
 .main-content {
   display: grid;
   grid-template-columns: 1fr 2fr;
+  gap: 30px;
   height: 100vh;
 }
 
@@ -53,6 +59,7 @@ main {
   gap: 40px;
   place-content: center;
   justify-items: center;
+  margin-right: 60px;
 }
 
 main img {
