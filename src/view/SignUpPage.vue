@@ -30,9 +30,8 @@
 
       <p>
         Não tem cadastro?
-        <router-link to="/register" class="register"
-          >Crie uma conta</router-link
-        >
+        <router-link to="/register" class="register">Crie uma conta</router-link
+        >.
       </p>
     </main>
   </div>
@@ -74,7 +73,6 @@ main img {
 
 form {
   width: 100%;
-  font-size: 1rem;
 }
 
 input {
@@ -126,6 +124,7 @@ input {
 
 .register {
   color: #432876;
+  font-weight: bold;
   transition: 0.5s;
 }
 

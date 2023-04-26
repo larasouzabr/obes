@@ -3,48 +3,82 @@
     <div class="background"></div>
 
     <div class="content">
-      <HeaderMain />
+      <div v-if="template == 'Register'">
+        <HeaderMain />
+      </div>
 
-      <main>
-        <img src="../assets/obes.svg" alt="Logo Obes" />
+      <div v-if="template == 'Register'">
+        <main>
+          <img src="../assets/obes.svg" alt="Logo Obes" />
 
-        <p><strong>Primeiramente, nos informe quem é você:</strong></p>
+          <p><strong>Primeiramente, nos informe quem é você:</strong></p>
 
-        <form action="" method="post">
-          <label for="person">
-            <input type="radio" name="user-type" id="person" />
-            <div class="option">
-              <img src="../assets/icon-person.svg" alt="Ícone de pessoa" />
-              <span>Sou uma pessoa</span>
-            </div>
-          </label>
-          <label for="institution">
-            <input type="radio" name="user-type" id="institution" />
-            <div class="option">
-              <img
-                src="../assets/icon-institution.svg"
-                alt="Ícone de instituição"
+          <form action="" method="post">
+            <label for="person">
+              <input
+                class="input-radio"
+                type="radio"
+                name="user-type"
+                id="person"
+                value="RegisterPerson"
+                v-model="userType"
               />
-              <span>Sou uma instituição</span>
-            </div>
-          </label>
-        </form>
+              <div class="option">
+                <img src="../assets/icon-person.svg" alt="Ícone de pessoa" />
+                <span>Sou uma pessoa</span>
+              </div>
+            </label>
+            <label for="institution">
+              <input
+                class="input-radio"
+                type="radio"
+                name="user-type"
+                id="institution"
+                value="RegisterInstitution"
+                v-model="userType"
+              />
+              <div class="option">
+                <img
+                  src="../assets/icon-institution.svg"
+                  alt="Ícone de instituição"
+                />
+                <span>Sou uma instituição</span>
+              </div>
+            </label>
+          </form>
 
-        <a href="#" class="button-next"
-          >Próximo <img src="../assets/arrow-right.svg" alt=""
-        /></a>
-      </main>
+          <a href="#" class="button-next" @click="template = userType"
+            >Próximo <img src="../assets/arrow-right.svg" alt=""
+          /></a>
+        </main>
+      </div>
+      <div v-else-if="template == 'RegisterPerson'">
+        <RegisterPerson />
+      </div>
+      <div v-else>
+        <RegisterInstitution />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import HeaderMain from "../components/HeaderMain.vue";
+import RegisterPerson from "../components/register/RegisterPerson.vue";
+import RegisterInstitution from "../components/register/RegisterInstitution.vue";
 
 export default {
   name: "RegisterPage",
   components: {
     HeaderMain,
+    RegisterPerson,
+    RegisterInstitution,
+  },
+  data() {
+    return {
+      userType: "",
+      template: "Register",
+    };
   },
 };
 </script>
@@ -72,6 +106,7 @@ header {
 .content {
   display: grid;
   gap: 30px;
+  align-items: center;
   margin: 45px 65px 45px 0px;
 }
 
@@ -97,7 +132,7 @@ main p {
   font-size: 1.3rem;
 }
 
-form {
+main form {
   width: 80%;
   display: grid;
   gap: 30px;
@@ -107,12 +142,11 @@ main label {
   position: relative;
   cursor: pointer;
   display: flex;
-  color: #432876;
   font-weight: 600;
   align-items: center;
 }
 
-input {
+main .input-radio {
   position: absolute;
   appearance: none;
   cursor: pointer;
@@ -123,22 +157,23 @@ input {
   left: -50px;
 }
 
-input:checked {
+main .input-radio:checked {
   background: #432876;
 }
 
-.option {
+main .option {
   width: 100%;
   border: 3px solid #43287633;
   border-radius: 4px;
   padding: 28px 0px 28px 28px;
+  color: #432876;
 }
 
-.option img {
+main .option img {
   width: 50px;
 }
 
-.button-next {
+main .button-next {
   background: #432876;
   color: #fff;
   padding: 30px 60px;
@@ -148,7 +183,7 @@ input:checked {
   transition: 0.5s;
 }
 
-.button-next:hover {
+main .button-next:hover {
   background: #432876e3;
 }
 
