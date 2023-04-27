@@ -7,15 +7,13 @@
     <main>
       <img src="../assets/obes.svg" alt="Logo Obes" />
 
-      <blockquote>
-        <p>
-          <q
-            >Todo mundo é um leitor em potencial, alguns apenas não encontraram
-            o seu livro preferido ainda.</q
-          >
-        </p>
-        <cite>- Anderson Davidye</cite>
-      </blockquote>
+      <p>
+        <strong
+          >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente
+          alias velit ratione enim veniam ad aspernatur voluptate exercitationem
+          obcaecati cumque perspiciatis nostrum minus libero.</strong
+        >
+      </p>
 
       <router-link to="/">Vamos lá!</router-link>
     </main>
