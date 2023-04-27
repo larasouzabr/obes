@@ -85,6 +85,10 @@ export default {
 </script>
 
 <style scoped>
+main img {
+  max-width: 80vw;
+}
+
 main form {
   width: 100%;
   display: grid;
