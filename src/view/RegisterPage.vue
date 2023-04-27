@@ -11,7 +11,7 @@
         <main>
           <img src="../assets/obes.svg" alt="Logo Obes" />
 
-          <p><strong>Primeiramente, nos informe quem é você:</strong></p>
+          <p><strong>Primeiramente, nos informe quem é você: </strong></p>
 
           <form action="" method="post">
             <label for="person">
