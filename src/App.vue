@@ -15,8 +15,12 @@ export default {
 <style>
 body {
   margin: 0px;
-  background-color: #5E3A9E;
+  /* background-color: #5E3A9E;
+  background: #decffb; */
+  background-image: linear-gradient(135deg, #be9ff6, #decffb);
+  background-repeat: no-repeat;
   font-family: "Poppins", sans-serif;
+  height: 100vh;
 }
 
 a {

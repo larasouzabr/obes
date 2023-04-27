@@ -14,7 +14,13 @@
           required
         />
         <label for="password">Senha</label>
-        <input type="password" name="password" id="password" required />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Digite sua senha"
+          required
+        />
 
         <div class="buttons">
           <router-link to="/login" class="button cancel">Cancelar</router-link>
@@ -24,9 +30,8 @@
 
       <p>
         Não tem cadastro?
-        <router-link to="/register" class="register"
-          >Crie uma conta</router-link
-        >
+        <router-link to="/register" class="register">Crie uma conta</router-link
+        >.
       </p>
     </main>
   </div>
@@ -68,7 +73,6 @@ main img {
 
 form {
   width: 100%;
-  font-size: 1rem;
 }
 
 input {
@@ -78,6 +82,7 @@ input {
   height: 40px;
   border: 1px solid #432876;
   border-radius: 4px;
+  padding: 10px;
 }
 
 .buttons {
@@ -119,10 +124,17 @@ input {
 
 .register {
   color: #432876;
+  font-weight: bold;
   transition: 0.5s;
 }
 
 .register:hover {
   color: #432876e3;
+}
+
+@media (max-width: 602px) {
+  .buttons {
+    flex-direction: column;
+  }
 }
 </style>
