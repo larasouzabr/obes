@@ -11,7 +11,7 @@
         <span class="bookAuthor">{{ book.author }}</span>
       </div>
       <div class="button">
-        <span class="informationAboveButton" v-if="!isDonation"
+        <span class="informationAboveButton" v-if="!isDonation || !isprofile"
           ><strong> A partir de:</strong></span
         >
         <button class="btn btn-outline" type="submit">
@@ -50,7 +50,7 @@ export default {
   font-size: 15px;
 }
 
-a{
+a {
   color: #000;
 }
 

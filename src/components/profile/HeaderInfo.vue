@@ -1,8 +1,8 @@
 <template>
   <section class="header-main">
-    <header>
+    <header class="header">
       <div class="pic-and-info">
-        <div :style="containerStyle"></div>
+        <span :style="containerStyle"></span>
         <div class="information-together">
           <div class="information-main">
             <span class="profile-name">Lara LINDA</span>
@@ -14,16 +14,28 @@
               <label class="city">Quixada - CE</label>
             </span>
           </div>
-          <div>
+          <div class="about-me-and-rating">
             <span class="rating">
-                <img
+              <img
                 src="../../assets/star-fill.svg"
                 alt="Avaliação geral do usuário"
               />
-                <span class="actual-rating">4.9</span>
+              <span class="actual-rating">4.9</span>
+            </span>
+            <span style="color: #a0a0a0"> Sobre mim: </span>
+            <br />
+            <span style="color: #29154d">
+              Apaixonada por livros de romance e aventura!!! Escritora
+              entusiasta.
             </span>
           </div>
         </div>
+      </div>
+      <div class="buttons">
+        <button type="button" class="btn btn-purple btn-lg">Quero doar</button>
+        <button type="button" class="btn btn-purple btn-lg">
+          Quero vender
+        </button>
       </div>
     </header>
   </section>
@@ -41,8 +53,10 @@ export default {
   computed: {
     containerStyle() {
       return {
-        width: "160px",
-        height: "160px",
+        width: "120px",
+        height: "120px",
+        MaxWidth: "150px",
+        MaxHeight: "150px",
         borderRadius: "50%",
         backgroundImage: `url(${this.imageUrl})`,
         backgroundSize: "cover",
@@ -54,19 +68,19 @@ export default {
 </script>
 
 <style lang="css" scoped>
-
-.elipse {
-  background-color: #45597e;
-  height: fit-content;
-  width: fit-content;
-  border-radius: 50%;
-}
-
 .profile-city-and-state {
   display: flex;
   flex-direction: row;
 }
 
+.rating {
+  display: flex;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
 
 .profile-name {
   font-size: 36px;
@@ -77,11 +91,25 @@ export default {
   margin-right: 2rem;
 }
 
-.information-together{
-    margin-left: 3rem;
+.buttons {
+  display: flex;
+  flex-direction: column;
 }
 
-.city, .actual-rating {
+.btn-purple {
+  background-color: #432876;
+  color: #ffff;
+  margin: 5px;
+  padding: 14px;
+  white-space: nowrap;
+}
+
+.information-together {
+  margin-left: 3rem;
+}
+
+.city,
+.actual-rating {
   font-family: "Roboto", sans-serif;
   font-size: 25px;
   font-weight: 600;
@@ -96,7 +124,7 @@ export default {
   flex-direction: row;
 }
 .information-main {
-  width: 126vh;
+  width: 90%;
   display: flex;
   flex-direction: row;
   align-content: center;
@@ -104,6 +132,7 @@ export default {
   align-items: flex-start;
 }
 .header-main {
-  margin: 4rem;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
 }
 </style>
