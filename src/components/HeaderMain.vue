@@ -4,7 +4,7 @@
       <ul>
         <li><a href="#">Sobre Nós</a></li>
         <li><a href="#">Contato</a></li>
-        <li><a href="#" class="enter">Entrar</a></li>
+        <li><router-link to="/sign-up" class="enter">Entrar</router-link></li>
       </ul>
     </nav>
   </header>
@@ -37,6 +37,10 @@ nav ul {
   padding: 0px;
   margin: 0px;
   align-items: center;
+}
+
+li a {
+  color: #432876;
 }
 
 .enter {
