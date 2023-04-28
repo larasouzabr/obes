@@ -19,18 +19,28 @@
         <div>
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active fs-5" aria-current="page" href="#"
-                >Início</a
+              <router-link class="nav-link active fs-5" to="/"
+                >Início</router-link
               >
             </li>
             <li class="nav-item dropdown">
-            <a class="nav-link fs-5" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Categorias
-          </a>
-          <ul class="dropdown-menu">
-            <li v-for="categoria in categories" :key="categoria"><a class="dropdown-item + {{ category.id }}" href="#"> {{ categoria.name }} </a></li>
-          </ul>
-        </li>
+              <a
+                class="nav-link fs-5"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Categorias
+              </a>
+              <ul class="dropdown-menu">
+                <li v-for="categoria in categories" :key="categoria">
+                  <a class="dropdown-item + {{ category.id }}" href="#">
+                    {{ categoria.name }}
+                  </a>
+                </li>
+              </ul>
+            </li>
           </ul>
         </div>
         <form class="d-flex" role="search">
@@ -43,18 +53,28 @@
           <button class="btn btn-outline" type="submit">Pesquisar</button>
         </form>
         <div class="user-info">
-          <ul class="navbar-nav user-information-ul me-auto mb-2 mb-lg-0 d-flex d-row">
-            <img
-              src="../assets/avatar.png"
-              alt="Avatar"
-              width="45"
-              height="32"
-            />
-            <li>
-              <a class="nav-link active" aria-current="page" href="#"
-                >Olá, usuário!</a
-              >
-            </li>
+          <ul
+            class="navbar-nav user-information-ul me-auto mb-2 mb-lg-0 d-flex d-row"
+          >
+            <router-link to="/profile" v-if="isLogged">
+              <img
+                :src="user?.image"
+                alt="Avatar"
+                width="32"
+                height="32"
+                style="border-radius: 50%"
+              />
+              <span> Olá, {{ user?.name }} </span>
+            </router-link>
+            <router-link to="/profile" v-if="!isLogged">
+              <img
+                src="../assets/avatar.png"
+                alt="Avatar"
+                width="45"
+                height="32"
+              />
+              <span> Olá, usuário! </span>
+            </router-link>
           </ul>
         </div>
       </div>
@@ -62,13 +82,20 @@
   </nav>
 </template>
 <script>
-
+import user from "../../public/fake-data/profile.json";
 export default {
   computed: {
-  isPaginaLogin() {
-      return this.$route.path === '/login' || this.$route.path === '/register' || this.$route.path === '/sign-up';
+    isPaginaLogin() {
+      return (
+        this.$route.path === "/login" ||
+        this.$route.path === "/register" ||
+        this.$route.path === "/sign-up"
+      );
+    },
+    isLogged() {
+      return user != undefined ? true : false;
+    },
   },
-},
   data() {
     return {
       categories: [
@@ -81,11 +108,12 @@ export default {
         { id: 7, name: "Biografia" },
         { id: 8, name: "Negócios" },
         { id: 9, name: "Psicologia" },
-        { id: 10, name: "Política" }
-      ]
-    }
-  }
-}
+        { id: 10, name: "Política" },
+      ],
+      user,
+    };
+  },
+};
 </script>
 
 <style scoped>
@@ -99,17 +127,21 @@ form {
   background-color: #decffb;
 }
 
-.dropdown-menu >li  :hover{
+span {
+  color: #432876;
+}
+
+.dropdown-menu > li :hover {
   background-color: #724fb2;
   color: #decffb;
 }
-.navbar-collapse{
+.navbar-collapse {
   justify-content: space-between;
 }
-.user-information-ul{
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
+.user-information-ul {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
 }
 
 li > img {
@@ -124,12 +156,10 @@ li > img {
   color: #432876;
 }
 
-
 .nav-item .nav-link {
   color: #724fb2;
 }
 .nav-item:active {
   color: #432876;
 }
-
 </style>

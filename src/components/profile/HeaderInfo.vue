@@ -1,29 +1,42 @@
 <template>
   <section class="header-main">
-    <header>
+    <header class="header">
       <div class="pic-and-info">
-        <div :style="containerStyle"></div>
+        <span class="img">
+          <img :src="user.image" alt="" />
+        </span>
         <div class="information-together">
           <div class="information-main">
-            <span class="profile-name">Lara LINDA</span>
+            <span class="profile-name">{{ user.name }}</span>
             <span class="profile-city-and-state">
               <img
                 src="../../assets/geo-alt.svg"
                 alt="Localização do usuário"
               />
-              <label class="city">Quixada - CE</label>
+              <label class="city">{{ user.city }} - {{ user.state }}</label>
             </span>
           </div>
-          <div>
+          <div class="about-me-and-rating">
             <span class="rating">
-                <img
+              <img
                 src="../../assets/star-fill.svg"
                 alt="Avaliação geral do usuário"
               />
-                <span class="actual-rating">4.9</span>
+              <span class="actual-rating">{{ user.rating }}</span>
+            </span>
+            <span style="color: #a0a0a0"> Sobre mim: </span>
+            <br />
+            <span style="color: #29154d">
+              {{ user.about }}
             </span>
           </div>
         </div>
+      </div>
+      <div class="buttons">
+        <button type="button" class="btn btn-purple btn-lg">Quero doar</button>
+        <button type="button" class="btn btn-purple btn-lg">
+          Quero vender
+        </button>
       </div>
     </header>
   </section>
@@ -33,40 +46,34 @@
 export default {
   name: "profileHeader",
   props: {
-    imageUrl: {
-      type: String,
-      required: true,
-    },
-  },
-  computed: {
-    containerStyle() {
-      return {
-        width: "160px",
-        height: "160px",
-        borderRadius: "50%",
-        backgroundImage: `url(${this.imageUrl})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      };
-    },
+    user: Object,
   },
 };
 </script>
 
 <style lang="css" scoped>
-
-.elipse {
-  background-color: #45597e;
-  height: fit-content;
-  width: fit-content;
-  border-radius: 50%;
-}
-
 .profile-city-and-state {
   display: flex;
   flex-direction: row;
+  white-space: nowrap;
 }
 
+.img > img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+}
+
+.rating {
+  display: flex;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
 
 .profile-name {
   font-size: 36px;
@@ -75,13 +82,28 @@ export default {
   letter-spacing: 0em;
   text-align: left;
   margin-right: 2rem;
+  white-space: nowrap;
 }
 
-.information-together{
-    margin-left: 3rem;
+.buttons {
+  display: flex;
+  flex-direction: column;
 }
 
-.city, .actual-rating {
+.btn-purple {
+  background-color: #432876;
+  color: #ffff;
+  margin: 5px;
+  padding: 14px;
+  white-space: nowrap;
+}
+
+.information-together {
+  margin-left: 3rem;
+}
+
+.city,
+.actual-rating {
   font-family: "Roboto", sans-serif;
   font-size: 25px;
   font-weight: 600;
@@ -96,7 +118,7 @@ export default {
   flex-direction: row;
 }
 .information-main {
-  width: 126vh;
+  width: 90%;
   display: flex;
   flex-direction: row;
   align-content: center;
@@ -104,6 +126,7 @@ export default {
   align-items: flex-start;
 }
 .header-main {
-  margin: 4rem;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
 }
 </style>
