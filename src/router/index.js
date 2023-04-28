@@ -8,10 +8,17 @@ const routes = [
     component: HomePage,
   },
   {
-    path:'/profile',
-    name:'Profile',
-    component: () => import(/* webpackChunkName: "about" */ '../view/ProfilePageCommonUser.vue')
-
+    path: "/profile",
+    name: "Profile",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../view/ProfilePageCommonUser.vue"
+      ),
+  },
+  {
+    path: "/books",
+    name: "Books",
+    component: () => import("../view/FindBooksPage.vue"),
   },
   {
     path: "/login",
