@@ -56,7 +56,17 @@
           <ul
             class="navbar-nav user-information-ul me-auto mb-2 mb-lg-0 d-flex d-row"
           >
-            <router-link to="/profile">
+            <router-link to="/profile" v-if="isLogged">
+              <img
+                :src="user?.image"
+                alt="Avatar"
+                width="32"
+                height="32"
+                style="border-radius: 50%"
+              />
+              <span> Olá, {{ user?.name }} </span>
+            </router-link>
+            <router-link to="/profile" v-if="!isLogged">
               <img
                 src="../assets/avatar.png"
                 alt="Avatar"
@@ -72,6 +82,7 @@
   </nav>
 </template>
 <script>
+import user from "../../public/fake-data/profile.json";
 export default {
   computed: {
     isPaginaLogin() {
@@ -80,6 +91,9 @@ export default {
         this.$route.path === "/register" ||
         this.$route.path === "/sign-up"
       );
+    },
+    isLogged() {
+      return user != undefined ? true : false;
     },
   },
   data() {
@@ -96,6 +110,7 @@ export default {
         { id: 9, name: "Psicologia" },
         { id: 10, name: "Política" },
       ],
+      user,
     };
   },
 };

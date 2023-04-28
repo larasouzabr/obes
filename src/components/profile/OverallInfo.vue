@@ -3,24 +3,26 @@
     <div class="stats">
       <span class="item-stat">
         <span class="title-stat"> Livros Comprados </span>
-        <span class="val-stat"> 18 </span>
+        <span class="val-stat"> {{ user.stats[0].boughtBooks }} </span>
       </span>
 
       <span class="item-stat">
         <span class="title-stat"> Livros Vendidos </span>
-        <span class="val-stat"> 9 </span>
+        <span class="val-stat"> {{ user.stats[0].soldBooks }} </span>
       </span>
       <span class="item-stat">
         <span class="title-stat"> Livros Doados </span>
-        <span class="val-stat"> 5 </span>
+        <span class="val-stat"> {{ user.stats[0].donatedBooks }} </span>
       </span>
     </div>
     <div class="recent-ratings">
       <div class="content-recent-ratings">
         <span class="text-main-ratings">Principais avaliações</span>
-        <rating-review :rating="4"></rating-review>
-        <rating-review :rating="4"></rating-review>
-        <rating-review :rating="4"></rating-review>
+        <rating-review
+          v-for="review in user.reviews"
+          :key="review"
+          :review="review"
+        ></rating-review>
       </div>
     </div>
   </section>
@@ -31,6 +33,9 @@ import RatingReview from "./RatingReview.vue";
 export default {
   name: "bannerOverall",
   components: { RatingReview },
+  props: {
+    user: Object,
+  },
 };
 </script>
 
@@ -68,7 +73,7 @@ section {
 }
 .stats {
   width: 45%;
-  margin-top: 4rem;
+  margin-top: 3rem;
   display: flex;
   flex-direction: column;
 }

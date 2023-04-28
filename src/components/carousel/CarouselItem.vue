@@ -10,13 +10,19 @@
         >
         <span class="bookAuthor">{{ book.author }}</span>
       </div>
-      <div class="button">
-        <span class="informationAboveButton" v-if="!isDonation || !isprofile"
+      <div class="button" v-if="!isOnProfile">
+        <span class="informationAboveButton" v-if="!isDonation"
           ><strong> A partir de:</strong></span
         >
         <button class="btn btn-outline" type="submit">
           {{ isDonation ? "Detalhes" : "R$ " + book.price }}
         </button>
+      </div>
+      <div class="button" v-if="isOnProfile">
+        <span class="informationAboveButton" v-if="!book.isDonation"
+          ><strong> R$ {{ book.price }}</strong></span
+        >
+        <button class="btn btn-outline" type="submit">Editar</button>
       </div>
     </a>
   </div>
@@ -28,6 +34,7 @@ export default {
   props: {
     book: Object,
     isDonation: Boolean,
+    isOnProfile: Boolean,
   },
 };
 </script>
@@ -62,6 +69,7 @@ img {
   display: flex;
   flex-direction: column;
   margin: 1rem;
+  text-align: center;
 }
 .btn-outline {
   border: 3px solid #432876;

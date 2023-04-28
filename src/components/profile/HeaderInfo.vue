@@ -2,16 +2,18 @@
   <section class="header-main">
     <header class="header">
       <div class="pic-and-info">
-        <span :style="containerStyle"></span>
+        <span class="img">
+          <img :src="user.image" alt="" />
+        </span>
         <div class="information-together">
           <div class="information-main">
-            <span class="profile-name">Lara LINDA</span>
+            <span class="profile-name">{{ user.name }}</span>
             <span class="profile-city-and-state">
               <img
                 src="../../assets/geo-alt.svg"
                 alt="Localização do usuário"
               />
-              <label class="city">Quixada - CE</label>
+              <label class="city">{{ user.city }} - {{ user.state }}</label>
             </span>
           </div>
           <div class="about-me-and-rating">
@@ -20,13 +22,12 @@
                 src="../../assets/star-fill.svg"
                 alt="Avaliação geral do usuário"
               />
-              <span class="actual-rating">4.9</span>
+              <span class="actual-rating">{{ user.rating }}</span>
             </span>
             <span style="color: #a0a0a0"> Sobre mim: </span>
             <br />
             <span style="color: #29154d">
-              Apaixonada por livros de romance e aventura!!! Escritora
-              entusiasta.
+              {{ user.about }}
             </span>
           </div>
         </div>
@@ -45,24 +46,7 @@
 export default {
   name: "profileHeader",
   props: {
-    imageUrl: {
-      type: String,
-      required: true,
-    },
-  },
-  computed: {
-    containerStyle() {
-      return {
-        width: "120px",
-        height: "120px",
-        MaxWidth: "150px",
-        MaxHeight: "150px",
-        borderRadius: "50%",
-        backgroundImage: `url(${this.imageUrl})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      };
-    },
+    user: Object,
   },
 };
 </script>
@@ -71,6 +55,15 @@ export default {
 .profile-city-and-state {
   display: flex;
   flex-direction: row;
+  white-space: nowrap;
+}
+
+.img > img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
 }
 
 .rating {
@@ -89,6 +82,7 @@ export default {
   letter-spacing: 0em;
   text-align: left;
   margin-right: 2rem;
+  white-space: nowrap;
 }
 
 .buttons {

@@ -1,7 +1,9 @@
 <template>
   <div class="content">
     <div class="d-flex">
-      <div class="picture"></div>
+      <div class="picture">
+        <img :src="review.profilePicture" alt="User profile picture" />
+      </div>
       <div class="rating">
         <star-rating
           v-bind:increment="0.5"
@@ -9,18 +11,15 @@
           inactive-color="#E9ECEF"
           v-bind:star-size="20"
           v-bind:show-rating="false"
-          v-bind:rating="rating"
+          v-bind:rating="review.rating"
           v-bind:read-only="true"
         />
-        <span class="review-date"> 02/05/2023</span>
+        <span class="review-date">{{ review.date }}</span>
       </div>
     </div>
     <div class="comment">
-      <span class="book-name">As crônicas de nárnia</span>
-      <span class="book-comment"
-        >Meu livro veio com as páginas um pouco amareladas e com marcas de uso.
-        Mas acredito que seja a edição.</span
-      >
+      <span class="book-name">{{ review.bookTitle }}</span>
+      <span class="book-comment">{{ review.comment }}</span>
     </div>
   </div>
 </template>
@@ -34,7 +33,7 @@ export default {
     StarRating,
   },
   props: {
-    rating: Number,
+    review: Object,
   },
 };
 </script>
@@ -68,10 +67,9 @@ export default {
   flex-direction: column;
   align-items: center;
 }
-.picture {
+.picture > img {
   width: 51px;
   height: 51px;
-  background-color: red;
   margin: 10px;
 }
 </style>
