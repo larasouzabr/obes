@@ -1,5 +1,4 @@
 <template>
-    <NavBar></NavBar>
     <BannerMain></BannerMain>
     <div class="categories">
         <CarouselComp :description="'Novidades no Sebo'"></CarouselComp>
@@ -12,11 +11,10 @@
 <script>
 import BannerMain from '@/components/BannerMain.vue';
 import CarouselComp from '@/components/carousel/CarouselComp.vue';
-import NavBar from "../components/NavBar.vue";
 
 export default {
     name: "HomePage",
-    components: { NavBar, BannerMain, CarouselComp },
+    components: { BannerMain, CarouselComp },
 };
 </script>  
 

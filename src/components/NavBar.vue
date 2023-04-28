@@ -66,7 +66,7 @@
 export default {
   computed: {
   isPaginaLogin() {
-      return this.$route.path === '/login';
+      return this.$route.path === '/login' || this.$route.path === '/register' || this.$route.path === '/sign-up';
   },
 },
   data() {
