@@ -1,0 +1,84 @@
+{
+  "books": [
+    {
+      "title": "1984",
+      "author": "George Orwell",
+      "publisher": "Penguin Books",
+      "ISBN": "978-0451524935",
+      "condition": "new",
+      "publication_year": 1949,
+      "image": "https://m.media-amazon.com/images/I/61t0bwt1s3L.jpg",
+      "price": 0
+    },
+    {
+      "title": "To Kill a Mockingbird",
+      "author": "Harper Lee",
+      "publisher": "Harper Perennial Modern Classics",
+      "ISBN": "978-0060935467",
+      "condition": "semi-new",
+      "publication_year": 2015,
+      "image": "https://m.media-amazon.com/images/I/61vD63WqmeL.jpg",
+      "price": 5
+    },
+    {
+      "title": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "publisher": "Scribner",
+      "ISBN": "978-0743273565",
+      "condition": "semi-new",
+      "publication_year": 2005,
+      "image": "https://m.media-amazon.com/images/I/71FTb9X6wsL.jpg",
+      "price": 8
+    },
+    {
+      "title": "The Hobbit",
+      "author": "J.R.R. Tolkien",
+      "publisher": "Houghton Mifflin Harcourt",
+      "ISBN": "978-0547928227",
+      "condition": "new",
+      "publication_year": 1937,
+      "image": "https://m.media-amazon.com/images/I/710+HcoP38L.jpg",
+      "price": 10
+    },
+    {
+      "title": "Pride and Prejudice",
+      "author": "Jane Austen",
+      "publisher": "Penguin Classics",
+      "ISBN": "978-0141439518",
+      "condition": "semi-new",
+      "publication_year": 2023,
+      "image": "https://m.media-amazon.com/images/I/41fHsJqF3iL._SX331_BO1,204,203,200_.jpg",
+      "price": 15
+    },
+    {
+      "title": "The Catcher in the Rye",
+      "author": "J.D. Salinger",
+      "publisher": "Back Bay Books",
+      "ISBN": "978-0316769174",
+      "condition": "new",
+      "publication_year": 1951,
+      "image": "https://m.media-amazon.com/images/I/91HPG31dTwL.jpg",
+      "price": 20
+    },
+    {
+      "title": "One Hundred Years of Solitude",
+      "author": "Gabriel García Márquez",
+      "publisher": "Harper Perennial Modern Classics",
+      "ISBN": "978-0060883287",
+      "condition": "new",
+      "publication_year": 1967,
+      "image": "https://m.media-amazon.com/images/I/81MI6+TpYkL.jpg",
+      "price": 23
+    },
+    {
+      "title": "The Lord of the Rings",
+      "author": "J.R.R. Tolkien",
+      "publisher": "Mariner Books",
+      "ISBN": "978-0544003415",
+      "condition": "semi-new",
+      "publication_year": 1954,
+      "image": "https://m.media-amazon.com/images/I/51wEd2FprXL.jpg",
+      "price": 12
+    }
+  ]
+}

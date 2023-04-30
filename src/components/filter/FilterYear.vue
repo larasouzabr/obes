@@ -1,43 +1,65 @@
 <template>
   <div class="options" v-for="option in filterOptions" :key="option.id">
     <input
-      class="input-checkbox"
-      type="checkbox"
+      class="input-radio"
+      type="radio"
       :id="option.id"
       :value="option.value"
       v-model="selectedOptions"
+      @change="filteredList"
     />
     <label :for="option.id">{{ option.label }}</label>
   </div>
 </template>
 
 <script>
+import fakeBooks from "../../../public/fake-data/fake-books.json";
+
 export default {
   name: "FilterYear",
   data() {
+    const books = fakeBooks.books;
     return {
-      list: [
-        { id: 1, name: "Livro A", category: "new" },
-        { id: 2, name: "Livro B", category: "semi-new" },
-        { id: 3, name: "Livro C", category: "new" },
-        { id: 4, name: "Livro D", category: "semi-new" },
-      ],
+      books,
       filterOptions: [
-        { id: "2013", label: "2013 (8)", value: "2013" },
-        { id: "2023", label: "2023 (8)", value: "2023" },
-        { id: "2008", label: "2008 (8)", value: "2008" },
+        {
+          id: "y2008",
+          label: `2008 (${
+            books.filter((book) => book.publication_year <= 2008).length
+          })`,
+          value: 2008,
+        },
+        {
+          id: "y2013",
+          label: `2013 (${
+            books.filter((book) => book.publication_year <= 2013).length
+          })`,
+          value: 2013,
+        },
+        {
+          id: "y2023",
+          label: `2023 (${
+            books.filter((book) => book.publication_year <= 2023).length
+          })`,
+          value: 2023,
+        },
       ],
       selectedOptions: [],
+      booksFiltered: [],
     };
   },
-  computed: {
+  methods: {
     filteredList() {
       if (this.selectedOptions.length === 0) {
-        return this.list;
+        this.booksFiltered = this.books;
+        this.$emit("event", this.booksFiltered);
       } else {
-        return this.list.filter((item) =>
-          this.selectedOptions.includes(item.category)
+        const filteredList = this.books.filter(
+          (item) => item.publication_year <= Math.max(this.selectedOptions)
         );
+
+        this.booksFiltered = filteredList;
+        this.$emit("event", this.booksFiltered);
       }
     },
   },
@@ -55,18 +77,18 @@ label {
   margin: 20px auto;
 }
 
-.input-checkbox {
+.input-radio {
   background: #decffb;
   position: absolute;
   appearance: none;
   cursor: pointer;
   width: 20px;
   height: 20px;
-  border-radius: 4px;
+  border-radius: 50%;
   border: 2px solid #fff;
   left: -25px;
 }
-.input-checkbox:checked {
+.input-radio:checked {
   background: #432876;
 }
 </style>

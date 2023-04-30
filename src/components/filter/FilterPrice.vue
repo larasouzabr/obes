@@ -1,45 +1,79 @@
 <template>
   <div class="options" v-for="option in filterOptions" :key="option.id">
     <input
-      class="input-checkbox"
-      type="checkbox"
+      class="input-radio"
+      type="radio"
       :id="option.id"
       :value="option.value"
       v-model="selectedOptions"
+      @change="filteredList"
     />
     <label :for="option.id">{{ option.label }}</label>
   </div>
 </template>
 
 <script>
+import fakeBooks from "../../../public/fake-data/fake-books.json";
+
 export default {
   name: "FilterPrice",
   data() {
+    const books = fakeBooks.books;
     return {
-      list: [
-        { id: 1, name: "Livro A", category: "new" },
-        { id: 2, name: "Livro B", category: "semi-new" },
-        { id: 3, name: "Livro C", category: "new" },
-        { id: 4, name: "Livro D", category: "semi-new" },
-      ],
+      books,
       filterOptions: [
-        { id: "donated", label: "0,00 (Doados) (3)", value: "0" },
-        { id: "price10", label: "Até 10 reais (3)", value: "<=10" },
-        { id: "price14", label: "Até 14 reais (8)", value: "<=14" },
-        { id: "price18", label: "Até 18 reais (8)", value: "<=18" },
-        { id: "price23", label: "Até 23 reais (8)", value: "<=23" },
+        {
+          id: "donated",
+          label: `0,00 (Doados) (${
+            books.filter((book) => book.price === 0).length
+          })`,
+          value: 0,
+        },
+        {
+          id: "price10",
+          label: `Até 10 reais (${
+            books.filter((book) => book.price <= 10).length
+          })`,
+          value: 10,
+        },
+        {
+          id: "price14",
+          label: `Até 14 reais (${
+            books.filter((book) => book.price <= 14).length
+          })`,
+          value: 14,
+        },
+        {
+          id: "price18",
+          label: `Até 18 reais (${
+            books.filter((book) => book.price <= 18).length
+          })`,
+          value: 18,
+        },
+        {
+          id: "price23",
+          label: `Até 23 reais (${
+            books.filter((book) => book.price <= 23).length
+          })`,
+          value: 23,
+        },
       ],
       selectedOptions: [],
+      booksFiltered: [],
     };
   },
-  computed: {
+  methods: {
     filteredList() {
       if (this.selectedOptions.length === 0) {
-        return this.list;
+        this.booksFiltered = this.books;
+        this.$emit("event", this.booksFiltered);
       } else {
-        return this.list.filter((item) =>
-          this.selectedOptions.includes(item.category)
+        const filteredList = this.books.filter(
+          (item) => item.price <= Math.max(this.selectedOptions)
         );
+
+        this.booksFiltered = filteredList;
+        this.$emit("event", this.booksFiltered);
       }
     },
   },
@@ -57,18 +91,18 @@ label {
   margin: 20px auto;
 }
 
-.input-checkbox {
+.input-radio {
   background: #decffb;
   position: absolute;
   appearance: none;
   cursor: pointer;
   width: 20px;
   height: 20px;
-  border-radius: 4px;
+  border-radius: 50%;
   border: 2px solid #fff;
   left: -25px;
 }
-.input-checkbox:checked {
+.input-radio:checked {
   background: #432876;
 }
 </style>

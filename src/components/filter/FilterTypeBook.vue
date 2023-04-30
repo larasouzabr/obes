@@ -6,37 +6,53 @@
       :id="option.id"
       :value="option.value"
       v-model="selectedOptions"
+      @change="filteredList"
     />
     <label :for="option.id">{{ option.label }}</label>
   </div>
 </template>
 
 <script>
+import fakeBooks from "../../../public/fake-data/fake-books.json";
+
 export default {
   name: "FilterTypeBook",
   data() {
+    const books = fakeBooks.books;
     return {
-      list: [
-        { id: 1, name: "Livro A", category: "new" },
-        { id: 2, name: "Livro B", category: "semi-new" },
-        { id: 3, name: "Livro C", category: "new" },
-        { id: 4, name: "Livro D", category: "semi-new" },
-      ],
+      books,
       filterOptions: [
-        { id: "new", label: "Novo (2)", value: "new" },
-        { id: "semi-new", label: "Semi-novo (2)", value: "semi-new" },
+        {
+          id: "new",
+          label: `Novo (${
+            books.filter((book) => book.condition === "new").length
+          })`,
+          value: "new",
+        },
+        {
+          id: "semi-new",
+          label: `Semi-novo (${
+            books.filter((book) => book.condition === "semi-new").length
+          })`,
+          value: "semi-new",
+        },
       ],
       selectedOptions: [],
+      booksFiltered: [],
     };
   },
-  computed: {
+  methods: {
     filteredList() {
       if (this.selectedOptions.length === 0) {
-        return this.list;
+        this.booksFiltered = this.books;
+        this.$emit("event", this.booksFiltered);
       } else {
-        return this.list.filter((item) =>
-          this.selectedOptions.includes(item.category)
+        const filteredList = this.books.filter((item) =>
+          this.selectedOptions.includes(item.condition)
         );
+
+        this.booksFiltered = filteredList;
+        this.$emit("event", this.booksFiltered);
       }
     },
   },

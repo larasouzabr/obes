@@ -6,18 +6,20 @@
         <div class="filter">
           <h3 class="category">Tipo do livro</h3>
           <form action="" method="post">
-            <FilterTypeBook />
+            <FilterTypeBook @event="updateFilteredBooks" />
           </form>
         </div>
 
         <div class="filter">
           <h3 class="category">Preço</h3>
-          <FilterPrice />
+          <form action="" method="post">
+            <FilterPrice @event="updateFilteredBooks" />
+          </form>
         </div>
 
         <div class="filter">
           <h3 class="category">Ano da publicação</h3>
-          <FilterYear />
+          <FilterYear @event="updateFilteredBooks" />
         </div>
       </div>
 
@@ -64,8 +66,8 @@
       </div>
     </section>
 
-    <main>
-      <span>main</span>
+    <main class="catalog">
+      <CatalogComp :books="books" />
     </main>
   </div>
 </template>
@@ -74,6 +76,8 @@
 import FilterTypeBook from "../components/filter/FilterTypeBook.vue";
 import FilterPrice from "../components/filter/FilterPrice.vue";
 import FilterYear from "../components/filter/FilterYear.vue";
+import CatalogComp from "../components/catalog/CatalogComp.vue";
+import fakeBooks from "../../public/fake-data/fake-books.json";
 
 export default {
   name: "FindBooksPage",
@@ -81,6 +85,18 @@ export default {
     FilterTypeBook,
     FilterPrice,
     FilterYear,
+    CatalogComp,
+  },
+  data() {
+    const books = fakeBooks.books;
+    return {
+      books,
+    };
+  },
+  methods: {
+    updateFilteredBooks(filteredList) {
+      this.books = filteredList;
+    },
   },
 };
 </script>
@@ -142,5 +158,9 @@ export default {
 
 .review:last-child {
   margin-bottom: 0px;
+}
+
+main.catalog {
+  padding: 25px 45px 0px 45px;
 }
 </style>
