@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <a href="#">
+    <router-link to="/books" href="#">
       <div class="image">
         <img :src="book.image" alt="" />
       </div>
@@ -15,10 +15,12 @@
           ><strong> A partir de:</strong></span
         >
         <button class="btn btn-outline" type="submit">
-          {{ isDonation ? "Detalhes" : "R$ " + book.price }}
+          <router-link to="/books">{{
+            isDonation ? "Detalhes" : "R$ " + book.price
+          }}</router-link>
         </button>
       </div>
-    </a>
+    </router-link>
   </div>
 </template>
 
@@ -50,7 +52,7 @@ export default {
   font-size: 15px;
 }
 
-a{
+a {
   color: #000;
 }
 
