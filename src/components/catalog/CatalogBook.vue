@@ -12,7 +12,7 @@
     <div class="sold">
       <p class="soldby">Vendido por:</p>
       <p class="seller">Robertinha Rafaela</p>
-      <div class="stars">estrelas</div>
+      <div class="stars">stars</div>
     </div>
 
     <div class="buy">
@@ -67,6 +67,11 @@ p {
   color: #fff;
   padding: 15px 30px;
   border-radius: 9px;
+  transition: 0.5s;
+}
+
+.button:hover {
+  background: #432876e3;
 }
 
 .title {
