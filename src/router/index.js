@@ -28,6 +28,11 @@ const routes = [
     name: "Register",
     component: () => import("../view/RegisterPage.vue"),
   },
+   {
+    path: "/profile/donateabook",
+    name: "Donation",
+    component: () => import("../view/DonateABook.vue"),
+  },
 ];
 
 const router = createRouter({

@@ -4,19 +4,19 @@
 </template>
 
 <script>
- import NavBar from "./components/NavBar.vue"; 
+import NavBar from "./components/NavBar.vue";
 
 export default {
   name: "App",
   components: {
-    NavBar 
+    NavBar,
   },
 };
 </script>
 <style>
 body {
   margin: 0px;
-  background-color: #5E3A9E;
+  background-color: #5e3a9e;
   font-family: "Poppins", sans-serif;
 }
 
