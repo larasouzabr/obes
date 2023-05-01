@@ -117,6 +117,7 @@
             :book="book"
             @event="prev()"
             @continue="donationComplete"
+            :isPreview="true"
           ></preview-book>
         </form>
       </section>
@@ -124,7 +125,11 @@
   </section>
   <section class="congrats-seeling-donation" v-if="hasSeenCongrats">
     <div class="alert alert-success" role="alert">
-      Obrigada por {{ type.typeofAction }} no OBES!
+      <span>Obrigado por {{ type[0].typeofAction }} no OBES!</span>
+      <router-link to="/" class="return-home">
+        <span>Ir para a página inicial</span>
+        <img src="../../assets/arrow-right.svg" alt="" />
+      </router-link>
     </div>
     <div class="information-about-congrats">
       <span class="main-text-congrat"
@@ -135,7 +140,11 @@
       <div class="product-details">
         <h3><strong>Detalhes do Pedido</strong></h3>
         <div class="bookPreview">
-          <preview-book :book="book" :isPreview="true"></preview-book>
+          <preview-book
+            :book="book"
+            @event="prev()"
+            :isPreview="false"
+          ></preview-book>
         </div>
       </div>
     </div>
@@ -207,10 +216,24 @@ body {
 }
 
 .alert-success {
-  margin-left: 9.5rem;
+  display: flex;
+  justify-content: space-between;
+  margin: 1.8rem auto 0px;
+  /* margin-left: 9.5rem; */
   max-width: 80%;
   text-transform: uppercase;
 }
+
+.return-home {
+  cursor: pointer;
+  color: #000;
+  text-transform: capitalize;
+}
+
+.return.home img {
+  fill: #000;
+}
+
 .register,
 .information-about-congrats {
   display: block;
@@ -218,6 +241,7 @@ body {
   margin: 2rem auto;
   padding: 2rem;
   background: #decffb;
+  text-align: center;
 }
 
 .information-about-congrats {
@@ -228,6 +252,11 @@ body {
 .main-text-congrat {
   font-size: 25px;
   margin: 3rem;
+}
+
+.product-details h3 {
+  margin-top: 3.75rem;
+  margin-bottom: 1.25rem;
 }
 
 .register-icon {

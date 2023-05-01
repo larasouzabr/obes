@@ -5,8 +5,8 @@
         :src="book.bookPicture"
         alt=""
         :style="{
-          width: isPreview ? '215px' : '430px',
-          height: iPreview ? '293px' : '640px',
+          width: '430px',
+          height: '640px',
         }"
       />
     </div>
@@ -22,7 +22,7 @@
         <span>Contato: <label>9999999999</label> </span>
         <span>Cidade: <label>Quixadá - CE</label> </span>
       </div>
-      <div class="col-12" v-if="!IsPreview">
+      <div class="col-12" v-if="isPreview">
         <button class="btn btn-outline-primary" @click.prevent="$emit('event')">
           Voltar
         </button>
@@ -95,17 +95,24 @@ export default {
 }
 
 .main {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  /* display: flex;
+  flex-direction: row; */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 32px;
 }
+
 .information {
-  max-width: 60%;
+  /* max-width: 60%;
   margin: 0 0 4rem 4rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; */
+  display: grid;
+  align-content: space-between;
   text-align: center;
-  font-size: 25px;
+  font-size: 1.5rem;
 }
 
 .user-information {
