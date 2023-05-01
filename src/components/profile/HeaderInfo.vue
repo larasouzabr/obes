@@ -33,7 +33,9 @@
         </div>
       </div>
       <div class="buttons">
-        <button type="button" class="btn btn-purple btn-lg">Quero doar</button>
+        <router-link class="btn btn-purple btn-lg" to="/profile/donateabook"
+          >Quero doar</router-link
+        >
         <button type="button" class="btn btn-purple btn-lg">
           Quero vender
         </button>
