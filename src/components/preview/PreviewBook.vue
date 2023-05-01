@@ -17,8 +17,15 @@
       <div>{{ book.bookCategory.name }}</div>
       <span>Descrição</span>
       <div class="description">{{ book.bookDescription }}</div>
+      <div class="price" v-if="book.bookPrice != 0">
+        <span>Valor</span>
+        <p>R$ {{ book.bookPrice }}</p>
+      </div>
       <div class="user-information">
-        <span>Doador(a): <label>Roberta Rafaella </label> </span>
+        <span
+          >{{ book.bookPrice === 0.0 ? "Doador(a)" : "Vendedor(a)" }}:
+          <label>Roberta Rafaella </label>
+        </span>
         <span>Contato: <label>9999999999</label> </span>
         <span>Cidade: <label>Quixadá - CE</label> </span>
       </div>

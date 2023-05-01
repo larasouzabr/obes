@@ -36,9 +36,13 @@
         <router-link class="btn btn-purple btn-lg" to="/profile/donateabook"
           >Quero doar</router-link
         >
-        <button type="button" class="btn btn-purple btn-lg">
+        <router-link
+          type="button"
+          class="btn btn-purple btn-lg"
+          to="/profile/sellabook"
+        >
           Quero vender
-        </button>
+        </router-link>
       </div>
     </header>
   </section>

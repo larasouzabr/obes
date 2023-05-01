@@ -1,6 +1,14 @@
 <template>
   <div class="register-title" v-if="!hasSeenCongrats">
-    <h1>{{ step === 1 ? "Doar um Livro" : "Preview" }}</h1>
+    <h1>
+      {{
+        step === 1
+          ? type[0].isSelling
+            ? "Vender um Livro"
+            : "Doar um Livro"
+          : "Preview"
+      }}
+    </h1>
 
     <div class="register-stepper">
       <div
@@ -87,6 +95,24 @@
               />
             </div>
           </div>
+
+          <div class="col-12" v-if="type[0].isSelling">
+            <div class="mb-3">
+              <label for="bookPrice" class="form-label">Valor</label>
+              <div class="form-control">
+                <span>R$ </span>
+                <input
+                  class="input-price"
+                  type="number"
+                  step="0.01"
+                  v-model="book.bookPrice"
+                  id="bookPrice"
+                  placeholder="0,00"
+                />
+              </div>
+            </div>
+          </div>
+
           <div class="col-12 mt-5">
             <div class="form-check">
               <input
@@ -167,6 +193,7 @@ export default {
         bookCategory: "",
         bookDescription: "",
         bookPicture: "",
+        bookPrice: 0.0,
       },
       hasSeenCongrats: false,
       categories: [
@@ -366,6 +393,10 @@ label {
   color: #000;
   font-size: medium;
   font-weight: 600;
+}
+
+.input-price {
+  border: 0px;
 }
 
 .form.cta-step {
