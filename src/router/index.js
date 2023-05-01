@@ -8,10 +8,12 @@ const routes = [
     component: HomePage,
   },
   {
-    path:'/profile',
-    name:'Profile',
-    component: () => import(/* webpackChunkName: "about" */ '../view/ProfilePageCommonUser.vue')
-
+    path: "/profile",
+    name: "Profile",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../view/ProfilePageCommonUser.vue"
+      ),
   },
   {
     path: "/login",
@@ -28,10 +30,15 @@ const routes = [
     name: "Register",
     component: () => import("../view/RegisterPage.vue"),
   },
-   {
+  {
     path: "/profile/donateabook",
     name: "Donation",
     component: () => import("../view/DonateABook.vue"),
+  },
+  {
+    path: "/profile/sellabook",
+    name: "Sell",
+    component: () => import("../view/SellABook.vue"),
   },
 ];
 
