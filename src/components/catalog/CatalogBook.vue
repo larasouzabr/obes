@@ -16,7 +16,10 @@
     </div>
 
     <div class="buy">
-      <a href="#" class="button">Comprar</a>
+      <div>
+        <span v-if="book.price == 0" class="donated">Doação</span>
+      </div>
+      <router-link :to="bookDetailUrl" class="button">Comprar</router-link>
     </div>
   </div>
 </template>
@@ -27,6 +30,12 @@ export default {
     book: {
       type: Object,
       required: true,
+    },
+  },
+  computed: {
+    bookDetailUrl() {
+      const query = { book: JSON.stringify(this.book) };
+      return { name: "BookDetail", query };
     },
   },
 };
@@ -58,8 +67,18 @@ p {
   grid-column: 3;
   grid-row: 1 / -3;
   display: grid;
-  place-content: end center;
+  /* place-content: end center; */
+  align-content: space-between;
+  justify-items: end;
   padding: 25px;
+}
+
+.donated {
+  background: #a87ff3;
+  color: #e9dffc;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.85rem;
 }
 
 .button {

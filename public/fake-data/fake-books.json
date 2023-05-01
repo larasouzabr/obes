@@ -8,7 +8,12 @@
       "condition": "new",
       "publication_year": 1949,
       "image": "https://m.media-amazon.com/images/I/61t0bwt1s3L.jpg",
-      "price": 0
+      "price": 0,
+      "category": "Fiction",
+      "cover_type": "Softcover",
+      "condition_description": "",
+      "dimensions": "13 x 19.7 cm",
+      "pages": 328
     },
     {
       "title": "To Kill a Mockingbird",
@@ -18,7 +23,12 @@
       "condition": "semi-new",
       "publication_year": 2015,
       "image": "https://m.media-amazon.com/images/I/61vD63WqmeL.jpg",
-      "price": 5
+      "price": 5,
+      "category": "Fiction",
+      "cover_type": "Softcover",
+      "condition_description": "Slight wear on cover and spine",
+      "dimensions": "13.5 x 20.3 cm",
+      "pages": 336
     },
     {
       "title": "The Great Gatsby",
@@ -28,7 +38,12 @@
       "condition": "semi-new",
       "publication_year": 2005,
       "image": "https://m.media-amazon.com/images/I/71FTb9X6wsL.jpg",
-      "price": 8
+      "price": 8,
+      "category": "Fiction",
+      "cover_type": "Capa dura",
+      "condition_description": "",
+      "dimensions": "14.7 x 22.3 cm",
+      "pages": 180
     },
     {
       "title": "The Hobbit",
@@ -38,7 +53,12 @@
       "condition": "new",
       "publication_year": 1937,
       "image": "https://m.media-amazon.com/images/I/710+HcoP38L.jpg",
-      "price": 10
+      "price": 10,
+      "category": "Fantasia",
+      "cover_type": "Capa dura",
+      "condition_description": "Não lido, como novo",
+      "dimensions": "13.5 x 20.3 cm",
+      "pages": 310
     },
     {
       "title": "Pride and Prejudice",
@@ -48,7 +68,12 @@
       "condition": "semi-new",
       "publication_year": 2023,
       "image": "https://m.media-amazon.com/images/I/41fHsJqF3iL._SX331_BO1,204,203,200_.jpg",
-      "price": 15
+      "price": 15,
+      "category": "Fantasia",
+      "cover_type": "Capa dura",
+      "condition_description": "Não lido, como novo",
+      "dimensions": "13.5 x 20.3 cm",
+      "pages": 310
     },
     {
       "title": "The Catcher in the Rye",
@@ -58,7 +83,12 @@
       "condition": "new",
       "publication_year": 1951,
       "image": "https://m.media-amazon.com/images/I/91HPG31dTwL.jpg",
-      "price": 20
+      "price": 20,
+      "category": "Fantasia",
+      "cover_type": "Capa dura",
+      "condition_description": "Não lido, como novo",
+      "dimensions": "13.5 x 20.3 cm",
+      "pages": 310
     },
     {
       "title": "One Hundred Years of Solitude",
@@ -68,7 +98,12 @@
       "condition": "new",
       "publication_year": 1967,
       "image": "https://m.media-amazon.com/images/I/81MI6+TpYkL.jpg",
-      "price": 23
+      "price": 23,
+      "category": "Fantasia",
+      "cover_type": "Capa dura",
+      "condition_description": "Não lido, como novo",
+      "dimensions": "13.5 x 20.3 cm",
+      "pages": 310
     },
     {
       "title": "The Lord of the Rings",
@@ -78,7 +113,12 @@
       "condition": "semi-new",
       "publication_year": 1954,
       "image": "https://m.media-amazon.com/images/I/51wEd2FprXL.jpg",
-      "price": 12
+      "price": 12,
+      "category": "Fantasia",
+      "cover_type": "Capa dura",
+      "condition_description": "Não lido, como novo",
+      "dimensions": "13.5 x 20.3 cm",
+      "pages": 310
     }
   ]
 }

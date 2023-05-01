@@ -35,6 +35,11 @@ const routes = [
     name: "Register",
     component: () => import("../view/RegisterPage.vue"),
   },
+  {
+    path: "/book-detail",
+    name: "BookDetail",
+    component: () => import("../view/BookDetailPage.vue"),
+  },
 ];
 
 const router = createRouter({
