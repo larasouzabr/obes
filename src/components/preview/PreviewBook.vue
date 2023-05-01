@@ -38,7 +38,7 @@
           type="submit"
           @click.prevent="$emit('continue')"
         >
-          Colocar em doação
+          {{ book.bookPrice == 0 ? "Colocar em doação" : "Colocar à venda" }}
         </button>
       </div>
     </div>
