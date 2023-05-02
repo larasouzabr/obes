@@ -58,10 +58,6 @@ a {
   text-decoration: none;
 }
 
-body{
-  margin: 0px;
-
-}
 .background {
   grid-row: 1 / -4;
   background-image: url("../assets/background-main.jpg");

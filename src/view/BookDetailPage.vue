@@ -45,15 +45,21 @@
       </div>
     </div>
   </main>
+  <CarouselComp
+    :description="'Outras opções parecidas'"
+    class="carousel"
+  ></CarouselComp>
 </template>
 
 <script>
 import StarRating from "vue-star-rating";
+import CarouselComp from "@/components/carousel/CarouselComp.vue";
 
 export default {
   name: "BookDetailPage",
   components: {
     StarRating,
+    CarouselComp,
   },
   data() {
     return {
@@ -67,12 +73,12 @@ export default {
 body {
   background-color: #a87ff3 !important;
 }
+
 .main-detail {
   width: 70vw;
-  height: 100vh;
+  height: 75vh;
   margin: 0px auto;
 }
-
 .info-user {
   display: flex;
   flex-direction: column;

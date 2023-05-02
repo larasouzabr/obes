@@ -16,7 +16,7 @@ export default {
 <style>
 body {
   margin: 0px;
-  background-image: linear-gradient(135deg, #be9ff6, #decffb); 
+  background-image: linear-gradient(135deg, #be9ff6, #decffb);
   background-repeat: no-repeat;
   font-family: "Poppins", sans-serif;
 }

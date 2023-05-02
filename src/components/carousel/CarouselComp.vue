@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="content-carousel">
     <h2><strong>{{description}}</strong></h2>
   <Carousel v-bind="settings" :breakpoints="breakpoints">
     <Slide v-for="book in books.books" :key="book">
@@ -54,7 +54,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.content{
+.content-carousel{
   margin:3rem;
   background-color: #FFFFFF;
 }
