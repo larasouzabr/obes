@@ -16,6 +16,11 @@ const routes = [
       ),
   },
   {
+    path: "/books",
+    name: "Books",
+    component: () => import("../view/FindBooksPage.vue"),
+  },
+  {
     path: "/login",
     name: "Login",
     component: () => import("../view/LoginPage.vue"),
@@ -39,6 +44,9 @@ const routes = [
     path: "/profile/sellabook",
     name: "Sell",
     component: () => import("../view/SellABook.vue"),
+    path: "/book-detail",
+    name: "BookDetail",
+    component: () => import("../view/BookDetailPage.vue"),
   },
 ];
 

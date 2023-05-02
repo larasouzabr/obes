@@ -1,9 +1,9 @@
 <template>
   <nav class="navbar navbar-expand-lg" v-if="!isPaginaLogin">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">
+      <router-link to="/" class="navbar-brand">
         <img src="../assets/obes.svg" alt="OBES Logo" width="123" height="39" />
-      </a>
+      </router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -19,7 +19,10 @@
         <div>
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <router-link class="nav-link active fs-5" to="/"
+              <router-link
+                to="/"
+                class="nav-link active fs-5"
+                aria-current="page"
                 >Início</router-link
               >
             </li>
