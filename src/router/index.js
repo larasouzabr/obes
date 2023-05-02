@@ -43,8 +43,9 @@ const routes = [
   {
     path: "/profile/sellabook",
     name: "Sell",
-    component: () => import("../view/SellABook.vue"),
-    path: "/book-detail",
+    component: () => import("../view/SellABook.vue")
+  },
+  { path: "/book-detail",
     name: "BookDetail",
     component: () => import("../view/BookDetailPage.vue"),
   },
