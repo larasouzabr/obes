@@ -18,7 +18,7 @@
 
         <div class="buttons">
           <router-link to="/login" class="button cancel">Cancelar</router-link>
-          <button type="submit" class="button enter">Entrar</button>
+          <router-link to="/" class="button enter">Entrar</router-link>
         </div>
       </form>
 
@@ -44,6 +44,7 @@ export default {
   grid-template-columns: 1fr 2fr;
   gap: 30px;
   height: 100vh;
+  background-color: #e9dffc;
 }
 
 .background {

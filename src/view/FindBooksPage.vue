@@ -34,7 +34,15 @@
             impossíveis.
           </p>
           <div class="stars">
-            <span>estrelas</span>
+            <star-rating
+              v-bind:increment="0.5"
+              v-bind:max-rating="5"
+              inactive-color="#E9ECEF"
+              v-bind:star-size="20"
+              v-bind:show-rating="false"
+              v-bind:rating="4.5"
+              v-bind:read-only="true"
+            />
           </div>
         </article>
 
@@ -46,7 +54,15 @@
             próximos volumes!
           </p>
           <div class="stars">
-            <span>estrelas</span>
+            <star-rating
+              v-bind:increment="0.5"
+              v-bind:max-rating="5"
+              inactive-color="#E9ECEF"
+              v-bind:star-size="20"
+              v-bind:show-rating="false"
+              v-bind:rating="4.0"
+              v-bind:read-only="true"
+            />
           </div>
         </article>
 
@@ -60,7 +76,15 @@
             acontecer…
           </p>
           <div class="stars">
-            <span>estrelas</span>
+            <star-rating
+              v-bind:increment="0.5"
+              v-bind:max-rating="5"
+              inactive-color="#E9ECEF"
+              v-bind:star-size="20"
+              v-bind:show-rating="false"
+              v-bind:rating="4.0"
+              v-bind:read-only="true"
+            />
           </div>
         </article>
       </div>
@@ -78,6 +102,7 @@ import FilterPrice from "../components/filter/FilterPrice.vue";
 import FilterYear from "../components/filter/FilterYear.vue";
 import CatalogComp from "../components/catalog/CatalogComp.vue";
 import fakeBooks from "../../public/fake-data/fake-books.json";
+import StarRating from "vue-star-rating";
 
 export default {
   name: "FindBooksPage",
@@ -86,6 +111,7 @@ export default {
     FilterPrice,
     FilterYear,
     CatalogComp,
+    StarRating,
   },
   data() {
     const books = fakeBooks.books;
@@ -102,6 +128,9 @@ export default {
 </script>
 
 <style scoped>
+body {
+  background-color: #432876;
+}
 .content {
   background: #fff;
   margin: 3rem;
@@ -115,6 +144,11 @@ export default {
   background: #432876;
   border-radius: 16px 0px 0px 16px;
   padding-top: 10px;
+}
+
+.stars {
+  justify-content: center;
+  display: flex;
 }
 
 .filters {

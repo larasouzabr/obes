@@ -14,10 +14,9 @@ export default {
         {
           isSelling: true,
           typeofAction: "vender",
-          congratTextMain:
-            "Nós do Obes juntamente com as instituições agradecemos a sua venda! ",
+          congratTextMain: "Nós do Obes agradecemos a sua venda! ",
           congratTextUnder:
-            "Você receberá um e-mail quando alguma instituição solicitar a venda. Atente-se ao seu telefone e realize a entrega com responsabilidade!",
+            "Você receberá um e-mail quando alguém solicitar a compra. Atente-se ao seu telefone e realize a entrega com responsabilidade!",
         },
       ],
     };

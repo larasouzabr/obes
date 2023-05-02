@@ -28,7 +28,19 @@
           </div>
 
           <span class="soldby">Vendido por:</span>
-          <span>Rafaella Santos</span>
+
+          <div class="info-user">
+            <span>Rafaella Santos</span>
+            <star-rating
+              v-bind:increment="0.5"
+              v-bind:max-rating="5"
+              inactive-color="#E9ECEF"
+              v-bind:star-size="20"
+              v-bind:show-rating="false"
+              v-bind:rating="4.0"
+              v-bind:read-only="true"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -36,8 +48,13 @@
 </template>
 
 <script>
+import StarRating from "vue-star-rating";
+
 export default {
   name: "BookDetailPage",
+  components: {
+    StarRating,
+  },
   data() {
     return {
       book: JSON.parse(this.$route.query.book),
@@ -47,10 +64,19 @@ export default {
 </script>
 
 <style scoped>
+body {
+  background-color: #a87ff3 !important;
+}
 .main-detail {
   width: 70vw;
   height: 100vh;
   margin: 0px auto;
+}
+
+.info-user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .content {

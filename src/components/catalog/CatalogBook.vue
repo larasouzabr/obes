@@ -11,21 +11,33 @@
 
     <div class="sold">
       <p class="soldby">Vendido por:</p>
-      <p class="seller">Robertinha Rafaela</p>
-      <div class="stars">stars</div>
+      <p class="seller">Robson José</p>
+      <div class="stars">
+        <star-rating
+          v-bind:increment="0.5"
+          v-bind:max-rating="5"
+          inactive-color="#E9ECEF"
+          v-bind:star-size="20"
+          v-bind:show-rating="false"
+          v-bind:rating="3.0"
+          v-bind:read-only="true"
+        />
+      </div>
     </div>
 
     <div class="buy">
-      <div>
-        <span v-if="book.price == 0" class="donated">Doação</span>
-      </div>
       <router-link :to="bookDetailUrl" class="button">Comprar</router-link>
     </div>
   </div>
 </template>
 
 <script>
+import StarRating from "vue-star-rating";
+
 export default {
+  components: {
+    StarRating,
+  },
   props: {
     book: {
       type: Object,
@@ -67,8 +79,7 @@ p {
   grid-column: 3;
   grid-row: 1 / -3;
   display: grid;
-  /* place-content: end center; */
-  align-content: space-between;
+  align-content: end;
   justify-items: end;
   padding: 25px;
 }

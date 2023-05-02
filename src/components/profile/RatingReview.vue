@@ -25,12 +25,12 @@
 </template>
 
 <script>
-/* import StarRating from "vue-star-rating"; */
+import StarRating from "vue-star-rating";
 
 export default {
   name: "ratingReview",
   components: {
-    /* StarRating, */
+    StarRating,
   },
   props: {
     review: Object,
