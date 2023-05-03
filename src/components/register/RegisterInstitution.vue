@@ -1,0 +1,192 @@
+<template>
+  <main>
+    <img src="../../assets/obes.svg" alt="Logo Obes" />
+
+    <form action="" method="post">
+      <label for="name">Nome da instituição</label>
+      <input
+        type="text"
+        name="name"
+        id="name"
+        placeholder="Digite o nome da instituição"
+        required
+      />
+
+      <label for="email">E-mail</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="Digite um e-mail que representa a instituição"
+        required
+      />
+
+      <span>Tipo de Instituição:</span>
+      <div class="institution-type">
+        <div>
+          <input type="radio" name="institution-type" id="school" />
+          <label for="school">Escola</label>
+        </div>
+        <div>
+          <input type="radio" name="institution-type" id="library" />
+          <label for="school">Biblioteca</label>
+        </div>
+        <div>
+          <input type="radio" name="institution-type" id="other" />
+          <label for="school">Outra</label>
+        </div>
+      </div>
+
+      <label for="password">Senha</label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="Digite sua senha"
+        required
+      />
+
+      <label for="password-confirm">Confirmação da senha</label>
+      <input
+        type="password"
+        name="password-confirm"
+        id="password-confirm"
+        placeholder="Digite sua senha novamente"
+        required
+      />
+
+      <div class="buttons">
+        <router-link to="/login" class="button cancel">Cancelar</router-link>
+        <button type="submit" class="button create">Criar conta</button>
+      </div>
+    </form>
+
+    <div class="info">
+      <p>
+        Já possui cadastro?
+        <span
+          ><router-link to="/sign-up" class="sign"
+            >Acesse sua conta</router-link
+          ></span
+        >.
+      </p>
+      <p>
+        Ao seguir com o cadastro, você concorda com os
+        <span>Termos de Uso</span> e <span>Política de Privacidade</span>
+      </p>
+    </div>
+  </main>
+</template>
+
+<script>
+export default {
+  name: "RegisterInstitution",
+};
+</script>
+
+<style scoped>
+main img {
+  max-width: 80vw;
+}
+
+main form {
+  width: 100%;
+  display: grid;
+}
+
+main input {
+  display: block;
+  margin-bottom: 30px;
+  width: 100%;
+  height: 40px;
+  border: 1px solid #432876;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.institution-type {
+  display: flex;
+  justify-content: space-between;
+}
+
+.institution-type div {
+  display: flex;
+  gap: 10px;
+}
+
+.institution-type input {
+  margin: 0px;
+  display: inline-block;
+  appearance: none;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+.institution-type input:checked {
+  background: #432876;
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.button {
+  padding: 10px 0px;
+  border-radius: 4px;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+}
+
+.button.cancel {
+  cursor: pointer;
+  border: 2px solid #432876;
+  color: #432876;
+  transition: 0.5s;
+}
+
+.button.cancel:hover {
+  border: 2px solid #432876e3;
+  color: #432876e3;
+}
+
+.button.create {
+  border: 0px;
+  background: #432876;
+  color: #e9dffc;
+  transition: 0.5s;
+}
+
+.button.create:hover {
+  background: #432876e3;
+}
+
+.info {
+  text-align: center;
+}
+
+.info span {
+  color: #432876;
+  font-weight: bold;
+}
+
+.info .sign {
+  color: #432876;
+  transform: 0.5s;
+}
+
+.info .sign:hover {
+  color: #432876e3;
+}
+
+@media (max-width: 636px) {
+  header {
+    justify-content: center;
+  }
+}
+</style>
