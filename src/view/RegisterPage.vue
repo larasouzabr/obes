@@ -3,9 +3,9 @@
     <div class="background"></div>
 
     <div class="content">
-      <div v-if="template == 'Register'">
+      <!-- <div v-if="template == 'Register'">
         <HeaderMain />
-      </div>
+      </div> -->
 
       <div v-if="template == 'Register'">
         <main>
@@ -63,14 +63,12 @@
 </template>
 
 <script>
-import HeaderMain from "../components/HeaderMain.vue";
 import RegisterPerson from "../components/register/RegisterPerson.vue";
 import RegisterInstitution from "../components/register/RegisterInstitution.vue";
 
 export default {
   name: "RegisterPage",
   components: {
-    HeaderMain,
     RegisterPerson,
     RegisterInstitution,
   },

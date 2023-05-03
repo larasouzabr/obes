@@ -44,7 +44,7 @@ export default {
   grid-template-columns: 1fr 2fr;
   gap: 30px;
   height: 100vh;
-  background-color: #e9dffc;
+  /* background-color: #e9dffc; */
 }
 
 .background {

@@ -47,7 +47,7 @@ export default {
   justify-content: space-between;
   grid-template-columns: 1fr 2fr;
   height: 100vh;
-  background-color: #decffb;
+  /* background-color: #decffb; */
 }
 
 p {
