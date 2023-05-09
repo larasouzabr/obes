@@ -44,7 +44,7 @@ export default {
   grid-template-columns: 1fr 2fr;
   gap: 30px;
   height: 100vh;
-  background-color: #e9dffc;
+  /* background-color: #e9dffc; */
 }
 
 .background {
@@ -79,6 +79,7 @@ input {
   height: 40px;
   border: 1px solid #432876;
   border-radius: 4px;
+  padding: 10px;
 }
 
 .buttons {
