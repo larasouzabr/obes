@@ -66,6 +66,10 @@ export default {
       book: JSON.parse(this.$route.query.book),
     };
   },
+  mounted() {
+    document.body.style.background =
+      "linear-gradient(to bottom, #DECFFB, #FFFFFF) no-repeat";
+  },
 };
 </script>
 

@@ -16,6 +16,9 @@ import CarouselComp from "@/components/carousel/CarouselComp.vue";
 export default {
   name: "HomePage",
   components: { BannerMain, CarouselComp },
+  mounted() {
+    document.body.style.background = "#5E3A9E";
+  },
 };
 </script>
 

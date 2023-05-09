@@ -24,6 +24,9 @@ export default {
     doacao: "doação",
     user,
   }),
+  mounted() {
+    document.body.style.background = "#F9F2FF";
+  },
 };
 </script>
 

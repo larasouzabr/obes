@@ -124,6 +124,9 @@ export default {
       this.books = filteredList;
     },
   },
+  mounted() {
+    document.body.style.background = "#5E3A9E";
+  },
 };
 </script>
 

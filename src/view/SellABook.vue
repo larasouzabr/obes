@@ -21,6 +21,9 @@ export default {
       ],
     };
   },
+  mounted() {
+    document.body.style.background = "#F9F2FF";
+  },
 };
 </script>
 
