@@ -48,7 +48,7 @@
           </form>
 
           <a href="#" class="button-next" @click="template = userType"
-            >Próximo <img src="../assets/arrow-right.svg" alt=""
+            >Próximo <img src="../assets/arrow-right-white.svg" alt=""
           /></a>
         </main>
       </div>

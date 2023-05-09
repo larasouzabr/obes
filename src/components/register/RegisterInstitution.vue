@@ -96,7 +96,7 @@ main form {
 
 main input {
   display: block;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   width: 100%;
   height: 40px;
   border: 1px solid #432876;

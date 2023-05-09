@@ -79,6 +79,7 @@ input {
   height: 40px;
   border: 1px solid #432876;
   border-radius: 4px;
+  padding: 10px;
 }
 
 .buttons {
