@@ -2,7 +2,7 @@
   <main>
     <img src="../../assets/obes.svg" alt="Logo Obes" />
 
-    <form action="" method="post">
+    <form @submit.prevent="salvarUsuario" method="post">
       <label for="name">Nome Completo</label>
       <input
         type="text"
@@ -10,6 +10,7 @@
         id="name"
         placeholder="Digite seu nome completo"
         required
+        v-model="user.name"
       />
 
       <label for="email">E-mail</label>
@@ -19,24 +20,29 @@
         id="email"
         placeholder="Digite seu e-mail"
         required
+        v-model="user.email"
       />
 
       <label for="password">Senha</label>
       <input
+        v-model="user.password"
         type="password"
         name="password"
         id="password"
         placeholder="Digite sua senha"
         required
+        minlength="8"
       />
 
       <label for="password-confirm">Confirmação da senha</label>
       <input
+        v-model="passwordConfirm"
         type="password"
         name="password-confirm"
         id="password-confirm"
         placeholder="Digite sua senha novamente"
         required
+        minlength="8"
       />
 
       <div class="buttons">
@@ -63,8 +69,31 @@
 </template>
 
 <script>
+import api from "@/services/api";
 export default {
   name: "RegisterPerson",
+  data() {
+    return {
+      user: {
+        name: "",
+        email: "",
+        password: "",
+        phone_number: "888888888",
+        user_type: "common",
+        cpf: "",
+        birthdate: "",
+      },
+      passwordConfirm: "",
+    };
+  },
+  methods: {
+    salvarUsuario() {
+      api.addNewUser(this.user).catch((e) => {
+        this.errors = e.response.data.errors;
+      });
+      this.$router.push("/sign-up");
+    },
+  },
 };
 </script>
 

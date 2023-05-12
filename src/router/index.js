@@ -38,11 +38,29 @@ const routes = [
   {
     path: "/profile/donateabook",
     name: "Donation",
+     beforeEnter: function (to, from, next) {
+        const token = localStorage.getItem('user-token')
+
+        if (!token) {
+          next('/login')
+        } else {
+          next()
+        }
+      },
     component: () => import("../view/DonateABook.vue"),
   },
   {
     path: "/profile/sellabook",
     name: "Sell",
+     beforeEnter: function (to, from, next) {
+        const token = localStorage.getItem('user-token')
+
+        if (!token) {
+          next('/login')
+        } else {
+          next()
+        }
+      },
     component: () => import("../view/SellABook.vue")
   },
   { path: "/book-detail",

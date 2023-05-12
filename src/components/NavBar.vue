@@ -85,7 +85,7 @@
   </nav>
 </template>
 <script>
-import user from "../../public/fake-data/profile.json";
+import api from "@/services/api";
 export default {
   computed: {
     isPaginaLogin() {
@@ -95,9 +95,10 @@ export default {
         this.$route.path === "/sign-up"
       );
     },
-    isLogged() {
-      return user != undefined ? true : false;
-    },
+  },
+  async created() {
+    const resp = api.getUser();
+    this.user = resp;
   },
   data() {
     return {
@@ -113,8 +114,13 @@ export default {
         { id: 9, name: "Psicologia" },
         { id: 10, name: "Política" },
       ],
-      user,
+      user: null,
     };
+  },
+  methods: {
+    isLogged() {
+      return this.user != null ? true : false;
+    },
   },
 };
 </script>
