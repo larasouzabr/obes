@@ -16,9 +16,11 @@ export default {
       localStorage.setItem("token", resp.data.token);
     });
   },
-  getUser: () => {
-    api.get("user").then((resp) => {
-      return resp.data;
+  getUserByToken: () => {
+    api.get("user",{
+      
+    }).then((resp) => {
+      if (resp.data.token === token) return resp.data;
     });
   },
 };
