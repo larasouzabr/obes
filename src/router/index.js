@@ -43,11 +43,17 @@ const routes = [
   {
     path: "/profile/sellabook",
     name: "Sell",
-    component: () => import("../view/SellABook.vue")
+    component: () => import("../view/SellABook.vue"),
   },
-  { path: "/book-detail",
+  {
+    path: "/book-detail",
     name: "BookDetail",
     component: () => import("../view/BookDetailPage.vue"),
+  },
+  {
+    path: "/registration-info",
+    name: "RegistrationPersonalInfo",
+    component: () => import("../view/RegistrationPersonalInfo.vue"),
   },
 ];
 
