@@ -6,20 +6,20 @@
         <div class="filter">
           <h3 class="category">Tipo do livro</h3>
           <form action="" method="post">
-            <FilterTypeBook @event="updateFilteredBooks" />
+            <FilterTypeBook :books="books" @event="updateFilterType" />
           </form>
         </div>
 
         <div class="filter">
           <h3 class="category">Preço</h3>
           <form action="" method="post">
-            <FilterPrice @event="updateFilteredBooks" />
+            <FilterPrice :books="books" @event="updateFilterPrice" />
           </form>
         </div>
 
         <div class="filter">
           <h3 class="category">Ano da publicação</h3>
-          <FilterYear @event="updateFilteredBooks" />
+          <FilterYear :books="books" @event="updateFilterYear" />
         </div>
       </div>
 
@@ -67,7 +67,7 @@
     </section>
 
     <main class="catalog">
-      <CatalogComp :books="books" />
+      <CatalogComp :books="filteredBooks" />
     </main>
   </div>
 </template>
@@ -89,13 +89,37 @@ export default {
   },
   data() {
     const books = fakeBooks.books;
+    const filteredBooks = books;
+    const subBooksType = books;
+    const subBooksPrice = books;
+    const subBooksYear = books;
+
     return {
       books,
+      filteredBooks,
+      subBooksType,
+      subBooksPrice,
+      subBooksYear,
     };
   },
   methods: {
-    updateFilteredBooks(filteredList) {
-      this.books = filteredList;
+    updateFilteredBooks() {
+      this.filteredBooks = this.subBooksType.filter(
+        (book) =>
+          this.subBooksPrice.includes(book) && this.subBooksYear.includes(book)
+      );
+    },
+    updateFilterType(filteredList) {
+      this.subBooksType = filteredList;
+      this.updateFilteredBooks();
+    },
+    updateFilterPrice(filteredList) {
+      this.subBooksPrice = filteredList;
+      this.updateFilteredBooks();
+    },
+    updateFilterYear(filteredList) {
+      this.subBooksYear = filteredList;
+      this.updateFilteredBooks();
     },
   },
 };

@@ -13,33 +13,30 @@
 </template>
 
 <script>
-import fakeBooks from "../../../public/fake-data/fake-books.json";
-
 export default {
   name: "FilterYear",
+  props: ["books"],
   data() {
-    const books = fakeBooks.books;
     return {
-      books,
       filterOptions: [
         {
           id: "y2008",
           label: `2008 (${
-            books.filter((book) => book.publication_year <= 2008).length
+            this.books.filter((book) => book.publication_year <= 2008).length
           })`,
           value: 2008,
         },
         {
           id: "y2013",
           label: `2013 (${
-            books.filter((book) => book.publication_year <= 2013).length
+            this.books.filter((book) => book.publication_year <= 2013).length
           })`,
           value: 2013,
         },
         {
           id: "y2023",
           label: `2023 (${
-            books.filter((book) => book.publication_year <= 2023).length
+            this.books.filter((book) => book.publication_year <= 2023).length
           })`,
           value: 2023,
         },

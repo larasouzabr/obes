@@ -13,47 +13,44 @@
 </template>
 
 <script>
-import fakeBooks from "../../../public/fake-data/fake-books.json";
-
 export default {
   name: "FilterPrice",
+  props: ["books"],
   data() {
-    const books = fakeBooks.books;
     return {
-      books,
       filterOptions: [
         {
           id: "donated",
           label: `0,00 (Doados) (${
-            books.filter((book) => book.price === 0).length
+            this.books.filter((book) => book.price === 0).length
           })`,
           value: 0,
         },
         {
           id: "price10",
           label: `Até 10 reais (${
-            books.filter((book) => book.price <= 10).length
+            this.books.filter((book) => book.price <= 10).length
           })`,
           value: 10,
         },
         {
           id: "price14",
           label: `Até 14 reais (${
-            books.filter((book) => book.price <= 14).length
+            this.books.filter((book) => book.price <= 14).length
           })`,
           value: 14,
         },
         {
           id: "price18",
           label: `Até 18 reais (${
-            books.filter((book) => book.price <= 18).length
+            this.books.filter((book) => book.price <= 18).length
           })`,
           value: 18,
         },
         {
           id: "price23",
           label: `Até 23 reais (${
-            books.filter((book) => book.price <= 23).length
+            this.books.filter((book) => book.price <= 23).length
           })`,
           value: 23,
         },

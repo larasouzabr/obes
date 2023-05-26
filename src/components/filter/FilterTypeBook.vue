@@ -13,26 +13,23 @@
 </template>
 
 <script>
-import fakeBooks from "../../../public/fake-data/fake-books.json";
-
 export default {
   name: "FilterTypeBook",
+  props: ["books"],
   data() {
-    const books = fakeBooks.books;
     return {
-      books,
       filterOptions: [
         {
           id: "new",
           label: `Novo (${
-            books.filter((book) => book.condition === "new").length
+            this.books.filter((book) => book.condition === "new").length
           })`,
           value: "new",
         },
         {
           id: "semi-new",
           label: `Semi-novo (${
-            books.filter((book) => book.condition === "semi-new").length
+            this.books.filter((book) => book.condition === "semi-new").length
           })`,
           value: "semi-new",
         },
