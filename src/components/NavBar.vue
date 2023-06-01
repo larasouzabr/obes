@@ -59,7 +59,7 @@
           <ul
             class="navbar-nav user-information-ul me-auto mb-2 mb-lg-0 d-flex d-row"
           >
-            <router-link to="/profile" v-if="isLogged">
+            <router-link to="/profile" v-if="signedIn()">
               <img
                 :src="user?.image"
                 alt="Avatar"
@@ -69,7 +69,7 @@
               />
               <span> Olá, {{ user?.name }} </span>
             </router-link>
-            <router-link to="/profile" v-if="!isLogged">
+            <router-link to="/profile" v-if="!signedIn()">
               <img
                 src="../assets/avatar.png"
                 alt="Avatar"
@@ -85,7 +85,8 @@
   </nav>
 </template>
 <script>
-import api from "@/services/api";
+import { isSignedIn } from "@/services/auth";
+
 export default {
   computed: {
     isPaginaLogin() {
@@ -95,10 +96,6 @@ export default {
         this.$route.path === "/sign-up"
       );
     },
-  },
-  async created() {
-    const resp = api.getUser();
-    this.user = resp;
   },
   data() {
     return {
@@ -114,12 +111,12 @@ export default {
         { id: 9, name: "Psicologia" },
         { id: 10, name: "Política" },
       ],
-      user: null,
+      user: JSON.parse(localStorage.getItem("user")),
     };
   },
   methods: {
-    isLogged() {
-      return this.user != null ? true : false;
+    signedIn() {
+      return isSignedIn();
     },
   },
 };

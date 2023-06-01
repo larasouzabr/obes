@@ -40,7 +40,9 @@
 </template>
 
 <script>
-import api from "@/services/api";
+/* import api from "@/services/auth"; */
+import { signIn } from "@/services/auth";
+
 export default {
   name: "SignUpPage",
   data() {
@@ -52,8 +54,8 @@ export default {
     };
   },
   methods: {
-    handleSubmit() {
-      api.loginUser(this.user);
+    async handleSubmit() {
+      await signIn(this.user.email, this.user.password);
       this.$router.push("/");
     },
   },

@@ -16,9 +16,4 @@ export default {
       localStorage.setItem("token", resp.data.token);
     });
   },
-  getUser: () => {
-    api.get("user").then((resp) => {
-      return resp.data;
-    });
-  },
 };
