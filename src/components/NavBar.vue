@@ -61,15 +61,19 @@
           >
             <router-link to="/profile" v-if="signedIn()">
               <img
-                :src="user?.image"
+                :src="
+                  user.image_filename
+                    ? user.image_filename
+                    : require('@/assets/avatar.png')
+                "
                 alt="Avatar"
                 width="32"
                 height="32"
                 style="border-radius: 50%"
               />
-              <span> Olá, {{ user?.name }} </span>
+              <span> Olá, {{ getFirstName() }} </span>
             </router-link>
-            <router-link to="/profile" v-if="!signedIn()">
+            <router-link to="/sign-up" v-if="!signedIn()">
               <img
                 src="../assets/avatar.png"
                 alt="Avatar"
@@ -86,6 +90,7 @@
 </template>
 <script>
 import { isSignedIn } from "@/services/auth";
+import api from "@/services/api";
 
 export default {
   computed: {
@@ -99,24 +104,31 @@ export default {
   },
   data() {
     return {
-      categories: [
-        { id: 1, name: "Romance" },
-        { id: 2, name: "Ficção científica" },
-        { id: 3, name: "Mistério" },
-        { id: 4, name: "Fantasia" },
-        { id: 5, name: "História" },
-        { id: 6, name: "Autoajuda" },
-        { id: 7, name: "Biografia" },
-        { id: 8, name: "Negócios" },
-        { id: 9, name: "Psicologia" },
-        { id: 10, name: "Política" },
-      ],
       user: JSON.parse(localStorage.getItem("user")),
+      categories: [],
     };
+  },
+  mounted() {
+    api
+      .getAllCategories()
+      .then((response) => {
+        this.categories = response.data;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   },
   methods: {
     signedIn() {
       return isSignedIn();
+    },
+    getFirstName() {
+      const primeiroNome = this.user.name.substring(
+        0,
+        this.user.name.indexOf(" ")
+      );
+
+      return primeiroNome;
     },
   },
 };

@@ -4,9 +4,12 @@
       <strong>{{ description }}</strong>
     </h2>
     <Carousel v-bind="settings" :breakpoints="breakpoints">
-      <Slide v-for="book in books.books" :key="book">
+      <Slide v-for="book in books" :key="book">
         <div class="carousel__item">
-          <carousel-item :isDonation="isDonation" :book="book"></carousel-item>
+          <carousel-item
+            :isDonation="book.type_book == 'donation' ? true : false"
+            :book="book"
+          ></carousel-item>
         </div>
       </Slide>
       <template #addons>
@@ -21,7 +24,6 @@ import { defineComponent } from "vue";
 import { Carousel, Navigation, Slide } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
 import CarouselItem from "./CarouselItem.vue";
-import books from "../../../public/fake-data/fake-data.json";
 export default defineComponent({
   name: "CarouselComp",
   components: {
@@ -31,8 +33,8 @@ export default defineComponent({
     CarouselItem,
   },
   props: {
+    books: Object,
     description: String,
-    isDonation: Boolean,
   },
   data: () => ({
     settings: {
@@ -49,7 +51,6 @@ export default defineComponent({
         snapAlign: "start",
       },
     },
-    books,
   }),
 });
 </script>
@@ -65,3 +66,5 @@ h2 {
   padding-top: 2rem;
 }
 </style>
+
+

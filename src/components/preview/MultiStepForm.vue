@@ -35,8 +35,8 @@
               class="form-control"
               id="bookName"
               type="text"
-              v-model="book.bookTitle"
-              autocomplete="book.bookTitle"
+              v-model="book.title"
+              autocomplete="book.title"
               placeholder="Digite o título do livro"
               required
             />
@@ -46,8 +46,8 @@
             <select
               name="category"
               id="category"
-              v-model="book.bookCategory"
-              autocomplete="book.bookCategory.name"
+              v-model="book.category_id"
+              autocomplete="book.categoria.name"
               class="form-selected form-control"
               required
             >
@@ -55,7 +55,7 @@
               <option
                 v-for="categoria in categories"
                 :key="categoria"
-                :value="categoria"
+                :value="categoria.id"
               >
                 {{ categoria.name }}
               </option>
@@ -68,8 +68,8 @@
                 class="form-control"
                 id="description"
                 rows="6"
-                v-model="book.bookDescription"
-                autocomplete="book.bookDescription"
+                v-model="book.description"
+                autocomplete="book.description"
                 placeholder="Adicione informações relevantes como: 
 - Autor: 
 - Editora:
@@ -91,7 +91,7 @@
                 type="file"
                 id="bookImg"
                 @change="handleImageChange"
-                autocomplete="book.Picture"
+                autocomplete="book.image_url"
               />
             </div>
           </div>
@@ -105,7 +105,7 @@
                   class="input-price"
                   type="number"
                   step="0.01"
-                  v-model="book.bookPrice"
+                  v-model="book.price"
                   id="bookPrice"
                   placeholder="0,00"
                 />
@@ -179,6 +179,8 @@
 
 <script>
 import PreviewBook from "./PreviewBook.vue";
+import api from "@/services/api";
+import { request } from "@/services/request";
 export default {
   components: { PreviewBook },
   props: {
@@ -189,26 +191,26 @@ export default {
       steps: {},
       step: 1,
       book: {
-        bookTitle: "",
-        bookCategory: "",
-        bookDescription: "",
-        bookPicture: "",
-        bookPrice: 0.0,
+        title: "",
+        category_id: null,
+        description: "",
+        image_url: "",
+        type_book: "",
+        price: 0,
       },
       hasSeenCongrats: false,
-      categories: [
-        { id: 1, name: "Romance" },
-        { id: 2, name: "Ficção científica" },
-        { id: 3, name: "Mistério" },
-        { id: 4, name: "Fantasia" },
-        { id: 5, name: "História" },
-        { id: 6, name: "Autoajuda" },
-        { id: 7, name: "Biografia" },
-        { id: 8, name: "Negócios" },
-        { id: 9, name: "Psicologia" },
-        { id: 10, name: "Política" },
-      ],
+      categories: [],
     };
+  },
+  mounted() {
+    api
+      .getAllCategories()
+      .then((response) => {
+        this.categories = response.data;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   },
   methods: {
     prev() {
@@ -221,14 +223,24 @@ export default {
 
     donationComplete: function () {
       this.hasSeenCongrats = true;
+      this.postInfo();
     },
     handleImageChange(event) {
       const file = event.target.files[0];
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
-        this.book.bookPicture = reader.result;
+        this.book.image_url = reader.result;
       };
+    },
+    postInfo() {
+      if (this.book.price == 0) {
+        this.book.type_book = "donation";
+        request("post", "/books", this.book);
+      } else {
+        this.book.type_book = "sale";
+        request("post", "/books", this.book);
+      }
     },
   },
 };

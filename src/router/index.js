@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomePage from "../view/HomePage.vue";
+import { isSignedIn, getUserLoggedInfo } from "../services/auth";
 
 const routes = [
   {
@@ -38,34 +39,41 @@ const routes = [
   {
     path: "/profile/donateabook",
     name: "Donation",
-     beforeEnter: function (to, from, next) {
-        const token = localStorage.getItem('user-token')
-
-        if (!token) {
-          next('/login')
-        } else {
-          next()
-        }
-      },
+    beforeEnter(_, __, next) {
+      if (isSignedIn()) {
+        // const user = getUserLoggedInfo();
+        // if (user.phone_number == null) {
+        //   next("/fill-info");
+        // }
+        next();
+        return;
+      }
+      next("/sign-in");
+    },
     component: () => import("../view/DonateABook.vue"),
   },
   {
     path: "/profile/sellabook",
     name: "Sell",
-     beforeEnter: function (to, from, next) {
-        const token = localStorage.getItem('user-token')
-
-        if (!token) {
-          next('/login')
-        } else {
-          next()
-        }
-      },
-    component: () => import("../view/SellABook.vue")
+    beforeEnter(_, __, next) {
+      if (isSignedIn()) {
+        next();
+        return;
+      }
+      next("/sign-in");
+    },
+    component: () => import("../view/SellABook.vue"),
   },
-  { path: "/book-detail",
+  {
+    path: "/book-detail/:id",
     name: "BookDetail",
     component: () => import("../view/BookDetailPage.vue"),
+    props: true,
+  },
+  {
+    path: "/fill-info",
+    name: "RegistrationInfo",
+    component: () => import("../view/RegistrationPersonalInfo.vue"),
   },
 ];
 

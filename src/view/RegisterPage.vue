@@ -98,7 +98,7 @@ header {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom right;
-  max-height: inherit;
+  max-height: 100vh;
 }
 
 .content {

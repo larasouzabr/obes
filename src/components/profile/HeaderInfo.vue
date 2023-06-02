@@ -3,7 +3,14 @@
     <header class="header">
       <div class="pic-and-info">
         <span class="img">
-          <img :src="user.image" alt="" />
+          <img
+            :src="
+              user.image_filename
+                ? user.image_filename
+                : require('@/assets/avatar.png')
+            "
+            alt=""
+          />
         </span>
         <div class="information-together">
           <div class="information-main">
@@ -13,7 +20,10 @@
                 src="../../assets/geo-alt.svg"
                 alt="Localização do usuário"
               />
-              <label class="city">{{ user.city }} - {{ user.state }}</label>
+              <label class="city"
+                >{{ user.address?.city }} - {{ user.address?.state }}</label
+              >
+              <img src="../../assets/pencil-square.svg" class="edit-button" />
             </span>
           </div>
           <div class="about-me-and-rating">
@@ -22,13 +32,11 @@
                 src="../../assets/star-fill.svg"
                 alt="Avaliação geral do usuário"
               />
-              <span class="actual-rating">{{ user.rating }}</span>
+              <span class="actual-rating"> 4.5 </span>
             </span>
             <span style="color: #a0a0a0"> Sobre mim: </span>
             <br />
-            <span style="color: #29154d">
-              {{ user.about }}
-            </span>
+            <span style="color: #29154d"> {{ user.about_me }} </span>
           </div>
         </div>
       </div>
@@ -70,6 +78,10 @@ export default {
   border-radius: 50%;
   background-size: cover;
   background-position: center;
+}
+
+.edit-button {
+  margin-left: 7px;
 }
 
 .rating {

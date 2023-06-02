@@ -2,19 +2,15 @@
   <main class="main-detail">
     <div class="content">
       <div>
-        <img :src="book.image" alt="Capa do livro" class="cover" />
+        <img :src="book.image_url" alt="Capa do livro" class="cover" />
       </div>
       <div class="details">
         <h3 class="title">{{ book.title }}</h3>
 
-        <span class="category">{{ book.category }}</span>
+        <span class="category">{{ categoryName }}</span>
 
         <div class="description">
-          <span>{{ book.title }}. </span><span>{{ book.publisher }}. </span>
-          <span>{{ book.cover_type }} </span
-          ><span>{{ book.condition_description }}. </span
-          ><span>Tamanho: {{ book.dimensions }}. </span
-          ><span>Páginas: {{ book.pages }}</span>
+          <span>{{ book.description }} </span>
         </div>
 
         <div class="purchase-inf">
@@ -23,14 +19,17 @@
             <a href="#" class="button donate">Solicitar doação</a>
           </div>
           <div v-else>
-            <p class="price">R$ {{ book.price }}</p>
+            <p class="price">
+              R$
+              {{ new Intl.NumberFormat("pt-BR").format(book.price) }}
+            </p>
             <a href="#" class="button add">Adicionar ao carrinho</a>
           </div>
 
           <span class="soldby">Vendido por:</span>
 
           <div class="info-user">
-            <span>Rafaella Santos</span>
+            <span>{{userOwner.name}}</span>
             <star-rating
               v-bind:increment="0.5"
               v-bind:max-rating="5"
@@ -54,21 +53,46 @@
 <script>
 import StarRating from "vue-star-rating";
 import CarouselComp from "@/components/carousel/CarouselComp.vue";
-
+import api from "@/services/api";
 export default {
   name: "BookDetailPage",
   components: {
     StarRating,
     CarouselComp,
   },
+  props: {
+    id: Number,
+  },
   data() {
     return {
-      book: JSON.parse(this.$route.query.book),
+      categoryName: "",
+      book: [],
+      userOwner:[]
     };
   },
+
   mounted() {
     document.body.style.background =
       "linear-gradient(to bottom, #DECFFB, #FFFFFF) no-repeat";
+    api
+      .getBookById(this.id)
+      .then((response) => {
+        this.book = response.data;
+        api.getUserById(this.book.user_id).then((resp) =>{
+          this.userOwner = resp.data;
+        })
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    api
+      .getCategoryById(this.book.category_id)
+      .then((response) => {
+        this.categoryName = response.data.name;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   },
 };
 </script>

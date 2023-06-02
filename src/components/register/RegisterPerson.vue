@@ -47,7 +47,9 @@
 
       <div class="buttons">
         <router-link to="/login" class="button cancel">Cancelar</router-link>
-        <button type="submit" class="button create">Criar conta</button>
+        <button type="submit" :disabled="!passwordsMatch" class="button create">
+          Criar conta
+        </button>
       </div>
     </form>
 
@@ -78,13 +80,28 @@ export default {
         name: "",
         email: "",
         password: "",
-        phone_number: "888888888",
+        phone_number: "",
         user_type: "common",
         cpf: "",
         birthdate: "",
       },
       passwordConfirm: "",
+      message: "",
     };
+  },
+  computed: {
+    passwordsMatch() {
+      return this.user.password === this.passwordConfirm;
+    },
+  },
+  watch: {
+    passwordConfirm(newVal) {
+      if (!this.passwordsMatch && newVal !== "") {
+        this.message = "As senhas não correspondem";
+      } else {
+        this.message = "";
+      }
+    },
   },
   methods: {
     salvarUsuario() {
@@ -129,6 +146,20 @@ main input {
   font-weight: bold;
   width: 100%;
   text-align: center;
+}
+
+.button.create:disabled {
+  border: 0px;
+  background: #ad87f3;
+  color: #e9dffc;
+  transition: 0.5s;
+}
+
+.button.create:disabled:hover {
+  border: 0px;
+  background: #ad87f3;
+  color: #e9dffc;
+  transition: 0.5s;
 }
 
 .button.cancel {

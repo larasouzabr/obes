@@ -1,19 +1,27 @@
 import axios from "axios";
-
 const api = axios.create({
   baseURL: "http://localhost:3000/api/",
 });
 
-axios.defaults.headers.common["Authorization"] =
-  "Bearer " + localStorage.getItem("token");
+export const baseURL = "http://localhost:3000/api/";
 
 export default {
   addNewUser: (user) => {
     return api.post("user", user);
   },
-  loginUser: (user) => {
-    api.post("login", user).then((resp) => {
-      localStorage.setItem("token", resp.data.token);
-    });
+  getBooks: () => {
+    return api.get("books");
+  },
+  getBookById: (id) => {
+    return api.get(`books/${id}`);
+  },
+  getUserById: (id) => {
+    return api.get(`user/${id}`);
+  },
+  getAllCategories: () => {
+    return api.get("categories");
+  },
+  getCategoryById: (id) => {
+    return api.get(`categories/${id}`);
   },
 };
