@@ -28,7 +28,13 @@
   <section class="register" v-if="!hasSeenCongrats">
     <transition name="slide-fade">
       <section v-show="step === 1">
-        <form class="form" method="post" action="#" @submit.prevent="next">
+        <form
+          class="form"
+          method="post"
+          action="#"
+          @submit.prevent="next"
+          enctype="multipart/form-data"
+        >
           <div class="col-md-8">
             <label for="bookName" class="form-label">Título do livro</label>
             <input
@@ -83,15 +89,14 @@
 
           <div class="form-group col-12">
             <div class="mb-3">
-              <label for="bookImg" class="form-label"
+              <label for="image" class="form-label"
                 >Envie uma foto da capa do livro</label
               >
               <input
                 class="form-control"
                 type="file"
-                id="bookImg"
-                @change="handleImageChange"
-                autocomplete="book.image_url"
+                ref="fileInput"
+                accept="image/*"
               />
             </div>
           </div>
@@ -180,7 +185,8 @@
 <script>
 import PreviewBook from "./PreviewBook.vue";
 import api from "@/services/api";
-import { request } from "@/services/request";
+import { requestFormData } from "@/services/request";
+
 export default {
   components: { PreviewBook },
   props: {
@@ -192,9 +198,9 @@ export default {
       step: 1,
       book: {
         title: "",
-        category_id: null,
+        category_id: 0,
         description: "",
-        image_url: "",
+        image: "",
         type_book: "",
         price: 0,
       },
@@ -225,22 +231,28 @@ export default {
       this.hasSeenCongrats = true;
       this.postInfo();
     },
-    handleImageChange(event) {
-      const file = event.target.files[0];
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.book.image_url = reader.result;
-      };
-    },
-    postInfo() {
+    async postInfo() {
+      const file = this.$refs.fileInput.files[0];
+      const formData = new FormData();
+      formData.append("image", file);
+      formData.append("title", this.book.title);
+      formData.append("category_id", this.book.category_id);
+      formData.append("description", this.book.description);
+      formData.append("price", this.book.price);
+
       if (this.book.price == 0) {
         this.book.type_book = "donation";
-        request("post", "/books", this.book);
       } else {
         this.book.type_book = "sale";
-        request("post", "/books", this.book);
       }
+
+      for (var pair of formData.entries()) {
+        console.log(pair[0] + ", " + pair[1]);
+      }
+
+      formData.append("type_book", this.book.type_book);
+      console.log(JSON.stringify(formData));
+      requestFormData("/books", formData);
     },
   },
 };

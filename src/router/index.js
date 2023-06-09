@@ -1,6 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomePage from "../view/HomePage.vue";
+
 import { isSignedIn /* , getUserLoggedInfo */ } from "../services/auth";
+
+/* import { isSignedIn } from "../services/auth"; */
 
 const routes = [
   {
@@ -41,10 +44,6 @@ const routes = [
     name: "Donation",
     beforeEnter(_, __, next) {
       if (isSignedIn()) {
-        // const user = getUserLoggedInfo();
-        // if (user.phone_number == null) {
-        //   next("/fill-info");
-        // }
         next();
         return;
       }

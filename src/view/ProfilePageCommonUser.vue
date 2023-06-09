@@ -23,6 +23,7 @@ import profileHeader from "@/components/profile/HeaderInfo.vue";
 import OverallInfo from "@/components/profile/OverallInfo.vue";
 import AvailableBooks from "@/components/profile/AvailableBooks.vue";
 import { signOut } from "@/services/auth";
+
 export default {
   name: "ProfilePage",
   components: {

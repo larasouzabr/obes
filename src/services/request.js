@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const baseURL = "http://localhost:3000/api";
 
 function getHeaders() {
@@ -15,11 +17,24 @@ async function request(method, url, body) {
     method,
     headers: getHeaders(),
     ...(method !== "GET" && {
-      body: JSON.stringify(body),
+      body,
     }),
   };
   const response = await fetch(baseURL + url, options);
   return await response.json();
 }
 
-export { request as default, request, getHeaders };
+async function requestFormData(url, body) {
+  await axios.post(baseURL + url, body, {
+    headers: {
+      ...getHeaders(),
+      "Content-Type":
+        "multipart/form-data; boundary=----WebKitFormBoundarydMIgtiA2YeB1Z0kl",
+    },
+  });
+  /* .then((response) => {
+      return response;
+    }); */
+}
+
+export { request as default, request, getHeaders, requestFormData };

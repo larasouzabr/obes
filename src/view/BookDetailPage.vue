@@ -29,7 +29,7 @@
           <span class="soldby">Vendido por:</span>
 
           <div class="info-user">
-            <span>{{userOwner.name}}</span>
+            <span>{{ userOwner.name }}</span>
             <star-rating
               v-bind:increment="0.5"
               v-bind:max-rating="5"
@@ -66,8 +66,8 @@ export default {
   data() {
     return {
       categoryName: "",
-      book: [],
-      userOwner:[]
+      book: Object,
+      userOwner: [],
     };
   },
 
@@ -78,9 +78,9 @@ export default {
       .getBookById(this.id)
       .then((response) => {
         this.book = response.data;
-        api.getUserById(this.book.user_id).then((resp) =>{
+        api.getUserById(this.book.user_id).then((resp) => {
           this.userOwner = resp.data;
-        })
+        });
       })
       .catch((error) => {
         console.error(error);
