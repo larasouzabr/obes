@@ -23,7 +23,13 @@
               <label class="city"
                 >{{ user.address?.city }} - {{ user.address?.state }}</label
               >
-              <img src="../../assets/pencil-square.svg" class="edit-button" />
+              <a
+                class="btn btn-sm btn-danger"
+                data-bs-toggle="modal"
+                data-bs-target="#confirmationModal"
+              >
+                <img src="../../assets/pencil-square.svg" class="edit-button"
+              /></a>
             </span>
           </div>
           <div class="about-me-and-rating">
@@ -54,13 +60,147 @@
       </div>
     </header>
   </section>
+
+  <div
+    class="modal fade"
+    id="confirmationModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Editar informações</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Nome</label>
+            <input
+              type="text"
+              class="form-control"
+              required
+              v-model="userEdit.name"
+            />
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input
+              type="email"
+              class="form-control"
+              required
+              v-model="userEdit.email"
+            />
+          </div>
+          <div class="form-group">
+            <label>Sobre mim:</label>
+            <textarea class="form-control" required maxlength="150"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Número</label>
+            <input
+              type="text"
+              class="form-control"
+              required
+              v-model="userEdit.phone_number"
+            />
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Cidade</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  required
+                  v-model="address.city"
+                />
+              </div>
+            </div>
+            <div class="col-md-4 ms-auto">
+              <div class="form-group">
+                <label>Estado</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  required
+                  v-model="address.state"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cancelar
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-dismiss="modal"
+            @click="editUserInfo()"
+          >
+            Editar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
+import { request } from "@/services/request";
 export default {
   name: "profileHeader",
   props: {
     user: Object,
+  },
+  data() {
+    return {
+      userEdit: {
+        name: "",
+        email: "",
+        phone_number: "",
+      },
+      address: {
+        city: "",
+        state: "",
+      },
+    };
+  },
+  computed: {
+    passwordsMatch() {
+      return this.user.password === this.userEdit.password;
+    },
+  },
+  watch: {
+    passwordConfirm(newVal) {
+      if (!this.passwordsMatch && newVal !== "") {
+        this.message = "As senhas não correspondem";
+      } else {
+        this.message = "";
+      }
+    },
+  },
+  methods: {
+    editUserInfo() {
+      request("put", "/user", this.userEdit);
+      if (this.user.address == null) {
+        request("post", "/addresses", this.address);
+      } else {
+        request("put", `/address/${this.user.address.id}`, this.address);
+      }
+    },
   },
 };
 </script>

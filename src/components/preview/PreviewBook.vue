@@ -2,7 +2,7 @@
   <div class="main">
     <div class="imgBook">
       <img
-        :src="book.bookPicture"
+        :src="book.image"
         alt=""
         :style="{
           width: '430px',
@@ -89,7 +89,7 @@ export default {
 
   methods: {
     getCategoryName(id) {
-      if (id !== null) {
+      if (id !== 0) {
         api
           .getCategoryById(id)
           .then((response) => {

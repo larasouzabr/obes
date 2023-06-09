@@ -83,15 +83,14 @@
 
           <div class="form-group col-12">
             <div class="mb-3">
-              <label for="bookImg" class="form-label"
+              <label for="image" class="form-label"
                 >Envie uma foto da capa do livro</label
               >
               <input
                 class="form-control"
                 type="file"
-                id="bookImg"
-                @change="handleImageChange"
-                autocomplete="book.image_url"
+                ref="fileInput"
+                accept="image/*"
               />
             </div>
           </div>
@@ -192,9 +191,9 @@ export default {
       step: 1,
       book: {
         title: "",
-        category_id: null,
+        category_id: 0,
         description: "",
-        image_url: "",
+        image: "",
         type_book: "",
         price: 0,
       },
@@ -225,22 +224,26 @@ export default {
       this.hasSeenCongrats = true;
       this.postInfo();
     },
-    handleImageChange(event) {
-      const file = event.target.files[0];
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.book.image_url = reader.result;
-      };
-    },
     postInfo() {
+      const file = this.$refs.fileInput.files[0];
+      const formData = new FormData();
+      formData.append("image", file);
+      formData.append("title", this.book.title);
+      formData.append("category_id", this.book.category_id);
+      formData.append("description", this.book.description);
+      formData.append("price", this.book.price);
+
       if (this.book.price == 0) {
         this.book.type_book = "donation";
-        request("post", "/books", this.book);
+        formData.append("type_book", this.book.type_book);
       } else {
         this.book.type_book = "sale";
-        request("post", "/books", this.book);
+        formData.append("type_book", this.book.type_book);
       }
+      for (var pair of formData.entries()) {
+        console.log(pair[0] + ", " + pair[1]);
+      }
+      request("post", "/books", formData);
     },
   },
 };
