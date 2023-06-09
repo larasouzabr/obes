@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomePage from "../view/HomePage.vue";
-import { isSignedIn, getUserLoggedInfo } from "../services/auth";
+import { isSignedIn /* , getUserLoggedInfo */ } from "../services/auth";
 
 const routes = [
   {

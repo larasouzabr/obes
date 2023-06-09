@@ -26,6 +26,7 @@ export default {
       .getBooks()
       .then((response) => {
         this.books = response.data;
+        console.log(response.data);
       })
       .catch((error) => {
         console.error(error);
