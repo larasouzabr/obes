@@ -179,8 +179,8 @@ label {
 .description {
   font-size: large;
   max-width: 650px;
-  text-align: justify;
 }
+
 span {
   font-weight: 700;
 }

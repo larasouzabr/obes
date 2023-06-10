@@ -222,8 +222,13 @@ export default {
 <style lang="css" scoped>
 .profile-city-and-state {
   display: flex;
+  align-items: center;
   flex-direction: row;
   white-space: nowrap;
+}
+
+.profile-city-and-state img {
+  margin: 5px;
 }
 
 .img > img {
@@ -282,7 +287,7 @@ export default {
   line-height: 50px;
   letter-spacing: 0em;
   text-align: left;
-  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .pic-and-info {
@@ -295,7 +300,7 @@ export default {
   flex-direction: row;
   align-content: center;
   flex-wrap: nowrap;
-  align-items: flex-start;
+  align-items: flex-center;
 }
 .header-main {
   margin-top: 4rem;
