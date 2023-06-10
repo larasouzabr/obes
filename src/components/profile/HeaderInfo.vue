@@ -27,6 +27,7 @@
                 class="btn btn-sm btn-danger"
                 data-bs-toggle="modal"
                 data-bs-target="#confirmationModal"
+                @click="insertDataInUser"
               >
                 <img src="../../assets/pencil-square.svg" class="edit-button"
               /></a>
@@ -100,7 +101,12 @@
           </div>
           <div class="form-group">
             <label>Sobre mim:</label>
-            <textarea class="form-control" required maxlength="150"></textarea>
+            <textarea
+              class="form-control"
+              required
+              maxlength="150"
+              v-model="userEdit.about_me"
+            ></textarea>
           </div>
           <div class="form-group">
             <label>Número</label>
@@ -171,6 +177,7 @@ export default {
         name: "",
         email: "",
         phone_number: "",
+        about_me: "",
       },
       address: {
         city: "",
@@ -178,6 +185,7 @@ export default {
       },
     };
   },
+
   computed: {
     passwordsMatch() {
       return this.user.password === this.userEdit.password;
@@ -200,6 +208,12 @@ export default {
       } else {
         request("put", `/address/${this.user.address.id}`, this.address);
       }
+    },
+    insertDataInUser() {
+      this.userEdit.name = this.user.name;
+      this.userEdit.email = this.user.email;
+      this.userEdit.phone_number = this.user.phone_number;
+      this.userEdit.about_me = this.user.about_me;
     },
   },
 };
@@ -286,5 +300,11 @@ export default {
 .header-main {
   margin-top: 4rem;
   margin-bottom: 4rem;
+}
+
+.modal-footer .btn-primary {
+  background: #432876;
+  --bs-btn-border-color: #432876;
+  --bs-btn-hover-border-color: #432876;
 }
 </style>
