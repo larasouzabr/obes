@@ -14,7 +14,7 @@
       :description="'Novidades em Vendas de ficção'"
     ></CarouselComp>
     <CarouselComp
-      v-if="user.user_type == 'institutional'"
+      v-if="user?.user_type == 'institutional'"
       :description="'Novidades em Doações'"
       :books="
         books.filter(
