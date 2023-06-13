@@ -24,4 +24,7 @@ export default {
   getCategoryById: (id) => {
     return api.get(`categories/${id}`);
   },
+  getBooksDonatedOrSellingByUser: (id) => {
+    return api.get(`${id}/books`);
+  },
 };

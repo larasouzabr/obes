@@ -1,233 +1,159 @@
 <template>
-  <div class="register-title" v-if="!hasSeenCongrats">
+  <div class="register-title">
     <h1>Antes, vamos confirmar algumas informações</h1>
 
-    <div class="register-stepper">
-      <div
-        class="step"
-        :class="{ 'step-active': step === 1, 'step-done': step > 1 }"
-      >
-        <span class="step-number-1"></span>
-      </div>
-      <div
-        class="step"
-        :class="{ 'step-active': step === 2, 'step-done': step > 2 }"
-      >
-        <span class="step-number-2"></span>
-      </div>
-    </div>
-  </div>
-  <section class="register" v-if="!hasSeenCongrats">
-    <transition name="slide-fade">
-      <section v-show="step === 1">
-        <form class="forms" method="post" action="#" @submit.prevent="next">
-          <ul class="forms-personalData">
-            <li>
-              <label for="dateBirth">Data de Nascimento</label>
-              <input
-                type="date"
-                name="dateBirth"
-                id="dateBirth"
-                v-model="personalData.personalInfo.dateBirth"
-                required
-              />
-            </li>
-            <li>
-              <label for="cpf">CPF</label>
-              <input
-                type="text"
-                name="cpf"
-                id="cpf"
-                placeholder="000.000.000-00"
-                v-model="personalData.personalInfo.cpf"
-                required
-              />
-            </li>
-            <li>
-              <label for="phone">Celular</label>
-              <input
-                type="text"
-                name="phone"
-                id="phone"
-                placeholder="(00) 00000-0000"
-                v-model="personalData.personalInfo.phoneNumber"
-              />
-            </li>
-            <ul class="personalData-addressNumber">
+    <section class="register">
+      <transition name="slide-fade">
+        <section>
+          <form
+            class="forms"
+            method="post"
+            action="#"
+            @submit.prevent="saveData()"
+          >
+            <ul class="forms-personalData">
               <li>
-                <label for="cep">CEP</label>
+                <label for="dateBirth">Data de Nascimento</label>
+                <input
+                  type="date"
+                  name="dateBirth"
+                  id="dateBirth"
+                  v-model="personalInfo.birthday"
+                  required
+                />
+              </li>
+              <li>
+                <label for="cpf">CPF</label>
                 <input
                   type="text"
-                  name="cep"
-                  id="cep"
-                  placeholder="00000-000"
-                  v-model="personalData.address.cep"
+                  name="cpf"
+                  id="cpf"
+                  placeholder="000.000.000-00"
+                  v-model="personalInfo.cpf"
                   required
                 />
               </li>
               <li>
-                <label for="number">Número</label>
+                <label for="phone">Celular</label>
                 <input
-                  type="number"
-                  name="number"
-                  id="number"
-                  placeholder="00"
-                  v-model="personalData.address.number"
-                  required
+                  type="text"
+                  name="phone"
+                  id="phone"
+                  placeholder="(00) 00000-0000"
+                  v-model="personalInfo.phone_number"
                 />
               </li>
-            </ul>
-            <li>
-              <label for="addressName">Endereço</label>
-              <input
-                type="text"
-                name="addressName"
-                id="addressName"
-                placeholder="
+              <ul class="personalData-addressNumber">
+                <li>
+                  <label for="cep">CEP</label>
+                  <input
+                    type="text"
+                    name="cep"
+                    id="cep"
+                    placeholder="00000-000"
+                    v-model="address.cep"
+                    required
+                  />
+                </li>
+                <li>
+                  <label for="number">Número</label>
+                  <input
+                    type="number"
+                    name="number"
+                    id="number"
+                    placeholder="00"
+                    v-model="address.number"
+                    required
+                  />
+                </li>
+              </ul>
+              <li>
+                <label for="addressName">Endereço</label>
+                <input
+                  type="text"
+                  name="addressName"
+                  id="addressName"
+                  placeholder="
 Insira sua rua/avenida"
-                v-model="personalData.address.addressName"
-                required
-              />
-            </li>
-            <ul class="personalData-addressInfo">
-              <li>
-                <label for="complement">Complemento</label>
-                <input
-                  type="text"
-                  name="complement"
-                  id="complement"
-                  v-model="personalData.address.complement"
-                />
-              </li>
-              <li>
-                <label for="neighborhood">Bairro</label>
-                <input
-                  type="text"
-                  name="neighborhood"
-                  id="neighborhood"
-                  v-model="personalData.address.neighborhood"
+                  v-model="address.address_name"
                   required
                 />
               </li>
-              <li>
-                <label for="city">Cidade</label>
-                <input
-                  type="text"
-                  name="city"
-                  id="city"
-                  v-model="personalData.address.city"
-                  required
-                />
-              </li>
-              <li>
-                <label for="state">Estado</label>
-                <input
-                  type="text"
-                  name="state"
-                  id="state"
-                  v-model="personalData.address.state"
-                  required
-                />
-              </li>
+              <ul class="personalData-addressInfo">
+                <li>
+                  <label for="neighborhood">Bairro</label>
+                  <input
+                    type="text"
+                    name="neighborhood"
+                    id="neighborhood"
+                    v-model="address.area"
+                    required
+                  />
+                </li>
+                <li>
+                  <label for="city">Cidade</label>
+                  <input
+                    type="text"
+                    name="city"
+                    id="city"
+                    v-model="address.city"
+                    required
+                  />
+                </li>
+                <li>
+                  <label for="state">Estado</label>
+                  <input
+                    type="text"
+                    name="state"
+                    id="state"
+                    v-model="address.state"
+                    required
+                  />
+                </li>
+              </ul>
             </ul>
-          </ul>
-          <div class="col-12">
-            <button class="btn btn-primary" type="submit">Próximo</button>
-          </div>
-        </form>
-      </section>
-    </transition>
-    <transition name="slide-fade">
-      <section v-show="step === 2">
-        <form action="">
-          <BankData
-            @event="prev()"
-            @continue="donationComplete"
-            :isPreview="true"
-          ></BankData>
-        </form>
-      </section>
-    </transition>
-  </section>
-  <section class="congrats-seeling-donation" v-if="hasSeenCongrats">
-    <div class="alert alert-success" role="alert">
-      <span>Informações cadastradas com sucesso!</span>
-      <router-link to="/" class="return-home">
-        <span>Ir para a página inicial</span>
-        <img src="../../assets/arrow-right.svg" alt="" />
-      </router-link>
-    </div>
-  </section>
+            <div class="col-12">
+              <router-link
+                :to="'/profile/donateabook'"
+                class="btn btn-primary"
+                type="submit"
+                >Próximo</router-link
+              >
+            </div>
+          </form>
+        </section>
+      </transition>
+    </section>
+  </div>
 </template>
 
 <script>
-import BankData from "./BankData.vue";
+import { request } from "@/services/request";
 export default {
-  components: { BankData },
   props: {
     type: Object,
   },
   data: () => {
     return {
-      steps: {},
-      step: 1,
-      book: {
-        bookTitle: "",
-        bookCategory: "",
-        bookDescription: "",
-        bookPicture: "",
-        bookPrice: 0.0,
+      personalInfo: {
+        birthday: "",
+        cpf: "",
+        phone_number: "",
       },
-      personalData: {
-        personalInfo: {
-          dateBirth: "",
-          cpf: "",
-          phoneNumber: "",
-        },
-        address: {
-          cep: "",
-          number: 0,
-          addressName: "",
-          complement: "",
-          neighborhood: "",
-          city: "",
-          state: "",
-        },
+      address: {
+        cep: "",
+        state: "",
+        city: "",
+        area: "",
+        address_name: "",
+        number: "",
       },
-      hasSeenCongrats: false,
-      categories: [
-        { id: 1, name: "Romance" },
-        { id: 2, name: "Ficção científica" },
-        { id: 3, name: "Mistério" },
-        { id: 4, name: "Fantasia" },
-        { id: 5, name: "História" },
-        { id: 6, name: "Autoajuda" },
-        { id: 7, name: "Biografia" },
-        { id: 8, name: "Negócios" },
-        { id: 9, name: "Psicologia" },
-        { id: 10, name: "Política" },
-      ],
     };
   },
   methods: {
-    prev() {
-      this.step--;
-    },
-
-    next() {
-      this.step++;
-    },
-
-    donationComplete: function () {
-      this.hasSeenCongrats = true;
-    },
-    handleImageChange(event) {
-      const file = event.target.files[0];
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.book.bookPicture = reader.result;
-      };
+    saveData() {
+      request("put", "/user", JSON.stringify(this.personalInfo));
+      request("post", "/addresses", JSON.stringify(this.address));
     },
   },
 };
@@ -270,19 +196,9 @@ body {
   text-align: center;
 }
 
-.information-about-congrats {
-  display: flex;
-  flex-direction: column;
-}
-
 .main-text-congrat {
   font-size: 25px;
   margin: 3rem;
-}
-
-.product-details h3 {
-  margin-top: 3.75rem;
-  margin-bottom: 1.25rem;
 }
 
 .register-icon {
@@ -338,17 +254,6 @@ body {
   width: 100%;
   position: relative;
   margin: 1.5rem auto 1.5em;
-}
-.register::before {
-  position: relative;
-  z-index: 0;
-  content: "";
-  display: block;
-  height: 2px;
-  background: #decffb;
-  width: calc(43% - 85px);
-  left: 32%;
-  bottom: 90px;
 }
 
 .form-check-label {

@@ -59,6 +59,7 @@ export default defineComponent({
 .content-carousel {
   margin: 3rem;
   background-color: #ffffff;
+  min-height: 280px;
 }
 h2 {
   margin-top: 3rem;
@@ -66,5 +67,3 @@ h2 {
   padding-top: 2rem;
 }
 </style>
-
-

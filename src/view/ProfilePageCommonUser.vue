@@ -3,12 +3,14 @@
     <profileHeader :user="userInfo"></profileHeader>
     <overall-info :user="profile"></overall-info>
     <available-books
-      :type="venda"
-      :books="profile.forSelling"
+      :description="'Seus livros a venda'"
+      :type="'sell'"
+      :books="booksByUser.filter((book) => book.type_book === 'sale')"
     ></available-books>
     <available-books
-      :type="doacao"
-      :books="profile.forDonation"
+      :description="'Seus livros na doação'"
+      :type="'donation'"
+      :books="booksByUser.filter((book) => book.type_book === 'donation')"
     ></available-books>
     <div class="button">
       <button @click="logout()" class="btn btn-red btn-lg">LOGOUT</button>
@@ -33,11 +35,10 @@ export default {
   },
   data() {
     return {
-      venda: "venda",
-      doacao: "doação",
       user: JSON.parse(localStorage.getItem("user")),
       userInfo: [],
       profile,
+      booksByUser: [],
     };
   },
   mounted() {
@@ -46,6 +47,9 @@ export default {
       .getUserById(this.user.id)
       .then((response) => {
         this.userInfo = response.data;
+        api.getBooksDonatedOrSellingByUser(this.userInfo.id).then((resp) => {
+          this.booksByUser = resp.data;
+        });
       })
       .catch((error) => {
         console.error(error);

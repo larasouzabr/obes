@@ -1,10 +1,14 @@
 import decode from "jwt-decode";
 import request from "./request";
 export async function signIn(email, password) {
-  const { token, user } = await request("POST", "/login", {
-    email,
-    password,
-  });
+  const { token, user } = await request(
+    "POST",
+    "/login",
+    JSON.stringify({
+      email,
+      password,
+    })
+  );
   localStorage.setItem("token", token);
   localStorage.setItem("user", JSON.stringify(user));
 }

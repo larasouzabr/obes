@@ -61,17 +61,13 @@
           >
             <router-link to="/profile" v-if="signedIn()">
               <img
-                :src="
-                  user.image_filename
-                    ? user.image_filename
-                    : require('@/assets/avatar.png')
-                "
+                src="../assets/avatar.png"
                 alt="Avatar"
                 width="32"
                 height="32"
                 style="border-radius: 50%"
               />
-              <span> Olá, {{ getFirstName() }} </span>
+              <span> Olá, {{ primeiroNome }}! </span>
             </router-link>
             <router-link to="/sign-up" v-if="!signedIn()">
               <img
@@ -106,6 +102,7 @@ export default {
     return {
       user: JSON.parse(localStorage.getItem("user")),
       categories: [],
+      primeiroNome: "",
     };
   },
   mounted() {
@@ -113,6 +110,7 @@ export default {
       .getAllCategories()
       .then((response) => {
         this.categories = response.data;
+        this.getFirstName();
       })
       .catch((error) => {
         console.error(error);
@@ -123,12 +121,10 @@ export default {
       return isSignedIn();
     },
     getFirstName() {
-      const primeiroNome = this.user.name.substring(
+      this.primeiroNome = this.user.name.substring(
         0,
         this.user.name.indexOf(" ")
       );
-
-      return primeiroNome;
     },
   },
 };

@@ -15,7 +15,7 @@
         <div class="information-together">
           <div class="information-main">
             <span class="profile-name">{{ user.name }}</span>
-            <span class="profile-city-and-state">
+            <span class="profile-city-and-state" v-if="user.address?.id">
               <img
                 src="../../assets/geo-alt.svg"
                 alt="Localização do usuário"
@@ -23,15 +23,15 @@
               <label class="city"
                 >{{ user.address?.city }} - {{ user.address?.state }}</label
               >
-              <a
-                class="btn btn-sm btn-danger"
-                data-bs-toggle="modal"
-                data-bs-target="#confirmationModal"
-                @click="insertDataInUser"
-              >
-                <img src="../../assets/pencil-square.svg" class="edit-button"
-              /></a>
             </span>
+            <a
+              class="btn btn-sm btn-primary edit-button"
+              data-bs-toggle="modal"
+              data-bs-target="#confirmationModal"
+              @click="insertDataInUser"
+            >
+              <img src="../../assets/pencil-square.svg"
+            /></a>
           </div>
           <div class="about-me-and-rating">
             <span class="rating">
@@ -47,7 +47,7 @@
           </div>
         </div>
       </div>
-      <div class="buttons">
+      <div class="buttons" v-if="user.user_type == 'common'">
         <router-link class="btn btn-purple btn-lg" to="/profile/donateabook"
           >Quero doar</router-link
         >
@@ -81,8 +81,8 @@
           ></button>
         </div>
         <div class="modal-body">
-          <div class="form-group">
-            <label>Nome</label>
+          <div class="form-group required">
+            <label class="control-label">Nome</label>
             <input
               type="text"
               class="form-control"
@@ -90,8 +90,8 @@
               v-model="userEdit.name"
             />
           </div>
-          <div class="form-group">
-            <label>Email</label>
+          <div class="form-group required">
+            <label class="control-label">Email</label>
             <input
               type="email"
               class="form-control"
@@ -99,8 +99,8 @@
               v-model="userEdit.email"
             />
           </div>
-          <div class="form-group">
-            <label>Sobre mim:</label>
+          <div class="form-group required">
+            <label class="control-label">Sobre mim</label>
             <textarea
               class="form-control"
               required
@@ -108,38 +108,14 @@
               v-model="userEdit.about_me"
             ></textarea>
           </div>
-          <div class="form-group">
-            <label>Número</label>
+          <div class="form-group required">
+            <label class="control-label">Número de celular</label>
             <input
               type="text"
               class="form-control"
               required
               v-model="userEdit.phone_number"
             />
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Cidade</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  required
-                  v-model="address.city"
-                />
-              </div>
-            </div>
-            <div class="col-md-4 ms-auto">
-              <div class="form-group">
-                <label>Estado</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  required
-                  v-model="address.state"
-                />
-              </div>
-            </div>
           </div>
         </div>
         <div class="modal-footer">
@@ -166,6 +142,7 @@
 
 <script>
 import { request } from "@/services/request";
+import { signOut } from "@/services/auth";
 export default {
   name: "profileHeader",
   props: {
@@ -186,28 +163,15 @@ export default {
     };
   },
 
-  computed: {
-    passwordsMatch() {
-      return this.user.password === this.userEdit.password;
-    },
-  },
-  watch: {
-    passwordConfirm(newVal) {
-      if (!this.passwordsMatch && newVal !== "") {
-        this.message = "As senhas não correspondem";
-      } else {
-        this.message = "";
-      }
-    },
-  },
   methods: {
     editUserInfo() {
-      request("put", "/user", this.userEdit);
-      if (this.user.address == null) {
-        request("post", "/addresses", this.address);
-      } else {
-        request("put", `/address/${this.user.address.id}`, this.address);
-      }
+      const changeCriticalInfo =
+        this.userEdit.name !== this.user.name ||
+        this.userEdit.email !== this.user.email;
+      request("put", "/user", JSON.stringify(this.userEdit));
+      changeCriticalInfo
+        ? this.$router.push("/sign-up") && signOut()
+        : window.location.reload();
     },
     insertDataInUser() {
       this.userEdit.name = this.user.name;
@@ -239,8 +203,16 @@ export default {
   background-position: center;
 }
 
+.form-group.required .control-label:after {
+  content: "*";
+  color: red;
+}
+
 .edit-button {
   margin-left: 7px;
+  display: flex;
+  height: fit-content;
+  align-self: center;
 }
 
 .rating {

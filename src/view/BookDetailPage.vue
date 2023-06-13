@@ -1,5 +1,55 @@
 <template>
   <main class="main-detail">
+    <section v-if="showCongrats" class="congrats-message">
+      <div class="d-flex">
+        <h1 style="color: #29154d; margin-right: 6px">Doação solicitada!</h1>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="50"
+          height="50"
+          fill="currentColor"
+          class="bi bi-check-circle"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+          />
+          <path
+            d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"
+          />
+        </svg>
+      </div>
+
+      <div class="text-congrats-message">
+        Oba! Sua doação já foi solicitada. O doador foi avisado e logo logo
+        entrará em contato! Se preferir, acesse o perfil do doador e entre em
+        contato.
+      </div>
+    </section>
+
+    <section v-if="showCongratsSell" class="congrats-message">
+      <div class="d-flex">
+        <h1 style="color: #29154d; margin-right: 6px">
+          Produto adicionado no carrinho!
+        </h1>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="50"
+          height="50"
+          fill="currentColor"
+          class="bi bi-check-circle"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+          />
+          <path
+            d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"
+          />
+        </svg>
+      </div>
+    </section>
+
     <div class="content">
       <div>
         <img :src="book.image_url" alt="Capa do livro" class="cover" />
@@ -15,18 +65,29 @@
 
         <div class="purchase-inf">
           <div v-if="book.price == 0">
-            <p>Este produto está disponível para doação!</p>
-            <a href="#" class="button donate">Solicitar doação</a>
+            <p v-if="book.available == true">
+              Este produto está disponível para doação!
+            </p>
+            <a @click="requestDonation()" class="button btn donate"
+              >Solicitar doação</a
+            >
           </div>
           <div v-else>
             <p class="price">
               R$
               {{ new Intl.NumberFormat("pt-BR").format(book.price) }}
             </p>
-            <a href="#" class="button add">Adicionar ao carrinho</a>
+            <a
+              class="button add btn"
+              @click="requestSelling()"
+              v-if="showCongratsSell == false"
+              >Adicionar ao carrinho</a
+            >
           </div>
 
-          <span class="soldby">Vendido por:</span>
+          <span class="soldby">
+            {{ book.price == 0 ? "Doado por:" : "Vendido por:" }}</span
+          >
 
           <div class="info-user">
             <span>{{ userOwner.name }}</span>
@@ -54,6 +115,7 @@
 import StarRating from "vue-star-rating";
 import CarouselComp from "@/components/carousel/CarouselComp.vue";
 import api from "@/services/api";
+import request from "@/services/request";
 export default {
   name: "BookDetailPage",
   components: {
@@ -65,10 +127,25 @@ export default {
   },
   data() {
     return {
+      showCongrats: false,
+      showCongratsSell: false,
+
       categoryName: "",
       book: Object,
       userOwner: [],
     };
+  },
+
+  methods: {
+    requestDonation() {
+      request("post", `/donation-orders/${this.book.id}`, "");
+      this.showCongrats = true;
+    },
+    requestSelling() {
+      console.log("adicionou no carrinho");
+      // request("post", `/donation-orders/${this.book.id}`, "");
+      this.showCongratsSell = true;
+    },
   },
 
   mounted() {
@@ -81,14 +158,9 @@ export default {
         api.getUserById(this.book.user_id).then((resp) => {
           this.userOwner = resp.data;
         });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-    api
-      .getCategoryById(this.book.category_id)
-      .then((response) => {
-        this.categoryName = response.data.name;
+        api.getCategoryById(this.book.category_id).then((res) => {
+          this.categoryName = res.data.name;
+        });
       })
       .catch((error) => {
         console.error(error);
@@ -102,10 +174,22 @@ body {
   background-color: #a87ff3 !important;
 }
 
+.text-congrats-message {
+  margin-top: 2rem;
+  max-width: 66%;
+}
+
+.congrats-message {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .main-detail {
   width: 70vw;
-  height: 75vh;
   margin: 0px auto;
+  max-height: 100vh;
 }
 .info-user {
   display: flex;
@@ -138,6 +222,7 @@ body {
 .title {
   font-size: 3.1rem;
   font-weight: bold;
+  color: #29154d;
 }
 
 .category {
@@ -147,6 +232,7 @@ body {
 
 .description {
   color: #432876;
+  font-weight: bold;
 }
 
 .purchase-inf {

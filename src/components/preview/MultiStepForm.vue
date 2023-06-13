@@ -247,10 +247,6 @@ export default {
         this.book.type_book = "sale";
       }
 
-      for (var pair of formData.entries()) {
-        console.log(pair[0] + ", " + pair[1]);
-      }
-
       formData.append("type_book", this.book.type_book);
       console.log(JSON.stringify(formData));
       requestFormData("/books", formData);
