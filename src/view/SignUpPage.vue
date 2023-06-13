@@ -4,21 +4,28 @@
 
     <main>
       <img src="../assets/obes.svg" alt="Logo Obes" />
-      <form action="" method="post">
+      <form @submit.prevent="handleSubmit" method="post">
         <label for="email">E-mail</label>
         <input
           type="email"
           name="email"
           id="email"
           placeholder="Digite seu e-mail"
+          v-model="user.email"
           required
         />
         <label for="password">Senha</label>
-        <input type="password" name="password" id="password" required />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          v-model="user.password"
+          required
+        />
 
         <div class="buttons">
           <router-link to="/login" class="button cancel">Cancelar</router-link>
-          <router-link to="/" class="button enter">Entrar</router-link>
+          <button class="button enter" type="submit">Entrar</button>
         </div>
       </form>
 
@@ -33,8 +40,29 @@
 </template>
 
 <script>
+/* import api from "@/services/auth"; */
+import { signIn } from "@/services/auth";
+
 export default {
   name: "SignUpPage",
+  data() {
+    return {
+      user: {
+        email: "",
+        password: "",
+      },
+    };
+  },
+  methods: {
+    async handleSubmit() {
+      await signIn(this.user.email, this.user.password);
+      this.$router.push("/");
+    },
+  },
+  mounted() {
+    document.body.style.background =
+      "linear-gradient(135deg, #be9ff6, #decffb) no-repeat";
+  },
 };
 </script>
 

@@ -2,7 +2,7 @@
   <div class="main">
     <div class="imgBook">
       <img
-        :src="book.bookPicture"
+        :src="book.image"
         alt=""
         :style="{
           width: '430px',
@@ -12,22 +12,30 @@
     </div>
     <div class="information">
       <span>Título</span>
-      <div>{{ book.bookTitle }}</div>
+      <div>{{ book.title }}</div>
       <span>Categoria</span>
-      <div>{{ book.bookCategory.name }}</div>
+      <div class="category">{{ categoryName }}</div>
       <span>Descrição</span>
-      <div class="description">{{ book.bookDescription }}</div>
-      <div class="price" v-if="book.bookPrice != 0">
+      <div class="description">{{ book.description }}</div>
+      <div class="price" v-if="book.price != 0">
         <span>Valor</span>
-        <p>R$ {{ book.bookPrice }}</p>
+        <p>R$ {{ book.price }}</p>
       </div>
       <div class="user-information">
         <span
-          >{{ book.bookPrice === 0.0 ? "Doador(a)" : "Vendedor(a)" }}:
-          <label>Roberta Rafaella </label>
+          >{{ book.price === 0.0 ? "Doador(a)" : "Vendedor(a)" }}:
+          <label>{{ sellerUser.name }} </label>
         </span>
-        <span>Contato: <label>9999999999</label> </span>
-        <span>Cidade: <label>Quixadá - CE</label> </span>
+        <span
+          >Contato: <label>{{ sellerUser.phone_number }}</label>
+        </span>
+        <span
+          >Cidade:
+          <label
+            >{{ sellerUser.address?.city }} -
+            {{ sellerUser.address?.state }}</label
+          >
+        </span>
       </div>
       <div class="col-12" v-if="isPreview">
         <button class="btn btn-outline-primary" @click.prevent="$emit('event')">
@@ -38,7 +46,7 @@
           type="submit"
           @click.prevent="$emit('continue')"
         >
-          {{ book.bookPrice == 0 ? "Colocar em doação" : "Colocar à venda" }}
+          {{ book.price == 0 ? "Colocar em doação" : "Colocar à venda" }}
         </button>
       </div>
     </div>
@@ -46,16 +54,52 @@
 </template>
 
 <script>
-import user from "../../../public/fake-data/profile.json";
-
+import api from "@/services/api";
 export default {
   name: "previewBook",
   props: {
     book: Object,
     isPreview: { type: Boolean },
   },
-  data: () => {
-    return user;
+  data() {
+    return {
+      user: JSON.parse(localStorage.getItem("user")),
+      sellerUser: [],
+      categoryName: "",
+    };
+  },
+  watch: {
+    "book.category_id": {
+      immediate: true,
+      handler(newVal) {
+        this.getCategoryName(newVal);
+      },
+    },
+  },
+  mounted() {
+    api
+      .getUserById(this.user.id)
+      .then((response) => {
+        this.sellerUser = response.data;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  },
+
+  methods: {
+    getCategoryName(id) {
+      if (id !== 0) {
+        api
+          .getCategoryById(id)
+          .then((response) => {
+            this.categoryName = response.data.name;
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+    },
   },
 };
 </script>
@@ -135,8 +179,8 @@ label {
 .description {
   font-size: large;
   max-width: 650px;
-  text-align: justify;
 }
+
 span {
   font-weight: 700;
 }

@@ -1,16 +1,10 @@
 <template>
   <section class="container">
     <profileHeader :user="userInfo"></profileHeader>
-    <overall-info :user="profile"></overall-info>
     <available-books
-      :description="'Seus livros a venda'"
-      :type="'sell'"
-      :books="booksByUser.filter((book) => book.type_book === 'sale')"
-    ></available-books>
-    <available-books
-      :description="'Seus livros na doação'"
-      :type="'donation'"
-      :books="booksByUser.filter((book) => book.type_book === 'donation')"
+      :type="'Livros requisitados'"
+      :books="booksCollection"
+      :isOnInstProf="true"
     ></available-books>
     <div class="button">
       <button @click="logout()" class="btn btn-red btn-lg">LOGOUT</button>
@@ -20,36 +14,37 @@
 
 <script>
 import api from "@/services/api";
-import profile from "../../public/fake-data/profile.json";
 import profileHeader from "@/components/profile/HeaderInfo.vue";
-import OverallInfo from "@/components/profile/OverallInfo.vue";
 import AvailableBooks from "@/components/profile/AvailableBooks.vue";
+import { request } from "@/services/request";
 import { signOut } from "@/services/auth";
 
 export default {
   name: "ProfilePage",
   components: {
     profileHeader,
-    OverallInfo,
     AvailableBooks,
   },
   data() {
     return {
       user: JSON.parse(localStorage.getItem("user")),
       userInfo: [],
-      profile,
-      booksByUser: [],
+      booksRequested: [],
+      booksCollection: [],
     };
   },
   mounted() {
     document.body.style.background = "#F9F2FF";
+    request("get", `/donation-orders`).then((resp) => {
+      resp.forEach((book) => {
+        this.booksCollection.push(book);
+      });
+    });
+
     api
       .getUserById(this.user.id)
       .then((response) => {
         this.userInfo = response.data;
-        api.getBooksDonatedOrSellingByUser(this.userInfo.id).then((resp) => {
-          this.booksByUser = resp.data;
-        });
       })
       .catch((error) => {
         console.error(error);

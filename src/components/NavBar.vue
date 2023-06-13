@@ -59,17 +59,17 @@
           <ul
             class="navbar-nav user-information-ul me-auto mb-2 mb-lg-0 d-flex d-row"
           >
-            <router-link to="/profile" v-if="isLogged">
+            <router-link to="/profile" v-if="signedIn()">
               <img
-                :src="user?.image"
+                src="../assets/avatar.png"
                 alt="Avatar"
                 width="32"
                 height="32"
                 style="border-radius: 50%"
               />
-              <span> Olá, {{ user?.name }} </span>
+              <span> Olá, {{ primeiroNome }}! </span>
             </router-link>
-            <router-link to="/profile" v-if="!isLogged">
+            <router-link to="/sign-up" v-if="!signedIn()">
               <img
                 src="../assets/avatar.png"
                 alt="Avatar"
@@ -85,7 +85,9 @@
   </nav>
 </template>
 <script>
-import user from "../../public/fake-data/profile.json";
+import { isSignedIn } from "@/services/auth";
+import api from "@/services/api";
+
 export default {
   computed: {
     isPaginaLogin() {
@@ -95,26 +97,35 @@ export default {
         this.$route.path === "/sign-up"
       );
     },
-    isLogged() {
-      return user != undefined ? true : false;
-    },
   },
   data() {
     return {
-      categories: [
-        { id: 1, name: "Romance" },
-        { id: 2, name: "Ficção científica" },
-        { id: 3, name: "Mistério" },
-        { id: 4, name: "Fantasia" },
-        { id: 5, name: "História" },
-        { id: 6, name: "Autoajuda" },
-        { id: 7, name: "Biografia" },
-        { id: 8, name: "Negócios" },
-        { id: 9, name: "Psicologia" },
-        { id: 10, name: "Política" },
-      ],
-      user,
+      user: JSON.parse(localStorage.getItem("user")),
+      categories: [],
+      primeiroNome: "",
     };
+  },
+  mounted() {
+    api
+      .getAllCategories()
+      .then((response) => {
+        this.categories = response.data;
+        this.getFirstName();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  },
+  methods: {
+    signedIn() {
+      return isSignedIn();
+    },
+    getFirstName() {
+      this.primeiroNome = this.user.name.substring(
+        0,
+        this.user.name.indexOf(" ")
+      );
+    },
   },
 };
 </script>

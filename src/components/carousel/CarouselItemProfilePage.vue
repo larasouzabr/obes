@@ -1,0 +1,239 @@
+<template>
+  <div class="container">
+    <div class="image">
+      <img :src="book.image_url" alt="" />
+    </div>
+    <div class="information">
+      <span class="bookName"
+        ><strong> {{ book.title }}</strong></span
+      >
+    </div>
+    <div class="button" v-if="isOnProfile">
+      <span class="informationAboveButton" v-if="book.type_book !== 'donation'"
+        ><strong> R$ {{ book.price }}</strong></span
+      >
+      <button
+        class="btn btn-outline"
+        data-bs-toggle="modal"
+        :data-bs-target="'#editbookmodal-' + book.id"
+        @click="insertDataInBooks"
+        type="submit"
+      >
+        Editar
+      </button>
+    </div>
+  </div>
+
+  <div
+    class="modal fade"
+    :id="'editbookmodal-' + book.id"
+    tabindex="-1"
+    aria-labelledby="modalEditBookInfo"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalEditBookInfo">Editar informações</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group required">
+            <label class="control-label">Título</label>
+            <input
+              type="text"
+              class="form-control"
+              required
+              v-model="bookEdit.title"
+            />
+          </div>
+          <div class="form-group required">
+            <label class="control-label">Descrição</label>
+            <textarea
+              class="form-control"
+              required
+              maxlength="150"
+              v-model="bookEdit.description"
+            ></textarea>
+          </div>
+          <div
+            class="form-group required"
+            v-if="bookEdit.type_book !== 'donation'"
+          >
+            <label for="bookPrice" class="control-label">Valor</label>
+            <div class="form-control">
+              <span>R$ </span>
+              <input
+                class="input-price"
+                type="number"
+                step="0.01"
+                v-model="bookEdit.price"
+                id="bookPrice"
+                placeholder="0,00"
+              />
+            </div>
+          </div>
+          <div class="form-group required">
+            <label for="category" class="control-label"
+              >Categoria do Livro</label
+            >
+            <select
+              name="category"
+              id="category"
+              v-model="bookEdit.category_id"
+              autocomplete="book.categoria.name"
+              class="form-selected form-control"
+              required
+            >
+              <option disabled selected>{{ categoryName }}</option>
+              <option
+                v-for="categoria in categories"
+                :key="categoria"
+                :value="categoria.id"
+              >
+                {{ categoria.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cancelar
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-dismiss="modal"
+            @click="editBookInfo()"
+          >
+            Editar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import api from "@/services/api";
+import { request } from "@/services/request";
+
+export default {
+  name: "CarouselItemProfilePage",
+  props: {
+    book: Object,
+    isDonation: Boolean,
+    isOnProfile: Boolean,
+  },
+  data: () => {
+    return {
+      bookEdit: {
+        id: 0,
+        title: "",
+        category_id: 0,
+        description: "",
+        image: "",
+        type_book: "",
+        price: 0,
+      },
+      categories: [],
+      categoryName: "",
+    };
+  },
+  mounted() {
+    this.getAllCategories();
+  },
+
+  methods: {
+    editBookInfo() {
+      request("put", `/books/${this.book.id}`, JSON.stringify(this.bookEdit));
+      window.location.reload();
+    },
+    getAllCategories() {
+      api
+        .getAllCategories()
+        .then((response) => {
+          this.categories = response.data;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    insertDataInBooks() {
+      this.bookEdit.title = this.book.title;
+      this.bookEdit.description = this.book.description;
+      this.bookEdit.category_id = this.book.category_id;
+      this.bookEdit.price = this.book.price;
+      this.bookEdit.type_book = this.book.type_book;
+      this.bookEdit.image = this.book.image;
+      this.bookEdit.id = this.book.id;
+      this.getCategoryById();
+    },
+    getCategoryById() {
+      api.getCategoryById(this.book.category_id).then((res) => {
+        this.categoryName = res.data.name;
+      });
+    },
+  },
+};
+</script>
+
+<style scoped>
+.container {
+  background-color: #e9dffc;
+  width: 185px;
+  padding: 1rem;
+  border-radius: 5px;
+  min-height: 26.75rem;
+  position: relative;
+  margin-top: inherit;
+}
+
+.bookName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 150px;
+  font-size: 15px;
+}
+
+a {
+  color: #000;
+}
+
+img {
+  width: 155px;
+  height: 222px;
+}
+.information {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  text-align: center;
+}
+.btn-outline {
+  border: 3px solid #432876;
+  color: #432876;
+  font-weight: bolder;
+  width: 8rem;
+}
+.button {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 1rem;
+  right: 15%;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+</style>

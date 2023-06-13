@@ -1,6 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomePage from "../view/HomePage.vue";
 
+import { isSignedIn, getUserTypeLogged } from "../services/auth";
+
+/* import { isSignedIn } from "../services/auth"; */
+
 const routes = [
   {
     path: "/",
@@ -10,10 +14,41 @@ const routes = [
   {
     path: "/profile",
     name: "Profile",
+    beforeEnter(_, __, next) {
+      if (isSignedIn()) {
+        const userType = getUserTypeLogged();
+
+        if (userType === "common") {
+          next("/profile/common-user");
+        } else if (userType === "institutional") {
+          next("/profile/institucional-user");
+        }
+      }
+    },
+  },
+
+  {
+    path: "/profile/common-user",
+    name: "ProfileCommonUser",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../view/ProfilePageCommonUser.vue"
+        /* webpackChunkName: "profile-common" */ "../view/ProfilePageCommonUser.vue"
       ),
+    meta: {
+      requeresAuth: true,
+    },
+  },
+
+  {
+    path: "/profile/institucional-user",
+    name: "ProfileInstitucionalUser",
+    component: () =>
+      import(
+        /* webpackChunkName: "profile-institucional" */ "../view/ProfilePageInstitucionalUser.vue"
+      ),
+    meta: {
+      requeresAuth: true,
+    },
   },
   {
     path: "/books",
@@ -38,22 +73,38 @@ const routes = [
   {
     path: "/profile/donateabook",
     name: "Donation",
+    beforeEnter(_, __, next) {
+      if (isSignedIn()) {
+        next();
+        return;
+      }
+      next("/sign-in");
+    },
     component: () => import("../view/DonateABook.vue"),
   },
   {
     path: "/profile/sellabook",
     name: "Sell",
+    beforeEnter(_, __, next) {
+      if (isSignedIn()) {
+        next();
+        return;
+      }
+      next("/sign-in");
+    },
     component: () => import("../view/SellABook.vue"),
   },
   {
-    path: "/book-detail",
+    path: "/book-detail/:id",
     name: "BookDetail",
     component: () => import("../view/BookDetailPage.vue"),
+    props: true,
   },
   {
-    path: "/registration-info",
-    name: "RegistrationPersonalInfo",
+    path: "/fill-info",
+    name: "RegistrationInfo",
     component: () => import("../view/RegistrationPersonalInfo.vue"),
+    props: true,
   },
 ];
 

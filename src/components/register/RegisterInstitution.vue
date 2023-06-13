@@ -2,7 +2,7 @@
   <main>
     <img src="../../assets/obes.svg" alt="Logo Obes" />
 
-    <form action="" method="post">
+    <form @submit.prevent="salvarUsuario" method="post">
       <label for="name">Nome da instituição</label>
       <input
         type="text"
@@ -10,6 +10,7 @@
         id="name"
         placeholder="Digite o nome da instituição"
         required
+        v-model="user.name"
       />
 
       <label for="email">E-mail</label>
@@ -19,45 +20,80 @@
         id="email"
         placeholder="Digite um e-mail que representa a instituição"
         required
+        v-model="user.email"
       />
 
       <span>Tipo de Instituição:</span>
       <div class="institution-type">
         <div>
-          <input type="radio" name="institution-type" id="school" />
+          <input
+            type="radio"
+            name="institution-type"
+            id="school"
+            value="escola"
+            v-model="user.institutional_type"
+          />
           <label for="school">Escola</label>
         </div>
         <div>
-          <input type="radio" name="institution-type" id="library" />
-          <label for="school">Biblioteca</label>
+          <input
+            type="radio"
+            name="institution-type"
+            id="library"
+            value="biblioteca"
+            v-model="user.institutional_type"
+          />
+          <label for="bookstore">Biblioteca</label>
         </div>
         <div>
-          <input type="radio" name="institution-type" id="other" />
-          <label for="school">Outra</label>
+          <input
+            type="radio"
+            name="institution-type"
+            id="other"
+            value="outra"
+            v-model="user.institutional_type"
+          />
+          <label for="other">Outra</label>
         </div>
       </div>
 
       <label for="password">Senha</label>
+      <div class="col-auto">
+        <span id="passwordHelpInline" class="form-text">
+          Precisa ter entre 8-50 caracteres
+        </span>
+      </div>
       <input
         type="password"
         name="password"
         id="password"
         placeholder="Digite sua senha"
+        minlength="8"
+        v-model="user.password"
         required
       />
 
       <label for="password-confirm">Confirmação da senha</label>
       <input
+        v-model="passwordConfirm"
         type="password"
         name="password-confirm"
         id="password-confirm"
         placeholder="Digite sua senha novamente"
         required
       />
-
+      <div
+        class="alert alert-primary"
+        role="alert"
+        v-if="!passwordsMatch && passwordConfirm !== ''"
+      >
+        {{ message }}
+      </div>
       <div class="buttons">
         <router-link to="/login" class="button cancel">Cancelar</router-link>
-        <button type="submit" class="button create">Criar conta</button>
+        <button type="submit" :disabled="!passwordsMatch" class="button create">
+          Criar conta
+        </button>
       </div>
     </form>
 
@@ -79,8 +115,44 @@
 </template>
 
 <script>
+import api from "@/services/api";
 export default {
   name: "RegisterInstitution",
+  data() {
+    return {
+      user: {
+        name: "",
+        email: "",
+        password: "",
+        user_type: "institutional",
+        institutional_type: "",
+      },
+      passwordConfirm: "",
+      message: "",
+    };
+  },
+  computed: {
+    passwordsMatch() {
+      return this.user.password === this.passwordConfirm;
+    },
+  },
+  watch: {
+    passwordConfirm(newVal) {
+      if (!this.passwordsMatch && newVal !== "") {
+        this.message = "As senhas não correspondem";
+      } else {
+        this.message = "";
+      }
+    },
+  },
+  methods: {
+    salvarUsuario() {
+      api.addNewUser(this.user).catch((e) => {
+        this.errors = e.response.data.errors;
+      });
+      this.$router.push("/sign-up");
+    },
+  },
 };
 </script>
 
@@ -158,6 +230,19 @@ main input {
 .button.create {
   border: 0px;
   background: #432876;
+  color: #e9dffc;
+  transition: 0.5s;
+}
+.button.create:disabled {
+  border: 0px;
+  background: #ad87f3;
+  color: #e9dffc;
+  transition: 0.5s;
+}
+
+.button.create:disabled:hover {
+  border: 0px;
+  background: #ad87f3;
   color: #e9dffc;
   transition: 0.5s;
 }

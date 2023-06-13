@@ -78,6 +78,10 @@ export default {
       template: "Register",
     };
   },
+  mounted() {
+    document.body.style.background =
+      "linear-gradient(135deg, #be9ff6, #decffb) no-repeat";
+  },
 };
 </script>
 
@@ -98,7 +102,7 @@ header {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom right;
-  max-height: inherit;
+  max-height: 100vh;
 }
 
 .content {

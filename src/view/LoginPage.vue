@@ -37,6 +37,10 @@ export default {
     HeaderMain,
     FooterMain,
   },
+  mounted() {
+    document.body.style.background =
+      "linear-gradient(135deg, #be9ff6, #decffb) no-repeat";
+  },
 };
 </script>
 
