@@ -107,6 +107,9 @@
               maxlength="150"
               v-model="userEdit.about_me"
             ></textarea>
+            <div class="wordCount">
+              <p>{{ characterCount }} / 150</p>
+            </div>
           </div>
           <div class="form-group required">
             <label class="control-label">Número de celular</label>
@@ -162,7 +165,11 @@ export default {
       },
     };
   },
-
+  computed: {
+    characterCount() {
+      return this.userEdit.about_me.length;
+    },
+  },
   methods: {
     editUserInfo() {
       const changeCriticalInfo =
@@ -202,7 +209,11 @@ export default {
   background-size: cover;
   background-position: center;
 }
-
+.wordCount {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 10px;
+}
 .form-group.required .control-label:after {
   content: "*";
   color: red;

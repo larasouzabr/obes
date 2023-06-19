@@ -1,5 +1,6 @@
 import decode from "jwt-decode";
 import request from "./request";
+import api from "./api";
 export async function signIn(email, password) {
   const { token, user } = await request(
     "POST",
@@ -21,6 +22,19 @@ export function signOut() {
 export function getUserTypeLogged() {
   const user = JSON.parse(localStorage.getItem("user"));
   return user.user_type;
+}
+
+export function hasInfoCompleted() {
+  const user = JSON.parse(localStorage.getItem("user"));
+  let situation = false;
+
+  api.getUserById(user.id).then((response) => {
+    response.data.address.city == null
+      ? (situation = false)
+      : (situation = true);
+    console.log(situation);
+  });
+  return situation;
 }
 
 export function isSignedIn() {

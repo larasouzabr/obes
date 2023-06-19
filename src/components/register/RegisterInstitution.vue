@@ -81,6 +81,7 @@
         id="password-confirm"
         placeholder="Digite sua senha novamente"
         required
+        minlength="8"
       />
       <div
         class="alert alert-primary"

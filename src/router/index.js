@@ -1,7 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomePage from "../view/HomePage.vue";
 
-import { isSignedIn, getUserTypeLogged } from "../services/auth";
+import {
+  isSignedIn,
+  getUserTypeLogged,
+  hasInfoCompleted,
+} from "../services/auth";
 
 /* import { isSignedIn } from "../services/auth"; */
 
@@ -9,6 +13,7 @@ const routes = [
   {
     path: "/",
     name: "Home",
+    alias: "/home",
     component: HomePage,
   },
   {
@@ -75,10 +80,8 @@ const routes = [
     name: "Donation",
     beforeEnter(_, __, next) {
       if (isSignedIn()) {
-        next();
-        return;
-      }
-      next("/sign-in");
+        hasInfoCompleted() ? next("/profile/donateabook") : next("/fill-info");
+      } else next("/sign-in");
     },
     component: () => import("../view/DonateABook.vue"),
   },
@@ -104,7 +107,11 @@ const routes = [
     path: "/fill-info",
     name: "RegistrationInfo",
     component: () => import("../view/RegistrationPersonalInfo.vue"),
-    props: true,
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "NotFound",
+    component: () => import("../view/ErrorPage.vue"),
   },
 ];
 
