@@ -92,7 +92,6 @@ export default {
         email: "",
         password: "",
         user_type: "common",
-
       },
       passwordConfirm: "",
       message: "",
@@ -117,6 +116,7 @@ export default {
       api.addNewUser(this.user).catch((e) => {
         this.errors = e.response.data.errors;
       });
+      this.$router.push("/sign-up");
     },
   },
 };

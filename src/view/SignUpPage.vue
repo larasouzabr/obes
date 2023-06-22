@@ -4,6 +4,10 @@
 
     <main>
       <img src="../assets/obes.svg" alt="Logo Obes" />
+      <div class="alert alert-danger" role="alert" v-if="showError">
+        {{ message }}
+      </div>
+
       <form @submit.prevent="handleSubmit" method="post">
         <label for="email">E-mail</label>
         <input
@@ -50,12 +54,19 @@ export default {
         email: "",
         password: "",
       },
+      showError: false,
+      message: "",
     };
   },
   methods: {
     async handleSubmit() {
-      await signIn(this.user.email, this.user.password);
-      this.$router.push("/");
+      const response = await signIn(this.user.email, this.user.password);
+      console.log(response);
+      if (response == "Login com sucesso!") this.$router.push("/");
+      else {
+        this.message = response;
+        this.showError = true;
+      }
     },
   },
   mounted() {

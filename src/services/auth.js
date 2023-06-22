@@ -2,16 +2,33 @@ import decode from "jwt-decode";
 import request from "./request";
 import api from "./api";
 export async function signIn(email, password) {
-  const { token, user } = await request(
-    "POST",
-    "/login",
-    JSON.stringify({
-      email,
-      password,
-    })
-  );
-  localStorage.setItem("token", token);
-  localStorage.setItem("user", JSON.stringify(user));
+  try {
+    const response = await request(
+      "POST",
+      "/login",
+      JSON.stringify({
+        email,
+        password,
+      })
+    );
+
+    if (response.message) {
+      if (response.message === "User Not Found") {
+        return "Usuário não existe.";
+      } else if (response.message === "Invalid Credentials") {
+        return "Credenciais inválidas";
+      } else {
+        return "Ocorreu um erro durante o login.";
+      }
+    } else {
+      const { token, user } = response;
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+      return "Login com sucesso!";
+    }
+  } catch (error) {
+    throw new Error("Ocorreu um erro durante o login.");
+  }
 }
 
 export function signOut() {
