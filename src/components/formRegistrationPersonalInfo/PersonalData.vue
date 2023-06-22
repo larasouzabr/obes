@@ -5,12 +5,7 @@
     <section class="register">
       <transition name="slide-fade">
         <section>
-          <form
-            class="forms"
-            method="post"
-            action="#"
-            @submit.prevent="saveData()"
-          >
+          <form class="forms" action="#" @submit.prevent="saveData()">
             <ul class="forms-personalData">
               <li>
                 <label for="dateBirth">Data de Nascimento</label>
@@ -113,9 +108,10 @@ Insira sua rua/avenida"
               </ul>
             </ul>
             <div class="col-12">
-              <router-link to="/profile" class="btn btn-primary" type="submit"
+              <button type="submit">Confirmar</button>
+              <!-- <router-link to="/profile" class="btn btn-primary" type="submit"
                 >Confirmar</router-link
-              >
+              > -->
             </div>
           </form>
         </section>
