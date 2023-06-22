@@ -80,9 +80,8 @@ const routes = [
     name: "Donation",
     async beforeEnter(_, __, next) {
       if (isSignedIn()) {
-        console.log(hasInfoCompleted());
         (await hasInfoCompleted())
-          ? next({ name: "Donation" })
+          ? next()
           : next({ name: "RegistrationInfo" });
       } else next("/sign-in");
     },
@@ -91,12 +90,12 @@ const routes = [
   {
     path: "/profile/sellabook",
     name: "Sell",
-    beforeEnter(_, __, next) {
+    async beforeEnter(_, __, next) {
       if (isSignedIn()) {
-        next();
-        return;
-      }
-      next("/sign-in");
+        (await hasInfoCompleted())
+          ? next()
+          : next({ name: "RegistrationInfo" });
+      } else next("/sign-in");
     },
     component: () => import("../view/SellABook.vue"),
   },
