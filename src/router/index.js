@@ -78,9 +78,12 @@ const routes = [
   {
     path: "/profile/donateabook",
     name: "Donation",
-    beforeEnter(_, __, next) {
+    async beforeEnter(_, __, next) {
       if (isSignedIn()) {
-        hasInfoCompleted() ? next("/profile/donateabook") : next("/fill-info");
+        console.log(hasInfoCompleted());
+        (await hasInfoCompleted())
+          ? next({ name: "Donation" })
+          : next({ name: "RegistrationInfo" });
       } else next("/sign-in");
     },
     component: () => import("../view/DonateABook.vue"),

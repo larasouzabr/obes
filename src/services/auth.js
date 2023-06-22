@@ -24,17 +24,14 @@ export function getUserTypeLogged() {
   return user.user_type;
 }
 
-export function hasInfoCompleted() {
+export async function hasInfoCompleted() {
   const user = JSON.parse(localStorage.getItem("user"));
-  let situation = false;
+  let sit;
 
-  api.getUserById(user.id).then((response) => {
-    response.data.address.city == null
-      ? (situation = false)
-      : (situation = true);
-    console.log(situation);
-  });
-  return situation;
+  const situation = await api.getUserById(user.id);
+
+  situation.data.address.city == null ? (sit = false) : (sit = true);
+  return sit;
 }
 
 export function isSignedIn() {
