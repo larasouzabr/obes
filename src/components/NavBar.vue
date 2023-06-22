@@ -170,7 +170,7 @@ li > img {
 }
 
 .nav-item .nav-link {
-  color: #724fb2;
+  color: #432876;
 }
 .nav-item:active {
   color: #432876;
