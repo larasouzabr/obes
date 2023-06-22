@@ -30,7 +30,7 @@ export async function hasInfoCompleted() {
 
   const situation = await api.getUserById(user.id);
 
-  situation.data.address?.city == null ? (sit = false) : (sit = true);
+  situation.data.address == null ? (sit = false) : (sit = true);
   return sit;
 }
 
