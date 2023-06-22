@@ -24,6 +24,11 @@
       />
 
       <label for="password">Senha</label>
+      <div class="col-auto">
+        <span id="passwordHelpInline" class="form-text">
+          Precisa ter entre 8-50 caracteres
+        </span>
+      </div>
       <input
         v-model="user.password"
         type="password"
@@ -44,7 +49,13 @@
         required
         minlength="8"
       />
-
+      <div
+        class="alert alert-primary"
+        role="alert"
+        v-if="!passwordsMatch && passwordConfirm !== ''"
+      >
+        {{ message }}
+      </div>
       <div class="buttons">
         <router-link to="/login" class="button cancel">Cancelar</router-link>
         <button type="submit" :disabled="!passwordsMatch" class="button create">
@@ -80,10 +91,8 @@ export default {
         name: "",
         email: "",
         password: "",
-        phone_number: "",
         user_type: "common",
-        cpf: "",
-        birthdate: "",
+
       },
       passwordConfirm: "",
       message: "",
@@ -108,7 +117,6 @@ export default {
       api.addNewUser(this.user).catch((e) => {
         this.errors = e.response.data.errors;
       });
-      this.$router.push("/sign-up");
     },
   },
 };

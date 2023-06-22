@@ -3,10 +3,6 @@
     <div class="background"></div>
 
     <div class="content">
-      <!-- <div v-if="template == 'Register'">
-        <HeaderMain />
-      </div> -->
-
       <div v-if="template == 'Register'">
         <main>
           <img src="../assets/obes.svg" alt="Logo Obes" />

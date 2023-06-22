@@ -40,7 +40,6 @@
 </template>
 
 <script>
-/* import api from "@/services/auth"; */
 import { signIn } from "@/services/auth";
 
 export default {

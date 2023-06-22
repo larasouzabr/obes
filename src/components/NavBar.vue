@@ -67,7 +67,7 @@
                 height="32"
                 style="border-radius: 50%"
               />
-              <span> Olá, {{ primeiroNome }}! </span>
+              <span> Olá, {{ getFirstName() }}! </span>
             </router-link>
             <router-link to="/sign-up" v-if="!signedIn()">
               <img
@@ -102,7 +102,6 @@ export default {
     return {
       user: JSON.parse(localStorage.getItem("user")),
       categories: [],
-      primeiroNome: "",
     };
   },
   mounted() {
@@ -110,7 +109,6 @@ export default {
       .getAllCategories()
       .then((response) => {
         this.categories = response.data;
-        this.getFirstName();
       })
       .catch((error) => {
         console.error(error);
@@ -121,10 +119,11 @@ export default {
       return isSignedIn();
     },
     getFirstName() {
-      this.primeiroNome = this.user.name.substring(
-        0,
-        this.user.name.indexOf(" ")
-      );
+      if (this.user.name.indexOf(" ") >= 0) {
+        return this.user.name.substring(0, this.user.name.indexOf(" "));
+      } else {
+        return this.user.name;
+      }
     },
   },
 };
@@ -171,7 +170,7 @@ li > img {
 }
 
 .nav-item .nav-link {
-  color: #724fb2;
+  color: #432876;
 }
 .nav-item:active {
   color: #432876;

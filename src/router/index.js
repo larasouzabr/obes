@@ -1,7 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomePage from "../view/HomePage.vue";
 
-import { isSignedIn, getUserTypeLogged } from "../services/auth";
+import {
+  isSignedIn,
+  getUserTypeLogged,
+  hasInfoCompleted,
+} from "../services/auth";
 
 /* import { isSignedIn } from "../services/auth"; */
 
@@ -9,6 +13,7 @@ const routes = [
   {
     path: "/",
     name: "Home",
+    alias: "/home",
     component: HomePage,
   },
   {
@@ -73,24 +78,24 @@ const routes = [
   {
     path: "/profile/donateabook",
     name: "Donation",
-    beforeEnter(_, __, next) {
+    async beforeEnter(_, __, next) {
       if (isSignedIn()) {
-        next();
-        return;
-      }
-      next("/sign-in");
+        (await hasInfoCompleted())
+          ? next()
+          : next({ name: "RegistrationInfo" });
+      } else next("/sign-in");
     },
     component: () => import("../view/DonateABook.vue"),
   },
   {
     path: "/profile/sellabook",
     name: "Sell",
-    beforeEnter(_, __, next) {
+    async beforeEnter(_, __, next) {
       if (isSignedIn()) {
-        next();
-        return;
-      }
-      next("/sign-in");
+        (await hasInfoCompleted())
+          ? next()
+          : next({ name: "RegistrationInfo" });
+      } else next("/sign-in");
     },
     component: () => import("../view/SellABook.vue"),
   },
@@ -104,7 +109,11 @@ const routes = [
     path: "/fill-info",
     name: "RegistrationInfo",
     component: () => import("../view/RegistrationPersonalInfo.vue"),
-    props: true,
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "NotFound",
+    component: () => import("../view/ErrorPage.vue"),
   },
 ];
 

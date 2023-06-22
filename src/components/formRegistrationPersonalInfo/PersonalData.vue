@@ -113,11 +113,8 @@ Insira sua rua/avenida"
               </ul>
             </ul>
             <div class="col-12">
-              <router-link
-                :to="'/profile/donateabook'"
-                class="btn btn-primary"
-                type="submit"
-                >Próximo</router-link
+              <router-link to="/profile" class="btn btn-primary" type="submit"
+                >Confirmar</router-link
               >
             </div>
           </form>
