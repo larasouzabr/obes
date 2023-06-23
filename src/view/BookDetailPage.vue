@@ -68,7 +68,13 @@
             <p v-if="book.available == true">
               Este produto está disponível para doação!
             </p>
-            <a @click="requestDonation()" class="button btn donate"
+            <a
+              @click="requestDonation()"
+              v-if="signedIn()"
+              class="button btn donate"
+              >Solicitar doação</a
+            >
+            <a v-if="!signedIn()" @click="redirect()" class="button btn donate"
               >Solicitar doação</a
             >
           </div>
@@ -80,7 +86,10 @@
             <a
               class="button add btn"
               @click="requestSelling()"
-              v-if="showCongratsSell == false"
+              v-if="showCongratsSell == false && signedIn()"
+              >Adicionar ao carrinho</a
+            >
+            <a class="button add btn" v-if="!signedIn()" @click="redirect()"
               >Adicionar ao carrinho</a
             >
           </div>
@@ -116,6 +125,8 @@ import StarRating from "vue-star-rating";
 import CarouselComp from "@/components/carousel/CarouselComp.vue";
 import api from "@/services/api";
 import request from "@/services/request";
+import { isSignedIn } from "@/services/auth";
+
 export default {
   name: "BookDetailPage",
   components: {
@@ -145,6 +156,12 @@ export default {
       console.log("adicionou no carrinho");
       // request("post", `/donation-orders/${this.book.id}`, "");
       this.showCongratsSell = true;
+    },
+    signedIn() {
+      return isSignedIn();
+    },
+    redirect() {
+      this.$router.push("/sign-up");
     },
   },
 
