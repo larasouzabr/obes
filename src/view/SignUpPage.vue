@@ -61,7 +61,6 @@ export default {
   methods: {
     async handleSubmit() {
       const response = await signIn(this.user.email, this.user.password);
-      console.log(response);
       if (response == "Login com sucesso!") this.$router.push("/");
       else {
         this.message = response;

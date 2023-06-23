@@ -248,7 +248,6 @@ export default {
       }
 
       formData.append("type_book", this.book.type_book);
-      console.log(JSON.stringify(formData));
       requestFormData("/books", formData);
     },
     handleFileChange(event) {

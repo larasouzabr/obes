@@ -41,9 +41,12 @@
               />
               <span class="actual-rating"> 4.5 </span>
             </span>
-            <span style="color: #a0a0a0"> Sobre mim: </span>
+            <span style="color: #495057"> Sobre mim: </span>
             <br />
             <span style="color: #29154d"> {{ user.about_me }} </span>
+            <span style="color: #6766ff" v-if="!user.about_me">
+              Edite suas informações para adicionar uma breve resumo aqui.
+            </span>
           </div>
         </div>
       </div>

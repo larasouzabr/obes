@@ -6,9 +6,11 @@
       <transition name="slide-fade">
         <section>
           <form class="forms" action="#" @submit.prevent="saveData()">
-            <ul class="forms-personalData">
+            <ul class="forms-personalData form-group required">
               <li>
-                <label for="dateBirth">Data de Nascimento</label>
+                <label for="dateBirth" class="control-label"
+                  >Data de Nascimento</label
+                >
                 <input
                   type="date"
                   name="dateBirth"
@@ -18,7 +20,7 @@
                 />
               </li>
               <li>
-                <label for="cpf">CPF</label>
+                <label for="cpf" class="control-label">CPF</label>
                 <input
                   type="text"
                   name="cpf"
@@ -29,18 +31,19 @@
                 />
               </li>
               <li>
-                <label for="phone">Celular</label>
+                <label for="phone" class="control-label">Celular</label>
                 <input
                   type="text"
                   name="phone"
                   id="phone"
                   placeholder="(00) 00000-0000"
                   v-model="personalInfo.phone_number"
+                  required
                 />
               </li>
               <ul class="personalData-addressNumber">
                 <li>
-                  <label for="cep">CEP</label>
+                  <label for="cep" class="control-label">CEP</label>
                   <input
                     type="text"
                     name="cep"
@@ -51,7 +54,7 @@
                   />
                 </li>
                 <li>
-                  <label for="number">Número</label>
+                  <label for="number" class="control-label">Número</label>
                   <input
                     type="number"
                     name="number"
@@ -63,7 +66,7 @@
                 </li>
               </ul>
               <li>
-                <label for="addressName">Endereço</label>
+                <label for="addressName" class="control-label">Endereço</label>
                 <input
                   type="text"
                   name="addressName"
@@ -76,7 +79,7 @@ Insira sua rua/avenida"
               </li>
               <ul class="personalData-addressInfo">
                 <li>
-                  <label for="neighborhood">Bairro</label>
+                  <label for="neighborhood" class="control-label">Bairro</label>
                   <input
                     type="text"
                     name="neighborhood"
@@ -86,7 +89,7 @@ Insira sua rua/avenida"
                   />
                 </li>
                 <li>
-                  <label for="city">Cidade</label>
+                  <label for="city" class="control-label">Cidade</label>
                   <input
                     type="text"
                     name="city"
@@ -96,7 +99,7 @@ Insira sua rua/avenida"
                   />
                 </li>
                 <li>
-                  <label for="state">Estado</label>
+                  <label for="state" class="control-label">Estado</label>
                   <input
                     type="text"
                     name="state"
@@ -109,9 +112,6 @@ Insira sua rua/avenida"
             </ul>
             <div class="col-12">
               <button type="submit" class="btn btn-primary">Confirmar</button>
-              <!-- <router-link to="/profile" class="btn btn-primary" type="submit"
-                >Confirmar</router-link
-              > -->
             </div>
           </form>
         </section>
@@ -155,6 +155,11 @@ export default {
 <style scoped>
 body {
   background-color: #decffb;
+}
+
+.form-group.required .control-label:after {
+  content: "*";
+  color: red;
 }
 
 .bookPreview {
