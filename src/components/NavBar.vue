@@ -123,9 +123,11 @@ export default {
       .catch((error) => {
         console.error(error);
       });
-    api.getUserById(this.user.id).then((response) => {
-      this.userName = response.data.name;
-    });
+    if (this.user) {
+      api.getUserById(this.user?.id).then((response) => {
+        this.userName = response.data.name;
+      });
+    }
   },
 
   methods: {
