@@ -108,7 +108,7 @@ Insira sua rua/avenida"
               </ul>
             </ul>
             <div class="col-12">
-              <button type="submit">Confirmar</button>
+              <button type="submit" class="btn btn-primary">Confirmar</button>
               <!-- <router-link to="/profile" class="btn btn-primary" type="submit"
                 >Confirmar</router-link
               > -->
@@ -147,6 +147,7 @@ export default {
     saveData() {
       request("put", "/user", JSON.stringify(this.personalInfo));
       request("post", "/addresses", JSON.stringify(this.address));
+      this.$router.push("/profile");
     },
   },
 };

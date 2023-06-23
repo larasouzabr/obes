@@ -110,11 +110,6 @@ const routes = [
     name: "RegistrationInfo",
     component: () => import("../view/RegistrationPersonalInfo.vue"),
   },
-  {
-    path: "/:pathMatch(.*)*",
-    name: "NotFound",
-    component: () => import("../view/ErrorPage.vue"),
-  },
 ];
 
 const router = createRouter({

@@ -67,7 +67,7 @@
                 height="32"
                 style="border-radius: 50%"
               />
-              <span> Olá, {{ getFirstName() }}! </span>
+              <span> Olá, {{ firstName }}! </span>
             </router-link>
             <router-link to="/sign-up" v-if="!signedIn()">
               <img
@@ -97,11 +97,21 @@ export default {
         this.$route.path === "/sign-up"
       );
     },
+    firstName() {
+      const hasSpace = this.userName.indexOf(" ") >= 0;
+      if (hasSpace) {
+        return this.userName.substring(0, this.user.name.indexOf(" "));
+      } else {
+        return this.userName;
+      }
+    },
   },
   data() {
     return {
-      user: JSON.parse(localStorage.getItem("user")),
       categories: [],
+      user: JSON.parse(localStorage.getItem("user")),
+
+      userName: "",
     };
   },
   mounted() {
@@ -113,17 +123,14 @@ export default {
       .catch((error) => {
         console.error(error);
       });
+    api.getUserById(this.user.id).then((response) => {
+      this.userName = response.data.name;
+    });
   },
+
   methods: {
     signedIn() {
       return isSignedIn();
-    },
-    getFirstName() {
-      if (this.user.name.indexOf(" ") >= 0) {
-        return this.user.name.substring(0, this.user.name.indexOf(" "));
-      } else {
-        return this.user.name;
-      }
     },
   },
 };
