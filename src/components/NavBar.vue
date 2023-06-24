@@ -62,7 +62,7 @@
             <router-link to="/profile" v-if="signedIn()">
               <img
                 src="../assets/avatar.png"
-                alt="Avatar"
+                alt="Avatar usuário"
                 width="32"
                 height="32"
                 style="border-radius: 50%"
@@ -72,7 +72,7 @@
             <router-link to="/sign-up" v-if="!signedIn()">
               <img
                 src="../assets/avatar.png"
-                alt="Avatar"
+                alt="Avatar usuário"
                 width="45"
                 height="32"
               />

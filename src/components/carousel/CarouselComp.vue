@@ -1,7 +1,7 @@
 <template>
   <div class="content-carousel">
     <h2>
-      <strong>{{ description }}</strong>
+      <strong tabindex="0">{{ description }}</strong>
     </h2>
     <Carousel v-bind="settings" :breakpoints="breakpoints">
       <Slide v-for="book in books" :key="book">

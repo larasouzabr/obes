@@ -3,7 +3,7 @@
     <div class="imgBook">
       <img
         :src="book.image"
-        alt=""
+        :alt="'capa do livro ' + book.title"
         :style="{
           width: '430px',
           height: '640px',

@@ -9,18 +9,23 @@
                 ? user.image_filename
                 : require('@/assets/avatar.png')
             "
-            alt=""
+            alt="Foto de perfil do usuário"
+            tabindex="0"
           />
         </span>
         <div class="information-together">
           <div class="information-main">
-            <span class="profile-name">{{ user.name }}</span>
-            <span class="profile-city-and-state" v-if="user.address?.id">
+            <span class="profile-name" tabindex="0">{{ user.name }}</span>
+            <span
+              class="profile-city-and-state"
+              tabindex="0"
+              v-if="user.address?.id"
+            >
               <img
                 src="../../assets/geo-alt.svg"
                 alt="Localização do usuário"
               />
-              <label class="city"
+              <label class="city" tabindex="0"
                 >{{ user.address?.city }} - {{ user.address?.state }}</label
               >
             </span>
@@ -29,8 +34,11 @@
               data-bs-toggle="modal"
               data-bs-target="#confirmationModal"
               @click="insertDataInUser"
+              tabindex="0"
             >
-              <img src="../../assets/pencil-square.svg"
+              <img
+                src="../../assets/pencil-square.svg"
+                alt="Editar informações de usuário"
             /></a>
           </div>
           <div class="about-me-and-rating">
@@ -39,12 +47,14 @@
                 src="../../assets/star-fill.svg"
                 alt="Avaliação geral do usuário"
               />
-              <span class="actual-rating"> 4.5 </span>
+              <span class="actual-rating" tabindex="0"> 4.5 </span>
             </span>
-            <span style="color: #495057"> Sobre mim: </span>
+            <span style="color: #495057" tabindex="0"> Sobre mim: </span>
             <br />
-            <span style="color: #29154d"> {{ user.about_me }} </span>
-            <span style="color: #6766ff" v-if="!user.about_me">
+            <span style="color: #29154d" tabindex="0">
+              {{ user.about_me }}
+            </span>
+            <span style="color: #6766ff" v-if="!user.about_me" tabindex="0">
               Edite suas informações para adicionar uma breve resumo aqui.
             </span>
           </div>

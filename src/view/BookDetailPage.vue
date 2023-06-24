@@ -52,54 +52,69 @@
 
     <div class="content">
       <div>
-        <img :src="book.image_url" alt="Capa do livro" class="cover" />
+        <img
+          :src="book.image_url"
+          :alt="'capa do livro ' + book.title"
+          class="cover"
+          tabindex="0"
+        />
       </div>
       <div class="details">
-        <h3 class="title">{{ book.title }}</h3>
+        <h3 class="title" tabindex="0">{{ book.title }}</h3>
 
-        <span class="category">{{ categoryName }}</span>
+        <span class="category" tabindex="0">{{ categoryName }}</span>
 
-        <div class="description">
+        <div class="description" tabindex="0">
           <span>{{ book.description }} </span>
         </div>
 
         <div class="purchase-inf">
           <div v-if="book.price == 0">
-            <p v-if="book.available == true">
+            <p v-if="book.available == true" tabindex="0">
               Este produto está disponível para doação!
             </p>
             <a
               @click="requestDonation()"
               v-if="signedIn()"
               class="button btn donate"
+              tabindex="0"
               >Solicitar doação</a
             >
-            <a v-if="!signedIn()" @click="redirect()" class="button btn donate"
+            <a
+              v-if="!signedIn()"
+              @click="redirect()"
+              tabindex="0"
+              class="button btn donate"
               >Solicitar doação</a
             >
           </div>
           <div v-else>
-            <p class="price">
+            <p class="price" tabindex="0">
               R$
               {{ new Intl.NumberFormat("pt-BR").format(book.price) }}
             </p>
             <a
               class="button add btn"
+              tabindex="0"
               @click="requestSelling()"
               v-if="showCongratsSell == false && signedIn()"
               >Adicionar ao carrinho</a
             >
-            <a class="button add btn" v-if="!signedIn()" @click="redirect()"
+            <a
+              class="button add btn"
+              v-if="!signedIn()"
+              @click="redirect()"
+              tabindex="0"
               >Adicionar ao carrinho</a
             >
           </div>
 
-          <span class="soldby">
+          <span class="soldby" tabindex="0">
             {{ book.price == 0 ? "Doado por:" : "Vendido por:" }}</span
           >
 
-          <div class="info-user">
-            <span>{{ userOwner.name }}</span>
+          <div class="info-user" >
+            <span tabindex="0">{{ userOwner.name }}</span>
             <star-rating
               v-bind:increment="0.5"
               v-bind:max-rating="5"

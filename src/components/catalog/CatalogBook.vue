@@ -1,6 +1,6 @@
 <template>
   <div class="book">
-    <img :src="book.image" alt="Capa do livro" class="cover" />
+    <img :src="book.image" :alt="'capa do livro ' + book.title" class="cover" />
 
     <div>
       <h3 class="title">{{ book.title }}</h3>

@@ -2,7 +2,7 @@
   <div class="content">
     <div class="d-flex">
       <div class="picture">
-        <img :src="review.profilePicture" alt="User profile picture" />
+        <img :src="review.profilePicture" alt="Foto de perfil do Usuário" />
       </div>
       <div class="rating">
         <star-rating

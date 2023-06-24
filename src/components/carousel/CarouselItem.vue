@@ -1,31 +1,57 @@
 <template>
   <div class="container">
-    <router-link :to="`/book-detail/${book.id}`" href="#">
-      <div class="image">
-        <img :src="book.image_url" alt="" />
+    <button class="icon-reproduzir" :id="book.id" @click="playDescription()">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-volume-up-fill"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z"
+        />
+        <path
+          d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z"
+        />
+        <path
+          d="M8.707 11.182A4.486 4.486 0 0 0 10.025 8a4.486 4.486 0 0 0-1.318-3.182L8 5.525A3.489 3.489 0 0 1 9.025 8 3.49 3.49 0 0 1 8 10.475l.707.707zM6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06z"
+        />
+      </svg>
+    </button>
+    <router-link :to="`/book-detail/${book.id}`">
+      <div class="image-container">
+        <img
+          :src="book.image_url"
+          :alt="'capa do livro ' + book.title"
+          tabindex="0"
+        />
       </div>
       <div class="information">
         <span class="bookName"
-          ><strong> {{ book.title }}</strong></span
+          ><strong tabindex="0"> {{ book.title }}</strong></span
         >
       </div>
       <div class="button" v-if="!isOnProfile">
         <span class="informationAboveButton" v-if="!isDonation"
-          ><strong> A partir de:</strong></span
+          ><strong tabindex="0"> A partir de:</strong></span
         >
         <button class="btn btn-outline" type="submit">
-          <router-link :to="`/book-detail/${book.id}`">{{
-            isDonation ? "Detalhes" : "R$ " + book.price
-          }}</router-link>
+          <router-link :to="`/book-detail/${book.id}`" tabindex="0">
+            {{ isDonation ? "Detalhes" : "R$ " + book.price }}</router-link
+          >
         </button>
       </div>
       <div class="button" v-if="isOnProfile">
         <span
           class="informationAboveButton"
           v-if="book.type_book !== 'donation'"
-          ><strong> R$ {{ book.price }}</strong></span
+          ><strong tabindex="0"> R$ {{ book.price }}</strong></span
         >
-        <button class="btn btn-outline" type="submit">Editar</button>
+        <button class="btn btn-outline" type="submit" tabindex="0">
+          Editar
+        </button>
       </div>
     </router-link>
   </div>
@@ -40,6 +66,12 @@ export default {
     isOnProfile: Boolean,
     isOnInstitutionalPage: Boolean,
   },
+  methods: {
+    playDescription() {
+      const desc = new SpeechSynthesisUtterance(this.book.title);
+      window.speechSynthesis.speak(desc);
+    },
+  },
 };
 </script>
 
@@ -53,6 +85,15 @@ export default {
   position: relative;
 }
 
+.icon-reproduzir {
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  color: #fff;
+  background-color: #000;
+  border-radius: 50%;
+  padding: 3px;
+}
 .bookName {
   overflow: hidden;
   text-overflow: ellipsis;
