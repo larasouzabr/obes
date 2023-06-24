@@ -170,7 +170,7 @@ export default {
   },
   computed: {
     characterCount() {
-      return this.userEdit.about_me.length;
+      return this.userEdit.about_me?.length;
     },
   },
   methods: {
