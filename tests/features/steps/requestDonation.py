@@ -55,5 +55,5 @@ def then(context):
     user_profile.click()
 
     WebDriverWait(context.driver, 30).until(expected_conditions.text_to_be_present_in_element(
-        (By.XPATH, '/html/body/div/section/section[2]/div/div/div'), "Teste automatizado selenium"))
+        (By.XPATH, '/html/body/div/section/section[2]/div/div/div'), "Teste automatizado selenium edited"))
     context.driver.quit()
