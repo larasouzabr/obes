@@ -1,0 +1,155 @@
+{
+  "name": "Roberta Rafaella",
+  "city": "Quixadá",
+  "state": "CE",
+  "rating": 4.9,
+  "cellphone": "(99) 999999999",
+  "image": "https://conteudo.imguol.com.br/c/entretenimento/80/2017/04/25/a-atriz-zoe-saldana-como-neytiri-em-avatar-1493136439818_v2_1x1.jpg",
+  "about": "Apaixonada por livros de romance e aventura!!! Escritora entusiasta.",
+  "stats": [
+    {
+      "boughtBooks": 13,
+      "soldBooks": 4,
+      "donatedBooks": 2
+    }
+  ],
+  "reviews": [
+    {
+      "rating": 4.5,
+      "date": "02/05/2023",
+      "bookTitle": "As Crônicas de Nárnia",
+      "comment": "Meu livro veio com as páginas um pouco amareladas e com marcas de uso. Mas acredito que seja a edição.",
+      "profilePicture": "https://pub-static.fotor.com/assets/projects/pages/d5bdd0513a0740a8a38752dbc32586d0/fotor-03d1a91a0cec4542927f53c87e0599f6.jpg"
+    },
+    {
+      "rating": 5.0,
+      "date": "01/05/2023",
+      "bookTitle": "Jogos Vorazes",
+      "comment": "Amei! Livro sem nenhuma marca de uso, obrigada!",
+      "profilePicture": "https://www.goodmorningimagesdownload.com/wp-content/uploads/2021/12/Free-Insta-Profile-Wallpaper.jpg"
+    },
+    {
+      "rating": 4.0,
+      "date": "13/04/2023",
+      "bookTitle": "Divergente",
+      "comment": "O livro é ótimo, mas a entrega ficou a desejar",
+      "profilePicture": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwq_70Y4apYn7BmMKu0Lon1Z7Hb5I7vbzvBB9AOZbUo3fcoTd0QlbRqrPn7dLGFpg_4E8&usqp=CAU"
+    }
+  ],
+  "forSelling": [
+    {
+      "title": "Android in Action, Second Edition",
+      "isbn": "1935182722",
+      "pageCount": 592,
+      "publishedDate": { "$date": "2011-01-14T00:00:00.000-0800" },
+      "image": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/ableson2.jpg",
+      "shortDescription": "Android in Action, Second Edition is a comprehensive tutorial for Android developers. Taking you far beyond \"Hello Android,\" this fast-paced book puts you in the driver's seat as you learn important architectural concepts and implementation strategies. You'll master the SDK, build WebKit apps using HTML 5, and even learn to extend or replace Android's built-in features by building useful and intriguing examples. ",
+      "longDescription": "When it comes to mobile apps, Android can do almost anything   and with this book, so can you! Android runs on mobile devices ranging from smart phones to tablets to countless special-purpose gadgets. It's the broadest mobile platform available.    Android in Action, Second Edition is a comprehensive tutorial for Android developers. Taking you far beyond \"Hello Android,\" this fast-paced book puts you in the driver's seat as you learn important architectural concepts and implementation strategies. You'll master the SDK, build WebKit apps using HTML 5, and even learn to extend or replace Android's built-in features by building useful and intriguing examples. ",
+      "status": "PUBLISH",
+      "author": "W. Frank Ableson",
+      "categories": ["Java"],
+      "price": 14.72,
+      "isDonation": false
+    },
+    {
+      "title": "Flex on Java",
+      "isbn": "1933988797",
+      "pageCount": 265,
+      "publishedDate": { "$date": "2010-10-15T00:00:00.000-0700" },
+      "image": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/allmon.jpg",
+      "shortDescription": "   A beautifully written book that is a must have for every Java Developer.       Ashish Kulkarni, Technical Director, E-Business Software Solutions Ltd.",
+      "longDescription": "In the demo, a hip designer, a sharply-dressed marketer, and a smiling, relaxed developer sip lattes and calmly discuss how Flex is going to make customers happy and shorten the workday   all while boosting the bottom line. The software systems they're using have been carefully selected and built from the ground up to work together seamlessly. There are no legacy systems, data, or competing business concerns to manage.    Cut to reality.    You're a Java developer. The marketing guy tells you that \"corporate\" wants a Flex-based site and you have to deliver it on top of what you already have. Your budget  Don't even ask. \"Make it look like the Discovery channel or something.\"    Flex on Java assumes you live in the real world   not the demo. This unique book shows you how to refactor an existing web application using the server-side you already know. You'll learn to use Flex 3 in concert with Spring, EJB 3, POJOs, JMS, and other standard technologies. Wherever possible, the examples use free or open source software.    The author start with a typical Java web app and show you how to add a rich Flex interface. You also learn how to integrate Flex into your server-side Java via the BlazeDS framework, Adobe's open-source remoting and web messaging technology for Flex.    The book shows you how to deploy to not only the web but also to the desktop using the Adobe Integrated Runtime (AIR). You will learn how to integrate Flex into your existing applications in order to build a next generation application that will delight users.    Flex on Java is approachable for anyone beginning Java and Flex development.    ",
+      "status": "PUBLISH",
+      "author": "Bernerd Allmon",
+      "categories": ["Internet"],
+      "price": 16.0,
+      "isDonation": false
+    },
+    {
+      "title": "Memento Mori",
+      "author": "Muriel Spark",
+      "image": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1348186701l/120158.jpg",
+      "price": 15.9,
+      "currency": "$",
+      "category": "Novels",
+      "isbn13": 9780811223041,
+      "publisher": "New Directions Publishing Corporation",
+      "description": "In late 1950s London, something uncanny besets a group of elderly friends.",
+      "isDonation": false
+    },
+    {
+      "title": "Memento Mori",
+      "author": "Muriel Spark",
+      "image": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1348186701l/120158.jpg",
+      "price": 15.9,
+      "currency": "$",
+      "category": "Novels",
+      "isbn13": 9780811223041,
+      "publisher": "New Directions Publishing Corporation",
+      "description": "In late 1950s London, something uncanny besets a group of elderly friends.",
+      "isDonation": false
+    },
+    {
+      "title": "Memento Mori",
+      "author": "Muriel Spark",
+      "image": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1348186701l/120158.jpg",
+      "price": 15.9,
+      "currency": "$",
+      "category": "Novels",
+      "isbn13": 9780811223041,
+      "publisher": "New Directions Publishing Corporation",
+      "description": "In late 1950s London, something uncanny besets a group of elderly friends.",
+      "isDonation": false
+    },
+    {
+      "title": "Memento Mori",
+      "author": "Muriel Spark",
+      "image": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1348186701l/120158.jpg",
+      "price": 15.9,
+      "currency": "$",
+      "category": "Novels",
+      "isbn13": 9780811223041,
+      "publisher": "New Directions Publishing Corporation",
+      "description": "In late 1950s London, something uncanny besets a group of elderly friends.",
+      "isDonation": false
+    },
+    {
+      "title": "Memento Mori",
+      "author": "Muriel Spark",
+      "image": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1348186701l/120158.jpg",
+      "price": 15.9,
+      "currency": "$",
+      "category": "Novels",
+      "isbn13": 9780811223041,
+      "publisher": "New Directions Publishing Corporation",
+      "description": "In late 1950s London, something uncanny besets a group of elderly friends.",
+      "isDonation": false
+    },
+    {
+      "title": "Memento Mori",
+      "author": "Muriel Spark",
+      "image": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1348186701l/120158.jpg",
+      "price": 15.9,
+      "currency": "$",
+      "category": "Novels",
+      "isbn13": 9780811223041,
+      "publisher": "New Directions Publishing Corporation",
+      "description": "In late 1950s London, something uncanny besets a group of elderly friends.",
+      "isDonation": false
+    }
+  ],
+  "forDonation": [
+    {
+      "title": "Rhinoceros and Other Plays",
+      "author": "Eugène Ionesco",
+      "image": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1347454436l/323823.jpg",
+      "price": 16.0,
+      "currency": "$",
+      "category": "Plays > Theatre",
+      "publisher": "Grove Press",
+      "isbn13": 9780802130983,
+      "description": "A rhinoceros suddenly appears in a small town, tramping through its peaceful streets.",
+      "isDonation": true
+    }
+  ]
+}

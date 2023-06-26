@@ -13,8 +13,6 @@ Nosso produto contribui para a formação de uma sociedade mais instruída e cr�
 
 ## :people_holding_hands: Papéis ou tipos de usuário da aplicação
 
-Informe aqui os tipos de usuário que irão interagir com a aplicação. Ex: administrador, locador, locatario, usuário não logado.
-
 ### Resumo dos Envolvidos
 
 | Nome                                       |                                                            Descrição                                                            |                                                                                            Responsabilidades                                                                                            |
@@ -33,8 +31,6 @@ Informe aqui os tipos de usuário que irão interagir com a aplicação. Ex: adm
 | UC - Usuário Comum         | Leitores ávidos que procurem comprar livros usados ou raros, além de doar livros que não são mais utilizados por eles. Pessoas que desejam doar livros usados para que outros possam desfrutar deles.                                             | - Vender livros usados.- Doar livros usados.- Comprar livros usados por preços acessíveis.- Avaliar vendedores. | E01, E02      |
 | UI - Usuário Institucional | Instituições de ensino que buscam popular suas devidas bibliotecas e seus acervos para fornecer uma acessibilidade cultural para seus estudantes. Organizações sem fins lucrativos que buscam arrecadar fundos através da venda de livros usados. | - Utilizar o sistema para encontrar livros para doação.- Filtrar livros e vendedores.- Avaliar vendedores.      | E03, E04, E06 |
 
-> Tenha em mente que obrigatoriamente a aplicação deve possuir funcionalidades acessíveis a todos os tipos de usuário e outra funcionalidades restritas a certos tipos de usuários.
-
 ## :spiral_calendar: Entidades ou tabelas do sistema
 
 1. **Livros**: representa os livros disponíveis para venda/doação no sebo online. Os atributos podem incluir título, autor, editora, ano de publicação, condição (novo, usado), preço, descrição e imagem do livro.
@@ -49,19 +45,11 @@ Informe aqui os tipos de usuário que irão interagir com a aplicação. Ex: adm
 - **Cadastrar livro para doação**: os usuários registrados a qualquer momento poderão cadastrar livros usados por meio da página de cadastro que ficará disponível no menu.
 - **Visualizar livros usados que estão sendo vendidos e doados**: o sistema será dividido em duas categorias, a primeira é o Sebo no qual constará os livros à venda, essa página ficará disponível tanto para o UC (Usuário Comum) quanto para o UI (Usuário Institucional). Já a categoria de doação estará visível apenas para o UI, o UC não poderá receber livros doados e a página de doação para ele constará apenas aqueles materiais que ele cadastrou para doação.
 
----
-
-:warning::warning::warning: As informações a seguir devem ser enviadas juntamente com a versão final do projeto. :warning::warning::warning:
-
----
-
 ## :desktop_computer: Tecnologias e frameworks utilizados
 
 **Frontend:**
 
-Lista as tecnologias, frameworks e bibliotecas utilizados.
-
-VUE
+VUE,vue-router, vue-star-rating, vue3-carousel, axios, jwt-decode
 
 **Backend:**
 
@@ -74,13 +62,28 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
 | Livros       | X       | X       | X           | X       |
 | Usuários     | X       | X       | X           |         |
 | Doação/venda | X       | X       | X           | X       |
-| Avaliações   | X       | X       |             | X       |
-
-> Lembre-se que é necessário implementar o CRUD de pelo menos duas entidades.
+| Avaliações   |         |         |             |         |
 
 ## :neckbeard: Rotas da API REST utilizadas
 
-| Método HTTP | URL            |
-| ----------- | -------------- |
-| GET         | api/entidade1/ |
-| POST        | api/entidade2  |
+| Método HTTP | URL                           |
+| ----------- | ----------------------------- |
+| POST        | /api/login                    |
+| GET         | /api/addresses                |
+| PUT         | /api/address/{adressID}       |
+| DELETE      | /api/address/{adressID}       |
+| GET         | /api/books                    |
+| POST        | /api/books                    |
+| GET         | /api/{userId}/books           |
+| GET         | /api/books/{bookID}           |
+| PUT         | /api/books/{bookID}           |
+| DELETE      | /api/books/{bookID}           |
+| GET         | /api/categories               |
+| GET         | /api/categories/{bookId}      |
+| GET         | /api/user                     |
+| POST        | /api/user                     |
+| PUT         | /api/user                     |
+| DELETE      | /api/user                     |
+| GET         | /api/user/{userId}            |
+| GET         | /api/donation-orders          |
+| GET         | /api/donation-orders/{bookId} |
