@@ -4,6 +4,10 @@ Para pessoas que buscam adquirir livros por preços mais acessíveis e contribui
 O OBES é uma plataforma online de vendas e doação de livros usados que oferece preços mais acessíveis e uma grande variedade de títulos em comparação às lojas físicas tradicionais.
 Nosso produto contribui para a formação de uma sociedade mais instruída e crítica, além de colaborar para a preservação do meio ambiente por meio da reutilização de recursos.
 
+### Links
+Front-End: https://obes-larasouzabr.vercel.app/ <br>
+Back-End: https://obes-backend.onrender.com/api-docs
+
 ## :technologist: Membros da equipe
 
 508159 – Lara Gabrielly Souza Batista Lima - Engenharia de Software
@@ -53,7 +57,7 @@ VUE,vue-router, vue-star-rating, vue3-carousel, axios, jwt-decode
 
 **Backend:**
 
-Lista as tecnologias, frameworks e bibliotecas utilizados.
+JavaScript, NodeJs, Express, Postgres, Sequelize, Swagger.
 
 ## :shipit: Operações implementadas para cada entidade da aplicação
 
