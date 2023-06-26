@@ -2,6 +2,15 @@
   <BannerMain></BannerMain>
   <div class="categories">
     <CarouselComp
+      v-if="user?.user_type == 'institutional'"
+      :description="'Novidades em Doações'"
+      :books="
+        books.filter(
+          (book) => book.type_book === 'donation' && book.available == true
+        )
+      "
+    ></CarouselComp>
+    <CarouselComp
       :books="books.filter((book) => book.type_book === 'sale')"
       :description="'Novidades em Vendas'"
     ></CarouselComp>
@@ -11,16 +20,15 @@
           (book) => book.category_id === 99 && book.type_book === 'sale'
         )
       "
-      :description="'Novidades em Vendas de ficção'"
+      :description="'Novidades em Vendas de fantasia, horror e ficção científica '"
     ></CarouselComp>
     <CarouselComp
-      v-if="user?.user_type == 'institutional'"
-      :description="'Novidades em Doações'"
       :books="
         books.filter(
-          (book) => book.type_book === 'donation' && book.available == true
+          (book) => book.category_id === 94 && book.type_book === 'sale'
         )
       "
+      :description="'Novidades em Vendas de ficção'"
     ></CarouselComp>
   </div>
 </template>
