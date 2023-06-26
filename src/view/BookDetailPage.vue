@@ -132,6 +132,13 @@
   <CarouselComp
     :description="'Outras opções parecidas'"
     class="carousel"
+    :books="
+      books.filter(
+        (books) =>
+          books?.category_id === this.book.category_id &&
+          books?.type_book === 'sale'
+      )
+    "
   ></CarouselComp>
 </template>
 
@@ -159,6 +166,7 @@ export default {
       categoryName: "",
       book: Object,
       userOwner: [],
+      books: [],
     };
   },
 
@@ -197,6 +205,9 @@ export default {
       .catch((error) => {
         console.error(error);
       });
+    api.getBooks().then((response) => {
+      this.books = response.data;
+    });
   },
 };
 </script>
