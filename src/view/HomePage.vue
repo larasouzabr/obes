@@ -8,7 +8,7 @@
     <CarouselComp
       :books="
         books.filter(
-          (book) => book.category_id === 18 && book.type_book === 'sale'
+          (book) => book.category_id === 99 && book.type_book === 'sale'
         )
       "
       :description="'Novidades em Vendas de ficção'"
