@@ -147,7 +147,12 @@ export default {
     saveData() {
       request("put", "/user", JSON.stringify(this.personalInfo));
       request("post", "/addresses", JSON.stringify(this.address));
-      this.$router.push("/profile");
+      this.$router
+        .push("/profile")
+        .then(() => this.recarregarPaginaDesejada("/profile"));
+    },
+    recarregarPaginaDesejada(rota) {
+      window.location.href = rota;
     },
   },
 };

@@ -113,7 +113,7 @@
             {{ book.price == 0 ? "Doado por:" : "Vendido por:" }}</span
           >
 
-          <div class="info-user" >
+          <div class="info-user">
             <span tabindex="0">{{ userOwner.name }}</span>
             <star-rating
               v-bind:increment="0.5"
@@ -169,7 +169,7 @@ export default {
     },
     requestSelling() {
       console.log("adicionou no carrinho");
-      // request("post", `/donation-orders/${this.book.id}`, "");
+      request("post", `/donation-orders/${this.book.id}`, "");
       this.showCongratsSell = true;
     },
     signedIn() {

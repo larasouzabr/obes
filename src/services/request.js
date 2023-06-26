@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:3000/api";
+const baseURL = "https://obes-backend.onrender.com/api/";
 
 function getHeaders() {
   const token = localStorage.getItem("token");
@@ -32,9 +32,6 @@ async function requestFormData(url, body) {
         "multipart/form-data; boundary=----WebKitFormBoundarydMIgtiA2YeB1Z0kl",
     },
   });
-  /* .then((response) => {
-      return response;
-    }); */
 }
 
 export { request as default, request, getHeaders, requestFormData };

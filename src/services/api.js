@@ -1,9 +1,9 @@
 import axios from "axios";
 const api = axios.create({
-  baseURL: "http://localhost:3000/api/",
+  baseURL: "https://obes-backend.onrender.com/api/",
 });
 
-export const baseURL = "http://localhost:3000/api/";
+export const baseURL = "https://obes-backend.onrender.com/api/";
 
 export default {
   addNewUser: (user) => {
