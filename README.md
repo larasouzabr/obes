@@ -9,8 +9,8 @@ Nosso produto contribui para a formação de uma sociedade mais instruída e cr�
 
 ### Links
 Front-End: https://obes-larasouzabr.vercel.app/ <br>
-Back-End: https://obes-backend.onrender.com/api-docs
-Trello: https://trello.com/invite/b/MC20sLvY/ATTIf5c4e8abfc2a48081ddbffa0f810648269533432/user-stories-mapeamento
+Back-End: https://obes-backend.onrender.com/api-docs<br>
+Trello: https://trello.com/invite/b/MC20sLvY/ATTIf5c4e8abfc2a48081ddbffa0f810648269533432/user-stories-mapeamento<br>
 Artefatos: https://drive.google.com/drive/folders/1V3NrhX5OvRjm1KLqPux-yRqRDqPz6E20?usp=sharing
 
 ## :technologist: Membros da equipe
