@@ -2,11 +2,16 @@
 
 Para pessoas que buscam adquirir livros por preços mais acessíveis e contribuir para a preservação do meio ambiente, que encontram dificuldades em ter acesso a livros novos devido aos preços elevados.
 O OBES é uma plataforma online de vendas e doação de livros usados que oferece preços mais acessíveis e uma grande variedade de títulos em comparação às lojas físicas tradicionais.
-Nosso produto contribui para a formação de uma sociedade mais instruída e crítica, além de colaborar para a preservação do meio ambiente por meio da reutilização de recursos.
+Nosso produto contribui para a formação de uma sociedade mais instruída e crítica, além de colaborar para a preservação do meio ambiente por meio da reutilização de recursos.<br>
+
+[![Watch the video](https://i.imgur.com/sCdhm2Z.png)](https://www.youtube.com/watch?v=dU5QODdfy1w)
+
 
 ### Links
 Front-End: https://obes-larasouzabr.vercel.app/ <br>
 Back-End: https://obes-backend.onrender.com/api-docs
+Trello: https://trello.com/invite/b/MC20sLvY/ATTIf5c4e8abfc2a48081ddbffa0f810648269533432/user-stories-mapeamento
+Artefatos: https://drive.google.com/drive/folders/1V3NrhX5OvRjm1KLqPux-yRqRDqPz6E20?usp=sharing
 
 ## :technologist: Membros da equipe
 
@@ -91,3 +96,5 @@ JavaScript, NodeJs, Express, Postgres, Sequelize, Swagger.
 | GET         | /api/user/{userId}            |
 | GET         | /api/donation-orders          |
 | GET         | /api/donation-orders/{bookId} |
+
+
