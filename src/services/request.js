@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "https://obes-backend.onrender.com/api/";
+const baseURL = "https://obes-backend-cg3b.onrender.com/api/";
 
 function getHeaders() {
   const token = localStorage.getItem("token");
